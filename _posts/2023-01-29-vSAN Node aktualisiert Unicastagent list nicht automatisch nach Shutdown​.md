@@ -4,7 +4,7 @@ title:  "Test"
 categories: [VMware, vSAN]
 tags: [VMware, ESXi-7.*, vSAN]
 ---
-# vSAN Node aktualisiert "Unicastagent list" nicht automatisch nach "Shutdown"
+### vSAN Node aktualisiert "Unicastagent list" nicht automatisch nach "Shutdown"
 
 <p>Hin und wieder muss man für Wartungsarbeiten etc. seine vSAN Umgebung herunterfahren. Normalerweise ist dieser Vorgang nicht unbedingt kritisch, dennoch bin ich in letzter Zeit öfters darüber gestolpert, dass ein vSAN Node seine Partner nicht mehr gefunden hat.<br>
 Meine Umgebung umfasst 8 vSAN Nodes als Stretched Cluster + Witness. <br>
