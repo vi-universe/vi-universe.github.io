@@ -12,13 +12,13 @@ Auf meinem Screenshot erkennt man die "Command-Ausgabe" von Node04. <br>
 In der Zeile "Sub-Cluster Member HostName" ist deutlich zu erkennen das seine vSAN Partner fehlen.<p>
 
 ```
--> esxcli vsan cluster get
+esxcli vsan cluster get
 ```
 <br>
 <p>Der Blick in die "Unicastagent list" bestätigt dies. Normalerweiße sollten hier alle Nodes aufgeführt sein, außer der jeweilige Node selbst.<br>
 <br>
 ```
--> esxcli vsan cluster unicastagent list
+esxcli vsan cluster unicastagent list
 ```
 <br>
 Also gut... Was gilt es zu überprüfen.
@@ -26,13 +26,13 @@ Also gut... Was gilt es zu überprüfen.
 Mit diesem Command lasse ich mir meine Netzwerk-Interface anzeigen um zu überprüfen ob der Link Status "Up" ist.<br>
 <br>
 ```
--> esxcli network nic list
+esxcli network nic list
 ```
 <br>
 Anschließend lasse ich mir anzeigen auf welchem VMKernel Port vSAN Traffic aktiviert ist.<br>
 <br>
 ```
--> esxcli vsan network list
+esxcli vsan network list
 ```
 <br>
 VMK3 Traffic Type: vSAN<br>
@@ -40,7 +40,7 @@ VMK3 Traffic Type: vSAN<br>
 Mit dieser Information, kann ich mit folgenden Befehl<br>
 <br>
 ```
--> vmkping -I vmk3 *IP VMK3 der anderen Nodes*
+vmkping -I vmk3 *IP VMK3 der anderen Nodes*
 ```
 <br>
 überprüfen, ob mein Node04 über das vSAN Netzwerk alle anderen Nodes erreicht.<br>
@@ -55,46 +55,46 @@ Configuring vSAN Unicast networking from the command line (2150303)<br>
 Zu diesem Zeitpunkt waren keine VMs gestartet und alle Nodes im Wartungsmodus<br>
 <br>
 ```
--> esxcli system maintenanceMode set -e true -m noAction
+esxcli system maintenanceMode set -e true -m noAction
 ```
 Dieser Command deaktiviert temporär die automatischen Updates der Unicastagent List.<br>
 
 Diesen Command führe ich auf allen Nodes im Cluster aus.<br>
 ```
--> esxcfg-advcfg -s 1 /VSAN/IgnoreClusterMemberListupdates
+esxcfg-advcfg -s 1 /VSAN/IgnoreClusterMemberListupdates
 ```
 Nachdem ich auf allen Nodes, dass automatische Update deaktiviert habe, notiere ich mir die UUID aller Nodes in Notepad.<br>
 ```
--> cmmds-tool whoami
+cmmds-tool whoami
 ```
 Nun füge ich auf meinem betroffen Node04 alle anderen vSAN Partner manuell hinzu.<br>
 
 Node04 selbst darf nicht eingetragen werden<br>
 ```
--> esxcli vsan cluster unicastagent add -t node -u <Host_UUID> -U true -a <Host_VSAN_IP> -p 12321
+esxcli vsan cluster unicastagent add -t node -u <Host_UUID> -U true -a <Host_VSAN_IP> -p 12321
 ```
 Um den vSAN-Witness hinzuzufügen, muss der Command etwas geändert werden.<br>
 ```
--> esxcli vsan cluster unicastagent add -t witness -u <Host_UUID> -U true -a <Host_VSAN_IP> -p 12321
+esxcli vsan cluster unicastagent add -t witness -u <Host_UUID> -U true -a <Host_VSAN_IP> -p 12321
 ```
 Mal sehen ob wieder alle vSAN Partner am Start sind ;)<br>
 ```
--> esxcli vsan cluster get
+esxcli vsan cluster get
 ```
 Danach wieder das automatische Update aktivieren.
 ```
--> esxcfg-advcfg -s 0 /VSAN/IgnoreClusterMemberListupdates
+esxcfg-advcfg -s 0 /VSAN/IgnoreClusterMemberListupdates
 ```
 <br>
 ```
--> esxcli vsan cluster get
+esxcli vsan cluster get
 ```
 ```
--> esxcli vsan cluster unicastagent list
+esxcli vsan cluster unicastagent list
 ```
 ```
--> esxcli network nic list-> esxcli vsan network list
+esxcli network nic list-> esxcli vsan network list
 ```
 ```
--> vmkping -I vmk3 *IP VMK3 der anderen Nodes* 
+vmkping -I vmk3 *IP VMK3 der anderen Nodes* 
 ```
