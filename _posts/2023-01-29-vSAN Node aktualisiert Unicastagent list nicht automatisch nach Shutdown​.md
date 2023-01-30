@@ -11,13 +11,13 @@ Nach einem "Cluster Shutdown" fanden nur noch 7 von 8 Nodes ihre vSAN-Partner.
 Auf meinem Screenshot erkennt man die "Command-Ausgabe" von Node04.  
 In der Zeile "Sub-Cluster Member HostName" ist deutlich zu erkennen das seine vSAN Partner fehlen.
 
-```PowerShell
+```powershell
 esxcli vsan cluster get
 ```
 
 <p>Der Blick in die "Unicastagent list" bestätigt dies. Normalerweiße sollten hier alle Nodes aufgeführt sein, außer der jeweilige Node selbst.
 
-```PowerShell
+```powershell
 esxcli vsan cluster unicastagent list
 ```
 
@@ -25,13 +25,13 @@ Also gut... Was gilt es zu überprüfen.
 
 Mit diesem Command lasse ich mir meine Netzwerk-Interface anzeigen um zu überprüfen ob der Link Status "Up" ist.
 
-```PowerShell
+```powershell
 esxcli network nic list
 ```
 
 Anschließend lasse ich mir anzeigen auf welchem VMKernel Port vSAN Traffic aktiviert ist.
 
-```PowerShell
+```powershell
 esxcli vsan network list
 ```
 
@@ -39,7 +39,7 @@ VMK3 Traffic Type: vSAN<br>
 
 Mit dieser Information, kann ich mit folgenden Befehl
 
-```PowerShell
+```powershell
 vmkping -I vmk3 *IP VMK3 der anderen Nodes*
 ```
 
@@ -54,7 +54,7 @@ Configuring vSAN Unicast networking from the command line (2150303)
 
 Zu diesem Zeitpunkt waren keine VMs gestartet und alle Nodes im Wartungsmodus
 
-```PowerShell
+```powershell
 esxcli system maintenanceMode set -e true -m noAction
 ```
 
@@ -62,7 +62,7 @@ Dieser Command deaktiviert temporär die automatischen Updates der Unicastagent 
 
 Diesen Command führe ich auf allen Nodes im Cluster aus.
 
-```PowerShell
+```powershell
 esxcfg-advcfg -s 1 /VSAN/IgnoreClusterMemberListupdates
 ```
 
@@ -76,40 +76,40 @@ Nun füge ich auf meinem betroffen Node04 alle anderen vSAN Partner manuell hinz
 
 Node04 selbst darf nicht eingetragen werden
 
-```PowerShell
+```powershell
 esxcli vsan cluster unicastagent add -t node -u <Host_UUID> -U true -a <Host_VSAN_IP> -p 12321
 ```
 
 Um den vSAN-Witness hinzuzufügen, muss der Command etwas geändert werden.
 
-```PowerShell
+```powershell
 esxcli vsan cluster unicastagent add -t witness -u <Host_UUID> -U true -a <Host_VSAN_IP> -p 12321
 ```
 
 Mal sehen ob wieder alle vSAN Partner am Start sind ;)
 
-```PowerShell
+```powershell
 esxcli vsan cluster get
 ```
 
 Danach wieder das automatische Update aktivieren.
 
-```PowerShell
+```powershell
 esxcfg-advcfg -s 0 /VSAN/IgnoreClusterMemberListupdates
 ```
 
-```PowerShell
+```powershell
 esxcli vsan cluster get
 ```
 
-```PowerShell
+```powershell
 esxcli vsan cluster unicastagent list
 ```
 
-```PowerShell
+```powershell
 esxcli network nic list-> esxcli vsan network list
 ```
 
-```PowerShell
+```powershell
 vmkping -I vmk3 *IP VMK3 der anderen Nodes*
 ```
