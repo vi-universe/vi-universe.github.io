@@ -10,7 +10,7 @@ baseurl: ''
 # The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
 # If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
 # otherwise, the layout language will use the default value of 'en'.
-lang: en
+lang: de-DE
 
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
@@ -49,17 +49,17 @@ social:
     # - https://www.facebook.com/username
     # 
 
-google_site_verification:               # fill in to your verification string
+# google_site_verification:               # fill in to your verification string
 
 # ↑ --------------------------
 # The end of `jekyll-seo-tag` settings
 
-google_analytics:
-  id:                 # fill in your Google Analytics ID
-  # Google Analytics pageviews report settings
-  pv:
-    proxy_endpoint:   # fill in the Google Analytics superProxy endpoint of Google App Engine
-    cache_path:       # the local PV cache data, friendly to visitors from GFW region
+# google_analytics:
+#  id:                 # fill in your Google Analytics ID
+#  Google Analytics pageviews report settings
+#  pv:
+#    proxy_endpoint:   # fill in the Google Analytics superProxy endpoint of Google App Engine
+#    cache_path:       # the local PV cache data, friendly to visitors from GFW region
 
 # Prefer color scheme setting.
 #
@@ -82,7 +82,7 @@ theme_mode:    [dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: '/pictures/Creative-Tail-rocket.png'
 
 # boolean type, the global switch for ToC in posts.
 toc: true
