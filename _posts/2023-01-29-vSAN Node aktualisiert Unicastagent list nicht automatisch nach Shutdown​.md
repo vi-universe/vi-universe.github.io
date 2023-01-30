@@ -15,7 +15,7 @@ In der Zeile "Sub-Cluster Member HostName" ist deutlich zu erkennen das seine vS
 esxcli vsan cluster get
 ```
 
-<p>Der Blick in die "Unicastagent list" bestätigt dies. Normalerweiße sollten hier alle Nodes aufgeführt sein, außer der jeweilige Node selbst.
+Der Blick in die "Unicastagent list" bestätigt dies. Normalerweiße sollten hier alle Nodes aufgeführt sein, außer der jeweilige Node selbst.
 
 ```powershell
 esxcli vsan cluster unicastagent list
