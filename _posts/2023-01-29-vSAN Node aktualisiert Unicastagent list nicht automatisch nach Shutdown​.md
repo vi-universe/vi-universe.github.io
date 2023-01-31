@@ -1,16 +1,21 @@
 ---
 layout: post
-title: "vSAN Node aktualisiert Unicastagent list nicht automatisch nach Shutdown"
+title: "vSAN Node aktualisiertunicastagent list nicht automatisch nach Shutdown"
 categories: [VMware, vSAN]
 tags: [VMware, ESXi-7.*, vSAN]
 ---
 
-Hin und wieder muss man für Wartungsarbeiten etc. seine vSAN Umgebung herunterfahren. Normalerweise ist dieser Vorgang nicht unbedingt kritisch, dennoch bin ich in letzter Zeit öfters darüber gestolpert, dass ein vSAN Node seine Partner nicht mehr gefunden hat.
-Meine Umgebung umfasst 8 vSAN Nodes als Stretched Cluster + Witness.
+Hin und wieder muss man für Wartungsarbeiten etc. seine vSAN Umgebung herunterfahren. 
+Normalerweise ist dieser Vorgang nicht unbedingt kritisch, dennoch bin ich in letzter Zeit öfters darüber gestolpert, dass ein vSAN Node seine Partner nicht mehr gefunden hat.
+### vSAN Umgebung
+Die vSAN Umgebung umfasst 8 vSAN Nodes als Stretched Cluster + Witness. Also 4+4+N.
+### Die Ausgangslage
 Nach einem "Cluster Shutdown" fanden nur noch 7 von 8 Nodes ihre vSAN-Partner.  
 Auf meinem Screenshot erkennt man die "Command-Ausgabe" von Node04.  
 In der Zeile "Sub-Cluster Member HostName" ist deutlich zu erkennen das seine vSAN Partner fehlen.
-
+<br>
+![vSAN Unicast Agent List](/assets/vSANUnicastagentlist.jpg)
+<br>
 ```powershell
 esxcli vsan cluster get
 ```
@@ -37,22 +42,17 @@ esxcli vsan network list
 
 VMK3 Traffic Type: vSAN<br>
 
-Mit dieser Information, kann ich mit folgenden Befehl
+Mit dieser Information, kann ich mit folgenden Befehl überprüfen, ob mein Node04 über das vSAN Netzwerk alle anderen Nodes erreicht.
+So far so good - Ich konnte über VMKernelport vmk3 alle anderen Nodes inkl. Witness erreichen.
 
 ```powershell
 vmkping -I vmk3 *IP VMK3 der anderen Nodes*
 ```
-
-überprüfen, ob mein Node04 über das vSAN Netzwerk alle anderen Nodes erreicht.
-So far so good - Ich konnte über VMKernelport vmk3 alle anderen Nodes inkl. Witness erreichen.
-
 Beide Interfaces "Up" - vmkping auch erfolgreich.
 
 Dann helfen wir Node04 manuell auf die Beine.
 
-Configuring vSAN Unicast networking from the command line (2150303)
-
-Zu diesem Zeitpunkt waren keine VMs gestartet und alle Nodes im Wartungsmodus
+### Zu diesem Zeitpunkt waren keine VMs gestartet und alle Nodes im Wartungsmodus
 
 ```powershell
 esxcli system maintenanceMode set -e true -m noAction
@@ -67,14 +67,14 @@ esxcfg-advcfg -s 1 /VSAN/IgnoreClusterMemberListupdates
 ```
 
 Nachdem ich auf allen Nodes, dass automatische Update deaktiviert habe, notiere ich mir die UUID aller Nodes in Notepad.
-
+Folgender Befehl gibt mir die Host_UUID aus.
 ```
 cmmds-tool whoami
 ```
 
 Nun füge ich auf meinem betroffen Node04 alle anderen vSAN Partner manuell hinzu.
 
-Node04 selbst darf nicht eingetragen werden
+#### Node04 selbst darf nicht eingetragen werden
 
 ```powershell
 esxcli vsan cluster unicastagent add -t node -u <Host_UUID> -U true -a <Host_VSAN_IP> -p 12321
@@ -92,7 +92,7 @@ Mal sehen ob wieder alle vSAN Partner am Start sind ;)
 esxcli vsan cluster get
 ```
 
-Danach wieder das automatische Update aktivieren.
+Danach muss wieder das automatische Update der Unicastagent List aktiviert werden.
 
 ```powershell
 esxcfg-advcfg -s 0 /VSAN/IgnoreClusterMemberListupdates
