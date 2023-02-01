@@ -15,8 +15,16 @@ Als primärer Vorteil steht die daraus resultierende Effizienz im Fokus, allerdi
 - Schnellere Reparatur, da zurückgewonnene Blöcke im Falle eines Gerätesausfalls nicht neu ausgeglichen oder neu gespiegelt werden müssen.
 - Dirty-Cache-Seiten werden entfernt, was zu einer Entlastung des Cache führt.
 
-Mit folgenden Befehlen, kann der Status von Trim/Unmap abgefragt werden und Trim/Unmap aktiviert bzw. auch deaktiviert werden.
+![vSAN Trim/Unmap](/assets/vsan-space-reclamation.png)
 
+### Anforderungen
+
+- Min. Hardwareversion 11 virtuelle Maschinen für Windows
+- Min. Hardwareversion 13 virtuelle Maschinen für Linux
+- Nach Aktivierung auf Clusterebene müssen alle virtuelle Maschinen neu gestartet werden
+- Das Flag "disk.scsiUnmapAllowed" darf nicht auf "false" gesetzt sein. Standardwert ist "true".
+
+Mit folgenden Befehlen, kann der Status von Trim/Unmap abgefragt werden und Trim/Unmap aktiviert bzw. auch deaktiviert werden.
 
 ```powershell
 #Installation des PowerCLI Moduls
@@ -32,6 +40,4 @@ Get-Cluster -Name "Clustername" | Set-vsanclusterconfiguration -GuestTrimUnmap:$
 #Optional Trim/Unmap deaktivieren
 Get-Cluster -Name "Clustername" | Set-vsanclusterconfiguration -GuestTrimUnmap:$false
 ```
-
-
 
