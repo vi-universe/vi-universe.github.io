@@ -18,7 +18,7 @@ Als primärer Vorteil steht die daraus resultierende Effizienz im Fokus, allerdi
 Mit folgenden Befehlen, kann der Status von Trim/Unmap abgefragt werden und Trim/Unmap aktiviert bzw. auch deaktiviert werden.
 
 
-´´´powershell
+```powershell
 #Installation des PowerCLI Moduls
 Install-Module VMware.PowerCli
 #Verbindung zum vCenter
@@ -31,7 +31,7 @@ Get-Cluster -Name "Clustername" | Get-vsanclusterconfiguration | ft GuestTrimUnm
 Get-Cluster -Name "Clustername" | Set-vsanclusterconfiguration -GuestTrimUnmap:$true
 #Optional Trim/Unmap deaktivieren
 Get-Cluster -Name "Clustername" | Set-vsanclusterconfiguration -GuestTrimUnmap:$false
-´´´
+```
 
 
 
