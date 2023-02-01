@@ -15,10 +15,10 @@ Als primärer Vorteil steht die daraus resultierende Effizienz im Fokus, allerdi
 - Schnellere Reparatur, da zurückgewonnene Blöcke im Falle eines Gerätesausfalls nicht neu ausgeglichen oder neu gespiegelt werden müssen.
 - Dirty-Cache-Seiten werden entfernt, was zu einer Entlastung des Cache führt.
 
-Mit folgenden Befehlen, kann der Status von Trim/Unmap abgefragt werden und Trim/Unmap aktiviert bzw. auch deaktiviert
+Mit folgenden Befehlen, kann der Status von Trim/Unmap abgefragt werden und Trim/Unmap aktiviert bzw. auch deaktiviert werden.
 
 
-```powershell
+´´´powershell
 #Installation des PowerCLI Moduls
 Install-Module VMware.PowerCli
 #Verbindung zum vCenter
