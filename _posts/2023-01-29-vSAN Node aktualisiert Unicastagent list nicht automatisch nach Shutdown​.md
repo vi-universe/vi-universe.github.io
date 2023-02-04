@@ -68,7 +68,7 @@ esxcfg-advcfg -s 1 /VSAN/IgnoreClusterMemberListupdates
 
 Nachdem ich auf allen Nodes, dass automatische Update deaktiviert habe, notiere ich mir die UUID aller Nodes in Notepad.
 Folgender Befehl gibt mir die Host_UUID aus.
-```
+```shell
 cmmds-tool whoami
 ```
 
@@ -110,6 +110,6 @@ esxcli vsan cluster unicastagent list
 esxcli network nic list-> esxcli vsan network list
 ```
 
-```powershell
+```shell
 vmkping -I vmk3 *IP VMK3 der anderen Nodes*
 ```
