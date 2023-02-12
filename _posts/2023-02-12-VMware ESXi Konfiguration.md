@@ -8,7 +8,7 @@ tags: [VMware, ESXi-7.*, PowerCLi]
 Besonders vor kritischen Arbeiten oder Update/Upgrades ist es sinnvoll, die Konfiguration eines ESX-Hosts
 zu sichern. 
 
-## ESXi Konfiguration Backup
+#### ESXi Konfiguration Backup
 
 ```powershell
 write-host "Specify local backup destination path" -ForegroundColor Green 
@@ -24,7 +24,7 @@ Connect-VIServer $ESXiHost
 
 Get-VMHost | Get-VMHostFirmware -BackupConfiguration -DestinationPath $Path
 ```
-## ESXi Konfiguration Restore
+#### ESXi Konfiguration Restore
 
 ```powershell
 write-host "Specify local backup destination path and the config file" -ForegroundColor Green 
