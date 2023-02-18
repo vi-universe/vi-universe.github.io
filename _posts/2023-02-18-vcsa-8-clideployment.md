@@ -7,9 +7,9 @@ tags: [VMware, vCenter]
 Gerade wenn es darum geht, unkompliziert und schnell eine vCenter Appliance bereitzustellen, ist es wirklich smart, diese Möglichkeit zu nutzen.
 Nachdem das VMware VCSA ISO File gemountet wurde, findet man unter folgenden Pfad bereits einige Templates.
 
-[vCSA-8-Deployment](/assets/vcsa8-clideployment.png)
+![vCSA-8-Deployment](/assets/vcsa8-clideployment.png)
 
-### --> VMware VCSA/vcsa-cli-installer/templates
+##### --> VMware VCSA/vcsa-cli-installer/templates
 
 Unter folgenden link findet man eine Übersicht aller Parameter für das JSON-File.
 
@@ -18,7 +18,6 @@ Unter folgenden link findet man eine Übersicht aller Parameter für das JSON-Fi
 Für das Deployment führt man folgenden Befehl in der Konsole (CMD oder Terminal) aus.
 
 ```powershell
-# Python Pfad Powershell
 '/VMware VCSA/vcsa-cli-installer/lin64/vcsa-deploy' install 'Pfad zu,JSON.json' --accept-eula
 ```
 Als Beispiel mein "Quick and Dirty" json file für ein schnelles VCSA Deployment ohne DNS Server. 
