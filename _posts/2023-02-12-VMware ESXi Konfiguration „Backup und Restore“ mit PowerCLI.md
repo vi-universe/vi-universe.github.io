@@ -2,7 +2,7 @@
 layout: post
 title: "VMware ESXi Konfiguration „Backup und Restore“ mit PowerCLI"
 categories: [VMware, ESXi]
-tags: [VMware, ESXi-7.*, PowerCLi]
+tags: [VMware, ESXi-7.*, PowerCLI]
 ---
 
 Besonders vor kritischen Arbeiten oder Update/Upgrades ist es sinnvoll, die Konfiguration eines ESX-Hosts
