@@ -4,6 +4,7 @@ title: "VMware vSphere Standard Switch - Migrationsscript"
 categories: [VMware, PowerCLI]
 tags: [VMware, ESXi, PowerCLI]
 ---
+
 ![vDS-Switch](/assets/vSphere-Standard-Switch.png)
 
 Wer kennt es nicht, gefühlt 100 Port-Groups auf einem vSphere "Standard Switch".
