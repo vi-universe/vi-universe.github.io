@@ -2,7 +2,7 @@
 layout: post
 title: " PowerCLI 13 Update / Installation QuickGuide"
 categories: [VMware, ESXi]
-tags: [VMware, ESXi, PowerCLi]
+tags: [VMware, ESXi, PowerCLI]
 ---
 
 ### Quick Guide mit allen Links und Informationen für die PowerCLI Version 13
