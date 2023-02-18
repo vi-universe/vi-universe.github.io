@@ -13,7 +13,7 @@ Nachdem das VMware VCSA ISO File gemountet wurde, findet man unter folgenden Pfa
 
 Unter folgenden link findet man eine Übersicht aller Parameter für das JSON-File.
 
-[Docs-VMware](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-installation)
+[Docs-VMware](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-installation/GUID-3683BA76-B08A-4DDB-9CCF-66660F6AD1CF.html)
 
 Für das Deployment führt man folgenden Befehl in der Konsole (CMD oder Terminal) aus.
 
