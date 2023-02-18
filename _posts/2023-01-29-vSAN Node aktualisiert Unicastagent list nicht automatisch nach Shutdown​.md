@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "vSAN Node aktualisiertunicastagent list nicht automatisch nach Shutdown"
+title: "vSAN Node aktualisiert unicastagent list nicht automatisch nach Shutdown"
 categories: [VMware, vSAN]
 tags: [VMware, ESXi-7.*, vSAN]
 ---
@@ -13,9 +13,11 @@ Die vSAN Umgebung umfasst 8 vSAN Nodes als Stretched Cluster + Witness. Also 4+4
 Nach einem "Cluster Shutdown" fanden nur noch 7 von 8 Nodes ihre vSAN-Partner.  
 Auf meinem Screenshot erkennt man die "Command-Ausgabe" von Node04.  
 In der Zeile "Sub-Cluster Member HostName" ist deutlich zu erkennen das seine vSAN Partner fehlen.
-<br>
+
+
+
 ![vSAN Unicast Agent List](/assets/vSANUnicastagentlist.jpg)
-<br>
+
 ```shell
 esxcli vsan cluster get
 ```
