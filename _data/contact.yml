@@ -12,7 +12,7 @@
   noblank: true            # open link in current tab
 -
   type: linkendin
-  icon: 'fas fa-linkendin'
+  icon: 'fab fa-linkendin'
   url: 'https://www.linkedin.com/in/christian-kremer-it'
 
 # Uncomment and complete the url below to enable more contact options
