@@ -34,6 +34,12 @@ Die Kommunikation ist zwingend erforderlich, da darüber der VxRail Manager den 
 Could not open device at /dev/ipmi0 or /dev/ipmi/0 or /dev/ipmidev/0: No such file
 ```
 
+Zusätzlich kann die interne Verbindung mit einem vmkping über den vmk1-Adapter überprüft werden, dabei ist die ISM IP-Adresse immer die 169.254.0.1.
+
+```console
+vmkping -I vmk1 169.254.0.1
+```
+
 Dies wird verursacht wenn das IPMI Modul nicht korrekt auf dem ESXi (VxRail-Node) geladen ist.
 Dies kann mit folgenden Befehl bestätigt werden.
 
