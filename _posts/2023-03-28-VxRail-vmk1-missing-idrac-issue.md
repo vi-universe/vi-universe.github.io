@@ -26,16 +26,17 @@ Die Kommunikation ist zwingend erforderlich, da darüber der VxRail Manager den 
 
 Über die ESXi Konsole kann es folgend überprüft werden.
 
-```Shell
+```
 /opt/vxrail/tools/ipmitool lan print
 ```
-
+``` Output
 Could not open device at /dev/ipmi0 or /dev/ipmi/0 or /dev/ipmidev/0: No such file
+```
 
 Dies wird verursacht wenn das IPMI Modul nicht korrekt auf dem ESXi (VxRail-Node) geladen ist.
 Dies kann mit folgenden Befehl bestätigt werden.
 
-```Shell
+```
 vmkload_mod -l | grep ipmi
 ```
 
@@ -45,7 +46,7 @@ vmkload_mod -l | grep ipmi
 1. iDRAC reset
 2. IPMI Module manuell laden
 
-```Shell
+```
 vmkload_mod ipmi
 
 /etc/init.d/sfcbd-watchdog restart
