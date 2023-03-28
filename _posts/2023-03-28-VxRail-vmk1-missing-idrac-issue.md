@@ -28,9 +28,6 @@ Die Kommunikation ist zwingend erforderlich, da darüber der VxRail Manager den 
 
 ```console
 /opt/vxrail/tools/ipmitool lan print
-```
-
-```console output
 Could not open device at /dev/ipmi0 or /dev/ipmi/0 or /dev/ipmidev/0: No such file
 ```
 
