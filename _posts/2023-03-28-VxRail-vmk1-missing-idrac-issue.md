@@ -4,10 +4,10 @@ title: "DELL-VxRail missing vmk1 idrac issue"
 categories: [VxRail]
 tags: [VMware, DELL, VxRail]
 ---
-Seit der VxRail Version 7.0.240/241 wurde die interne Kommunikation zwischen VxRail Manager und ISM von PTAgent auf API Port 9090 umgestellt.  
+Seit der VxRail Version 7.0.240/241 wurde die interne Kommunikation zwischen VxRail Manager und ISM von PTAgent auf API Port 9090 umgestellt. <br>
 Intern wird dies LinZhi benannt. 
 
-Auschnitt aus einem vxdiag.log
+Auschnitt aus einem vxdiag.log <br>
 [ip_linzhi] LinZhi is not listening yet (648 ports checked) [bmc] LinZhi IP xxx.xxx.xxx.xxx, Port 9090 
 
 Die Kommunikation ist zwingend erforderlich, da darüber der VxRail Manager den Node überwacht und managed. 
