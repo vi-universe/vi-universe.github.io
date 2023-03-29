@@ -10,7 +10,11 @@ Intern wird dies LinZhi benannt.
 Auschnitt aus einem vxdiag.log <br>
 [ip_linzhi] LinZhi is not listening yet (648 ports checked) [bmc] LinZhi IP xxx.xxx.xxx.xxx, Port 9090 
 
-Die Kommunikation ist zwingend erforderlich, da darüber der VxRail Manager den Node überwacht und managed. 
+Die Kommunikation ist zwingend erforderlich, da darüber der VxRail Manager den Node überwacht und managed.
+
+#### Architektur LinZhi
+![LinzHi-Architektur](/assets/LinZhi Architektur.png)
+
 
 #### Auf folgenden Screenshot existiert der vmk1 
 ![VxRail-VMK1](/assets/VxRail-vmk1-exist.JPG)
