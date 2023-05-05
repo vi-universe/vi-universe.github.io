@@ -8,10 +8,10 @@ order: 4
 #### vExpert 2022-2023
 ![vExpert](/assets/vexpert-badge-stars.png)
 
-####
+#### DELL Solutions Certified VxRail & VMware
 ![DELL Solutions Certified VxRail & VMware] (/assets/vxrail-and-vmware-data-center-virtualization-implementor.png)
 
-####
+#### VMware VCP-DCV2023
 ![VCP-DCV2023] (/assets/vmware-certified-professional-data-center-virtualization-2023.png)
 
 #### Specialist Implementation Engineer VxRail 2.0
