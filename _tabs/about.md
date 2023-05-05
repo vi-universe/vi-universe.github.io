@@ -11,7 +11,7 @@ order: 4
 #### DELL Solutions Certified VxRail & VMware
 ![DELL Solutions Certified VxRail & VMware](/assets/vxrail-and-vmware-data-center-virtualization-implementor.png)
 
-#### VMware VCP-DCV2023
+#### VCP-DCV2023
 ![VCP-DCV2023](/assets/vmware-certified-professional-data-center-virtualization-2023.png)
 
 #### Specialist - Implementation Engineer VxRail 2.0
