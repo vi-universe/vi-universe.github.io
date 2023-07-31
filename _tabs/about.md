@@ -12,7 +12,7 @@ order: 4
 ![DELL Solutions Certified VxRail & VMware](/assets/vxrail-and-vmware-data-center-virtualization-implementor.png)
 
 #### VCAP-DCV Design 2023
-![VCAP-DCV-Design 2023](/assets/vmware-certified-advanced-professional-dcv-design-2023.png)
+![VCAP-DCV Design 2023](/assets/vmware-certified-advanced-professional-dcv-design-2023.png)
 
 #### VCP-DCV 2023
 ![VCP-DCV 2023](/assets/vmware-certified-professional-data-center-virtualization-2023.png)
