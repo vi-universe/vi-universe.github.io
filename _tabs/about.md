@@ -25,4 +25,3 @@ order: 4
 
 #### Fortinet FortiGate 7.2 Administrator - NSE4
 ![Fortinet FortiGate 7.2 Administrator - NSE4](/assets/fortinet-nse4-badge.png)
-fortinet-nse4-badge.png
