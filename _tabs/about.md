@@ -23,3 +23,6 @@ order: 4
 #### Associate - Cloud Infrastructure and Services Version 4.0
 ![Associate - Cloud Infrastructure and Services Version](/assets/Associate_Badge_-_Cloud_Infrastructure_and_Services.png)
 
+#### Fortinet FortiGate 7.2 Administrator - NSE4
+![Fortinet FortiGate 7.2 Administrator - NSE4](/assets/fortinet-nse4-badge.png)
+fortinet-nse4-badge.png
