@@ -32,7 +32,7 @@ order: 4
 ![Associate - Cloud Infrastructure and Services Version](/assets/Associate_Badge_-_Cloud_Infrastructure_and_Services.png)
 
 #### Associate - Information Storage and Management Version 
-![Associate - Information Storage and Management Version](/Associate_Badge_-_Information_Storage_and_Management.png)
+![Associate - Information Storage and Management Version](/assets/Associate_Badge_-_Information_Storage_and_Management.png)
 
 #### Fortinet FortiGate 7.2 Administrator - NSE4
 ![Fortinet FortiGate 7.2 Administrator - NSE4](/assets/fortinet-nse4-badge.png)
