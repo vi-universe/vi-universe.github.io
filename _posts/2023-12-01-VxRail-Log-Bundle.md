@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "VxRail Log-Bundle"
+title: "DELL-VxRail Log-Bundle"
 categories: [VxRail]
 tags: [VMware, DELL, VxRail, Troubleshooting]
 ---
