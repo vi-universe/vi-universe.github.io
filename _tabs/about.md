@@ -16,6 +16,9 @@ order: 4
 #### VCP-DCV 2023
 ![VCP-DCV 2023](/assets/vmware-certified-professional-data-center-virtualization-2023.png)
 
+#### Certified Specialist vSAN 2023
+![vSAN Specialist 2023](/assets/vmware-certified-vsan-specialist-2023.png)
+
 #### vExpert 2022-2023
 ![vExpert](/assets/vexpert-badge-stars.png)
 
