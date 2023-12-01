@@ -35,6 +35,12 @@ Anschließend muss mit "Disconnect" bestätigt werden, dass alle externen Storag
 Der RASR Vorgang dauert ca. 1-1,5Std.
 Nach erfolgreichen Abschluss "Successfully completed!" muss mit der Enter-Taste das "Continue" bestätigt werden und der Node führt einen Neustart durch.
 
+#### Optional: Wird der RASR-Reset mit Fehler abgeschlossen
+Der komplette RASR-Prozess wird im fist.log auf dem lokalen Datastore gespeichert.
 
+```console
+cd /vmfs/volumes
+find . -name fist.log 
+```
 
 
