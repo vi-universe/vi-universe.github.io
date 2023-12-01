@@ -20,7 +20,7 @@ One-shot UEFI Boot Menu auswählen
 
 #### VxRail RASR-Reset 3
 Internal SD: auswählen
-![Rasr-Schritt3](/assets/vxrail/Vvxrail-rasr3.JPG)
+![Rasr-Schritt3](/assets/vxrail/vxrail-rasr3.JPG)
 
 #### VxRail RASR-Reset 4
 Factory Reset mit F auswählen
