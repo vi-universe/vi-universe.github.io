@@ -27,9 +27,13 @@ Factory Reset mit F auswählen
 ![Rasr-Schritt4](/assets/vxrail/vxrail-rasr4.JPG)
 
 #### VxRail RASR-Reset 5
-Mit "Yes" bestätigen 
+Mit "Yes" bestätigen
 Anschließend muss mit "Disconnect" bestätigt werden, dass alle externen Storage Devices (FC, iSCSI etc.) entfernt wurden.
 ![Rasr-Schritt5](/assets/vxrail/vxrail-rasr5.JPG)
+
+#### VxRail RASR-Reset 6
+Der RASR Vorgang dauert ca. 1-1,5Std.
+Nach erfolgreichen Abschluss "Successfully completed!" muss mit der Enter-Taste das "Continue" bestätigt werden und der Node führt einen Neustart durch.
 
 
 
