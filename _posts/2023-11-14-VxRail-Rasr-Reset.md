@@ -16,8 +16,8 @@ Boot in den Boot Manager -> F11
 ![Rasr-Schritt1](/assets/vxrail/vxrail-rasr1.JPG)
 
 #### VxRail RASR-Reset 1 (Gen 15)
-Das iDRAC über die IP-Adresse im Browser aufrufen, anschließend "Virtuelle Konsole" starten. Anschließend kann ein "virtual Media connected" werden.
-Über den Button "Boot" kann dann entsprechend von der "virtual CD/DVD/ISO" gestartet werden.  
+Die Weboberfläche des iDRACs über die IP-Adresse im Browser aufrufen, und sich mit Benutzername und Kennwort anmelden. Anschließend kann die "Virtuelle Konsole" gestartet werden. Im separaten Fenster der "virtuellen Konsole" kann entsprechend das RASR-ISO als "virtual CD/DVD" verbunden werden.
+Über den Button "Boot" kann dann von der "virtual CD/DVD/ISO" der VxRail-Node gestartet werden.  
 ![Rasr-Schritt1 (Gen 15)](/assets/vxrail/vxrail-rasr1.1.jpg)
 
 #### VxRail RASR-Reset 2 (vor Gen 15)
