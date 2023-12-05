@@ -18,7 +18,7 @@ Boot in den Boot Manager -> F11
 #### VxRail RASR-Reset 1 (Gen 15)
 Das iDRAC über die IP-Adresse im Browser aufrufen, anschließend "Virtuelle Konsole" starten. Anschließend kann ein "virtual Media connected" werden.
 Über den Button "Boot" kann dann entsprechend von der "virtual CD/DVD/ISO" gestartet werden.  
-![Rasr-Schritt1 (Gen 15)](/assets/vxrail/vxrail-rasr1.1.jpgG)
+![Rasr-Schritt1 (Gen 15)](/assets/vxrail/vxrail-rasr1.1.jpg)
 
 #### VxRail RASR-Reset 2 (vor Gen 15)
 One-shot UEFI Boot Menu auswählen
