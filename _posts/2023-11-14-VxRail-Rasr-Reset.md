@@ -2,27 +2,33 @@
 layout: post
 title: "DELL-VxRail RASR Reset"
 categories: [VxRail]
-tags: [VMware, DELL, VxRail]
+tags: [VMware, DELL, VxRail,]
 ---
 
 #### VxRail RASR
 Um einen VxRail-Node in den Auslieferungszustand zu versetzen, ist es notwendig, einen RASR-Reset durchzuführen. 
 Ein RASR-Reset löscht alle Daten und Einstellungen. Notwendig ist dies, wenn zum Beispiel die initiale Installation fehlschlägt.
+Ab der Generation 15 (E/P/V/D/S/G) 6XX , sind keine SD-Karten mit dem RASR-Image in der VxRail verbaut. Um das RASR-Image zu erhalten, benötigt man die "solve-prozedur" welche unter solve.dell.com erstellt werden kann.
+Anschließend muss der VxRail-Node mit dem RASR-Image gestartet werden. 
 
-
-#### VxRail RASR-Reset 1
+#### VxRail RASR-Reset 1 (vor Gen 15)
 Boot in den Boot Manager -> F11 
 ![Rasr-Schritt1](/assets/vxrail/vxrail-rasr1.JPG)
 
-#### VxRail RASR-Reset 2
+#### VxRail RASR-Reset 1 (Gen 15)
+Das iDRAC über die IP-Adresse im Browser aufrufen, anschließend "Virtuelle Konsole" starten. Anschließend kann ein "virtual Media connected" werden.
+Über den Button "Boot" kann dann entsprechend von der "virtual CD/DVD/ISO" gestartet werden.  
+![Rasr-Schritt1](/assets/vxrail/vxrail-rasr1.1.jpgG)
+
+#### VxRail RASR-Reset 2 (vor Gen 15)
 One-shot UEFI Boot Menu auswählen
 ![Rasr-Schritt2](/assets/vxrail/vxrail-rasr2.JPG)
 
-#### VxRail RASR-Reset 3
+#### VxRail RASR-Reset 3 (vor Gen 15)
 Internal SD: auswählen
 ![Rasr-Schritt3](/assets/vxrail/vxrail-rasr3.JPG)
 
-#### VxRail RASR-Reset 4
+#### VxRail RASR-Reset 4 
 Factory Reset mit F auswählen
 ![Rasr-Schritt4](/assets/vxrail/vxrail-rasr4.JPG)
 
