@@ -13,11 +13,11 @@ Auschnitt aus einem vxdiag.log <br>
 Die Kommunikation ist zwingend erforderlich, da darüber der VxRail Manager den Node überwacht und managed.
 
 #### Architektur LinZhi
-![LinzHi-Architektur](/assets/2023-03-28-VxRail-vmk1-missing-idrac-issue/LinZhi Architektur.png)
+![LinzHi-Architektur](/assets/2023-03-28-VxRail_vmk1_missing_idrac_issue/LinZhi Architektur.png)
 
 
 #### Auf folgenden Screenshot existiert der vmk1 
-![VxRail-VMK1](/assets/2023-03-28-VxRail-vmk1-missing-idrac-issue/VxRail-vmk1-exist.JPG)
+![VxRail-VMK1](/assets/2023-03-28-VxRail_vmk1_missing_idrac_issue/VxRail-vmk1-exist.JPG)
 
 #### Output VxVerify.log
 

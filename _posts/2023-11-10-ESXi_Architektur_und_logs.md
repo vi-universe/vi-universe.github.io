@@ -9,4 +9,4 @@ Ein wichtiger Punkt beim "Troubleshooting" ist zu wissen, welche Log-Dateien gib
 Die Log-Dateien lassen sich außerdem filtern. -> cat /var/log/vmkernel.log | grep warning
 
 #### ESXi Architektur und Logs Übersicht
-![ESXi Architektur](/assets/2023-11-10-ESXi Architektur und logs/esxi architektur und logs.jpg)
+![ESXi Architektur](/assets/2023-11-10-ESXi_Architektur_und_logs/esxi architektur und logs.jpg)

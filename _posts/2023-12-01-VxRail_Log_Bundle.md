@@ -57,6 +57,6 @@ Der Pfad zu dem Log-Bundle ist nach der Erstellung -> /tmp/mystic/dc/
 #### Log-Bundle per vCenter GUI
 Alternativ kann das Log-Bundle im vSphere Client erstellt, heruntergeladen und gelöscht werden. 
 
-![Log-Bundle Gui](/assets/2023-12-01-VxRail-Log-Bundle/VxRail Log-Bundle.png)
+![Log-Bundle Gui](/assets/2023-12-01-VxRail_Log_Bundle/VxRail Log-Bundle.png)
 
 
