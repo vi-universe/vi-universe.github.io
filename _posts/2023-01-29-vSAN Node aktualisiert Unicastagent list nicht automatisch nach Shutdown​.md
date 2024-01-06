@@ -16,7 +16,7 @@ In der Zeile "Sub-Cluster Member HostName" ist deutlich zu erkennen das seine vS
 
 
 
-![vSAN Unicast Agent List](/assets/vSANUnicastagentlist.jpg)
+![vSAN Unicast Agent List](/assets/2023-01-29-vSAN Node aktualisiert Unicastagent list nicht automatisch nach Shutdown​/vSANUnicastagentlist.jpg)
 
 ```shell
 esxcli vsan cluster get

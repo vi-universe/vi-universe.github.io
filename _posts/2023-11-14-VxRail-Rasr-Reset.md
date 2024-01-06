@@ -13,29 +13,29 @@ Anschließend muss der VxRail-Node mit dem RASR-Image gestartet werden.
 
 #### VxRail RASR-Reset 1 (vor Gen 15)
 Boot in den Boot Manager -> F11 
-![Rasr-Schritt1](/assets/vxrail/vxrail-rasr1.JPG)
+![Rasr-Schritt1](/assets/2023-11-14-VxRail-RASR-Reset/vxrail-rasr1.JPG)
 
 #### VxRail RASR-Reset 1 (Gen 15)
 Die Weboberfläche des iDRACs über die IP-Adresse im Browser aufrufen, und sich mit Benutzername und Kennwort anmelden. Anschließend kann die "Virtuelle Konsole" gestartet werden. Im separaten Fenster der "virtuellen Konsole" kann entsprechend das RASR-ISO als "virtual CD/DVD" verbunden werden.
 Über den Button "Boot" kann dann von der "virtual CD/DVD/ISO" der VxRail-Node gestartet werden.
-![Rasr-Schritt1 (Gen 15)](/assets/vxrail/vxrail-rasr1.1.jpg)
+![Rasr-Schritt1 (Gen 15)](/assets/2023-11-14-VxRail-RASR-Reset/vxrail-rasr1.1.jpg)
 
 #### VxRail RASR-Reset 2 (vor Gen 15)
 One-shot UEFI Boot Menu auswählen
-![Rasr-Schritt2](/assets/vxrail/vxrail-rasr2.JPG)
+![Rasr-Schritt2](/assets/2023-11-14-VxRail-RASR-Reset/vxrail-rasr2.JPG)
 
 #### VxRail RASR-Reset 3 (vor Gen 15)
 Internal SD: auswählen
-![Rasr-Schritt3](/assets/vxrail/vxrail-rasr3.JPG)
+![Rasr-Schritt3](/assets/2023-11-14-VxRail-RASR-Reset/vxrail-rasr3.JPG)
 
 #### VxRail RASR-Reset 4 
 Factory Reset mit F auswählen
-![Rasr-Schritt4](/assets/vxrail/vxrail-rasr4.JPG)
+![Rasr-Schritt4](/assets/2023-11-14-VxRail-RASR-Reset/vxrail-rasr4.JPG)
 
 #### VxRail RASR-Reset 5
 Mit "Yes" bestätigen
 Anschließend muss mit "Disconnect" bestätigt werden, dass alle externen Storage Devices (FC, iSCSI etc.) entfernt wurden.
-![Rasr-Schritt5](/assets/vxrail/vxrail-rasr5.JPG)
+![Rasr-Schritt5](/assets/2023-11-14-VxRail-RASR-Reset/vxrail-rasr5.JPG)
 
 #### VxRail RASR-Reset 6
 Der RASR Vorgang dauert ca. 1-1,5Std.

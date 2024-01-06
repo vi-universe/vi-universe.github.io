@@ -13,11 +13,11 @@ Auschnitt aus einem vxdiag.log <br>
 Die Kommunikation ist zwingend erforderlich, da darüber der VxRail Manager den Node überwacht und managed.
 
 #### Architektur LinZhi
-![LinzHi-Architektur](/assets/LinZhi Architektur.png)
+![LinzHi-Architektur](/assets/2023-03-28-VxRail-vmk1-missing-idrac-issue/LinZhi Architektur.png)
 
 
 #### Auf folgenden Screenshot existiert der vmk1 
-![VxRail-VMK1](/assets/VxRail-vmk1-exist.JPG)
+![VxRail-VMK1](/assets/2023-03-28-VxRail-vmk1-missing-idrac-issue/VxRail-vmk1-exist.JPG)
 
 #### Output VxVerify.log
 
@@ -25,7 +25,7 @@ Die Kommunikation ist zwingend erforderlich, da darüber der VxRail Manager den 
 | Failure 205769 | idc_swi: idrac queries failed
 
 #### vmk1 nicht existent
-![VxRail-VMK01](/assets/VxRail-vmk1-missing.JPG)
+![VxRail-VMK01](/assets/2023-03-28-VxRail-vmk1-missing-idrac-issue/VxRail-vmk1-missing.JPG)
 
 
 Über die ESXi Konsole kann es folgend überprüft werden.

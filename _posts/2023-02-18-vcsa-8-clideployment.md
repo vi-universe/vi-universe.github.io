@@ -7,7 +7,7 @@ tags: [VMware, vCenter]
 Gerade wenn es darum geht, unkompliziert und schnell eine vCenter Appliance bereitzustellen, ist es wirklich smart, diese Möglichkeit zu nutzen.
 Nachdem das VMware VCSA ISO File gemountet wurde, findet man unter folgenden Pfad bereits einige Templates.
 
-![vCSA-8-Deployment](/assets/vcsa8-clideployment.png)
+![vCSA-8-Deployment](/assets/2023-02-18-vcsa-8-clideployment/vcsa8-clideployment.png)
 
 ##### --> VMware VCSA/vcsa-cli-installer/templates
 

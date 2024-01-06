@@ -5,7 +5,7 @@ categories: [VMware, PowerCLI]
 tags: [VMware, ESXi, PowerCLI]
 ---
 
-![vDS-Switch](/assets/vSphere-Standard-Switch.png)
+![vDS-Switch](/assets/2023-02-18-VMware vSphere Standard Switch - Migrationsscript/vSphere-Standard-Switch.png)
 
 Wer kennt es nicht, gefühlt 100 Port-Groups auf einem vSphere "Standard Switch".
 Und dann kommt der Zeitpunkt, an dem ein neuer ESXi-Host im Cluster dazu kommt und man genau diese 100 Port-Groups fein säuberlich am besten noch ohne Fehler von Hand anlegen darf.

@@ -11,7 +11,7 @@ Ariel Sanchez Mora.
 
 Mit folgenden Befehlen lassen sich wichtige Informationen auslesen und in eine Excel oder CSV Datei exportieren.  
 
-![vdocumentation](/assets/vdocumentation.png)
+![vdocumentation](/assets/2023-02-18-vDocumentation/vdocumentation.png)
 
 
 Als Basis nutze ich die Module von vDocumentation und habe diese um den Export der Firewall erweitert. Zudem konvertiere ich mir die CSV-Dateien in eine HTML zur besseren Ansicht um.
