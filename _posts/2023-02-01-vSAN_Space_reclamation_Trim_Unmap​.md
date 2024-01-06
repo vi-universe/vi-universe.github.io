@@ -15,7 +15,7 @@ Als primärer Vorteil steht die daraus resultierende Effizienz im Fokus, allerdi
 - Schnellere Reparatur, da zurückgewonnene Blöcke im Falle eines Gerätesausfalls nicht neu ausgeglichen oder neu gespiegelt werden müssen.
 - Dirty-Cache-Seiten werden entfernt, was zu einer Entlastung des Cache führt.
 
-![vSAN Trim/Unmap](/assets/2023-02-01-vSAN_space_reclamation_trim_unmap​​​​​/vsan-space-reclamation.png)
+
 
 ### Anforderungen
 
