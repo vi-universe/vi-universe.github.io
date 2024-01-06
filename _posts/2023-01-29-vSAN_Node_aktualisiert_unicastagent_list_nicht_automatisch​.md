@@ -16,7 +16,7 @@ In der Zeile "Sub-Cluster Member HostName" ist deutlich zu erkennen das seine vS
 
 
 
-![vSAN Unicast Agent List](/assets/2023-01-29-vSAN_Node_aktualisiert_unicastagent_list_nicht_automatisch​/vSANUnicastagentlist.jpg)
+![vSAN Unicast Agent List](/assets/2023-01-29-vSAN_Node_aktualisiert_unicastagent_list_nicht_automatisch​​/vSANUnicastagentlist.jpg)
 
 ```shell
 esxcli vsan cluster get
