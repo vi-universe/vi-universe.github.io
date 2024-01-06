@@ -25,7 +25,7 @@ Die Kommunikation ist zwingend erforderlich, da darüber der VxRail Manager den 
 | Failure 205769 | idc_swi: idrac queries failed
 
 #### vmk1 nicht existent
-![VxRail-VMK01](/assets/2023-03-28-VxRail-vmk1-missing-idrac-issue/VxRail-vmk1-missing.JPG)
+![VxRail-VMK01](/assets/2023-03-28-VxRail_vmk1_missing_idrac_issue/VxRail-vmk1-missing.JPG)
 
 
 Über die ESXi Konsole kann es folgend überprüft werden.
