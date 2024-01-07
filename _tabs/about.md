@@ -4,11 +4,20 @@ icon: fas fa-info-circle
 order: 4
 ---
 
+Hallo,
+mein Name ist Christian. Ich arbeite als IT-Architekt in einem mittelständischen IT-Systemhaus.
+Meine Hauptthemen sind VMware vSphere, vSAN und DELL VxRail. 
+Ich schreibe hier auf meinem Blog ausschließlich deutschsprachig über VMware relevante Themen.
 
-[linkedin]https://www.linkedin.com/in/christian-kremer-it
+Auf folgenden Plattformen bin ich aktiv, gerne kannst du mich kontaktieren. 
 
-[X]https://twitter.com/chrisviuniverse
+[linkedin](https://www.linkedin.com/in/christian-kremer-it)
+
+[X](https://twitter.com/chrisviuniverse)
 
 [GitHub](https://github.com/vi-universe)
 
-[Credly]https://www.credly.com/users/christian.kremer/badges
+[Credly](https://www.credly.com/users/christian.kremer/badges)
+
+[vExpert](/assets/certificate/vexpert-badge-stars.png)
+
