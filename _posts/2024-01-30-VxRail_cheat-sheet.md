@@ -17,10 +17,10 @@ VxRail Manager | root     | Passw0rd!                  | 192.168.10.200
 #### Loudmouth Services
 
 ``` 
-ESXi Shell
+# ESXi Shell
 /etc/init.d/loudmouth [start|stop|status|restart]
 
-VxRail  Manager
+# VxRail  Manager
 systemctl [start|stop|status|restart] vmware-loudmouth
 ```
  
@@ -28,11 +28,11 @@ systemctl [start|stop|status|restart] vmware-loudmouth
 #### Zeit 
 
 ``` 
-ESXi Shell
+# ESXi Shell
 esxcli system time get 
 esxcli system time set d|–day -H|–hour -m|–min -M|–month -s|–sec -y|–year
 
-VxRail Manager
+# VxRail Manager
 date
 date -s “30 JAN 2024 12:30:00”
 ```
@@ -40,14 +40,15 @@ date -s “30 JAN 2024 12:30:00”
 #### VxRail Manager IP-Einstellung
 
 ```
-ESXi Shell
+# ESXi Shell
 
 vxrail-primary --config --vxrail-address XXX.XXX.XXX.XXX --vxrail-netmask XXX.XXX.XXX.XXX --vxrail-gateway XXX.XXX.XXX.XXX --vlan XXX
 ```
 
 #### VxRail Manager 
 
-```ESXi Shell
+```
+# ESXi Shell
 esxcli vm process list
 
 vim-cmd vmsvc/getallvms
@@ -59,14 +60,15 @@ vim-cmd vmsvc/power.getstate vmid
 
 #### VxRail Manager Installation-Logs
 
-``` VxRail Manager
+```
+# VxRail Manager
 cat dayone.log
 tail -f dayone.log
 tail -f dayone.log | grep ERROR
 tail -n 100 dayone.log
 more dayone.log
 
-#Loudmouth Discovery 
+# Loudmouth Discovery 
 /usr/lib/vmware-loudmouth/bin/loudmouthc query | grep -o "applianceID=..............." | sort
 ```
 
