@@ -11,6 +11,10 @@ Ein RASR-Reset löscht alle Daten und Einstellungen. Notwendig ist dies, wenn zu
 Ab der Generation 15 (E/P/V/D/S/G) 6XX , sind keine SD-Karten mit dem RASR-Image in der VxRail verbaut. Um das RASR-Image zu erhalten, benötigt man die "solve-prozedur" welche unter solve.dell.com erstellt werden kann.
 Anschließend muss der VxRail-Node mit dem RASR-Image gestartet werden. 
 
+##### Der Funktionszustand im iDRAC Mmuss "Fehlerfrei" sein.
+![Funktionszustand](/assets/2023-11-14-VxRail_RASR_reset/system.JPG)
+
+
 #### VxRail RASR-Reset 1 (vor Gen 15)
 Boot in den Boot Manager -> F11 
 ![Rasr-Schritt1](/assets/2023-11-14-VxRail_RASR_reset/vxrail-rasr1.JPG)
