@@ -12,7 +12,7 @@ Ab der Generation 15 (E/P/V/D/S/G) 6XX , sind keine SD-Karten mit dem RASR-Image
 Anschließend muss der VxRail-Node mit dem RASR-Image gestartet werden. 
 
 ##### Der Funktionszustand im iDRAC Mmuss "Fehlerfrei" sein.
-![Funktionszustand](/assets/2023-11-14-VxRail_RASR_reset/system.JPG)
+![Funktionszustand](/assets/2023-11-14-VxRail_RASR_reset/systemidrac.JPG)
 
 
 #### VxRail RASR-Reset 1 (vor Gen 15)
