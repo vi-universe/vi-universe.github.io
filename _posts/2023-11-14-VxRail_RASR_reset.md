@@ -14,6 +14,9 @@ Anschließend muss der VxRail-Node mit dem RASR-Image gestartet werden.
 ##### Der Funktionszustand im iDRAC muss "Fehlerfrei" sein.
 ![Funktionszustand](/assets/2023-11-14-VxRail_RASR_reset/systemidrac.JPG)
 
+##### Per Standard ist der Console-Timeout auf 1800 sec. (30min) eingestellt, dieser sollte temporär auf 5Std. eingestellt werden, da der Timeout auch das ISO Image trennt.
+>idrac Settings > services > web server > settings > timeout
+
 
 #### VxRail RASR-Reset 1 (vor Gen 15)
 Boot in den Boot Manager -> F11 
