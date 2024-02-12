@@ -12,4 +12,4 @@ Und dann kommt der Zeitpunkt, an dem ein neuer ESXi-Host im Cluster dazu kommt u
 Oder man betreibt eine kleine vSphere Umgebungen mit nur einem ESXi-Host und muss diese auf einen neuen ESXi-Host migrieren. 
 
 Dafür habe ich folgendes Script zusammengestellt.  
-[Migrationstool_vSphere-StandardSwitch](https://github.com/vi-universe/VMware-Public/blob/df9136c734c7d90199a82c892bfeae6adc99d9c3/PowerCLI/Migrationstool_vSphere-StandardSwitch.ps1)
+[Migrationstool_vSphere-StandardSwitch](https://github.com/vi-universe/vmware/blob/1b8cb303fd68010e9ef9a23e4ffb655d45aa2cb7/PowerCLI/Migrationstool_vSphere-StandardSwitch.ps1)
