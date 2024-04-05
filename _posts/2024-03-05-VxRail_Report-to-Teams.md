@@ -5,7 +5,7 @@ categories: [VxRail]
 tags: [VMware, DELL, VxRail, Troubleshooting]
 ---
 
-Da ich mir ohnehin seit längerem vorgenommen habe, mir die VxRail PowerShell Module anzusehen, bin ich auf die Idee gekommen, mir einen Report über alle Support-Relevanten Daten zu erstellen und mir den Report in Teams "posten" zu lassen. 
+Da ich mir ohnehin seit längerem vorgenommen habe, die VxRail PowerShell Module anzusehen, bin ich auf die Idee gekommen, mir einen Report über alle Support-Relevanten Daten zu erstellen und mir den Report in Teams "posten" zu lassen. 
 
 ![TeamsNotify](/assets/2024-03-05-VxRail-Report-to-teams/TeamsNotify.png)
 
