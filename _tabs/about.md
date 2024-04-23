@@ -13,11 +13,9 @@ Auf folgenden Plattformen bin ich aktiv, gerne kannst du mich kontaktieren.
 
 [linkedin](https://www.linkedin.com/in/christian-kremer-it)
 
-[X](https://twitter.com/chrisviuniverse)
-
 [GitHub](https://github.com/vi-universe)
 
 [Credly](https://www.credly.com/users/christian.kremer/badges)
 
-[vExpert](/assets/certificate/vexpert-badge-stars.png)
+[vExpert](https://vexpert.vmware.com/directory/9014)
 
