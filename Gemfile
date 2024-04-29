@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 gem "jekyll-theme-chirpy", "~> 5.4", ">= 5.4.0"
 
-gem 'jekyll-feed', '~> 0.17.0'
+gem "jekyll-feed"
 
 group :test do
   gem "html-proofer", "~> 3.18"
