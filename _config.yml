@@ -203,3 +203,6 @@ jekyll-archives:
 
 plugins:
   - jekyll-feed
+  title: vi-universe.github.io
+  description: vi-universe.github.io blog
+  author: Christian Kremer
