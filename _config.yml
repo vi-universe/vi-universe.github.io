@@ -42,10 +42,11 @@ social:
   email: christian@kremer.systems             # change to your email address
   feed: 
     path: feed.xml
+    
   links:
     # The first element serves as the copyright owner's link
     # - https://twitter.com/username      # change to your twitter homepage
-    - https://github.com/vi-universe      # change to your github homepage
+      - https://github.com/vi-universe      # change to your github homepage
 
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
