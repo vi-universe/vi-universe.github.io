@@ -1,4 +1,3 @@
-<link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml">
 ---
 layout: post
 title: "ESXi root entsperren"
