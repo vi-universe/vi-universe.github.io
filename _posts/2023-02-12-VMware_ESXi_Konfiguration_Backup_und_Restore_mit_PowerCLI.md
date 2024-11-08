@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "VMware ESXi Konfiguration „Backup und Restore“ mit PowerCLI"
-categories: [VMware, ESXi]
+categories: [ESXi]
 tags: [VMware, ESXi-7.*, PowerCLI]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "vSAN Space reclamation - Trim Unmap"
-categories: [VMware, vSAN]
+categories: [vSAN]
 tags: [VMware, ESXi-7.*, vSAN, Efficency]
 ---
 

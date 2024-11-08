@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ESXi root entsperren"
-categories: [VMware, ESXi]
+categories: [ESXi]
 tags: [VMware, ESXi]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "vSAN Node aktualisiert unicastagent list nicht automatisch nach Shutdown"
-categories: [VMware, vSAN]
+categories: [vSAN]
 tags: [VMware, ESXi-7.*, vSAN]
 ---
 

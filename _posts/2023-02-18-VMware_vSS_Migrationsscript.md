@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "VMware vSphere Standard Switch - Migrationsscript"
-categories: [VMware, PowerCLI]
+categories: [PowerCLI]
 tags: [VMware, ESXi, PowerCLI]
 ---
 

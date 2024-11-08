@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "vDocumentation"
-categories: [VMware, PowerCLI]
+categories: [PowerCLI]
 tags: [VMware, ESXi, PowerCLI]
 ---
 

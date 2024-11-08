@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "VCSA-8 CLI deployment"
-categories: [VMware, vSphere8]
+categories: [vSphere]
 tags: [VMware, vCenter]
 ---
 Gerade wenn es darum geht, unkompliziert und schnell eine vCenter Appliance bereitzustellen, ist es wirklich smart, diese Möglichkeit zu nutzen.
