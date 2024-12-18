@@ -2,7 +2,7 @@
 layout: post
 title: "vSAN Space reclamation - Trim Unmap"
 categories: [vSAN]
-tags: [VMware, ESXi-7.*, vSAN, Efficency]
+tags: [VMware, ESXi, vSAN]
 ---
 
 Thin Provisioning ist eine Möglichkeit, Speicher effektiv zu nutzen.

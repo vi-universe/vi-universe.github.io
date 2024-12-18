@@ -2,7 +2,7 @@
 layout: post
 title: "vSAN Node aktualisiert unicastagent list nicht automatisch nach Shutdown"
 categories: [vSAN]
-tags: [VMware, ESXi-7.*, vSAN]
+tags: [VMware, ESXi, vSAN]
 ---
 
 Hin und wieder muss man für Wartungsarbeiten etc. seine vSAN Umgebung herunterfahren. 
