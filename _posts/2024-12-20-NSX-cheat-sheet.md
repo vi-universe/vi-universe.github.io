@@ -90,7 +90,7 @@ get ospf route
 get ospf neighbor
 ```
 
-### NSX-Edge join management-plane
+## NSX-Edge join management-plane
 
 ```
 ### nsx-manager
@@ -100,7 +100,7 @@ get certificate api thumbprint
 join management-plane <ip> thumbprint <thumbprint> username <username> password <password>
 ```
 
-### ESXi dFW
+## ESXi dFW
 ```
 summarize-dvfilter | grep -A 3 vmm
 
@@ -120,19 +120,19 @@ vsipioctl getfwconfig -f <name nic>
 vsipioctl -h
 ```
 
-### pktcap-uw
+## pktcap-uw
 
-# ESXTOP
+### ESXTOP
 ```
 ESXTOP -> PORT-ID
 ```
 
-# Net-stats
+### Net-stats
 ```
 Net-stats -l -> PortNum
 ```
 
-# ESXCLI
+### ESXCLI
 ```
 esxcli network nic list -> Name
 ```
@@ -146,7 +146,7 @@ summarize-dvfilter -> Name
 –stage 0 – before traffic dvfilter
 –stage 1 – after traffic dvfilter
 
-# Beispiel für die Verwendung von pktcap-uw
+### Beispiel für die Verwendung von pktcap-uw
 ```
 pktcap-uw --switchport <port nummer> --dir 0 -o capture.pcap
 pktcap-uw –vmk vmk10 –dir 2 -o – | tcpdump-uw -enr –
