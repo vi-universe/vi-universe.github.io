@@ -4,7 +4,6 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-## Über mich
 
 Hallo und herzlich willkommen auf meinem Blog!  
 
