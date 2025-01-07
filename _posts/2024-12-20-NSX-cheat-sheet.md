@@ -10,7 +10,7 @@ tags: [NSX]
 Auf NSX-Appliances befinden sich Syslog-Nachrichten in `/var/log/syslog`.
 
 Auf NSX-Appliances können Sie den folgenden NSX-CLI-Befehl verwenden, um die Logs anzuzeigen:
-* get log-file <auth.log | controller | controller-error | http.log | kern.log | manager.log | node-mgmt.log | syslog> [follow] *
+ **get log-file <auth.log | controller | controller-error | http.log | kern.log | manager.log | node-mgmt.log | syslog> [follow]**
 
 
 | Name                  | Beschreibung                   |
@@ -93,9 +93,11 @@ get ospf neighbor
 ### NSX-Edge join management-plane
 
 ```
-nsx-manager -> get certificate api thumbprint
+### nsx-manager
+get certificate api thumbprint
 
-nsx-edge -> join management-plane <ip> thumbprint <thumbprint> username <username> password <password>
+### nsx-edge 
+join management-plane <ip> thumbprint <thumbprint> username <username> password <password>
 ```
 
 ### ESXi dFW
