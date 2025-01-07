@@ -100,7 +100,7 @@ get certificate api thumbprint
 join management-plane <ip> thumbprint <thumbprint> username <username> password <password>
 ```
 
-## ESXi dFW
+## ESXi Distributed Firewall
 ```
 summarize-dvfilter | grep -A 3 vmm
 
