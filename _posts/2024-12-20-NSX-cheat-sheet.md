@@ -11,8 +11,9 @@ Auf NSX-Appliances befinden sich Syslog-Nachrichten in `/var/log/syslog`.
 
 Auf NSX-Appliances können Sie den folgenden NSX-CLI-Befehl verwenden, um die Logs anzuzeigen:
 
-**get log-file <auth.log | controller | controller-error | http.log | kern.log | manager.log | node-mgmt.log | syslog> [follow]**
-
+```
+get log-file <auth.log | controller | controller-error | http.log | kern.log | manager.log | node-mgmt.log | syslog> [follow]
+```
 
 | Name                  | Beschreibung                   |
 |-----------------------|--------------------------------|
