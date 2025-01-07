@@ -18,8 +18,8 @@ Mein Ziel ist es, Wissen weiterzugeben, die Community zu bereichern und den Aust
 
 Viel Spaß beim Lesen!  
 
-[![VCIX-DCV](https://images.credly.com/size/340x340/images/b0578381-8f60-4440-a025-2967a3b9e5ca/image.png)](https://www.credly.com/users/christian.kremer)
-[![VCIX-NV](https://images.credly.com/size/340x340/images/6f49b339-01a0-4561-ae74-09b2e67a5c9a/image.png)](https://www.credly.com/users/christian.kremer)
+[![VCIX-DCV](/assets/certificate/vcix-dcv.png)](https://www.credly.com/badges/bebed698-2b94-43bb-a49a-4f0adce3e5bb)
+[![VCIX-NV](/assets/certificate/vcix-nv.png)](https://www.credly.com/badges/267898af-5b87-43ee-9437-332b3c33909c)
 
 
 ## Schaue doch gerne mal auf dem Blog meiner Kollegen vorbei!
@@ -31,9 +31,7 @@ Viel Spaß beim Lesen!
 [SDN-Techtalk](https://sdn-techtalk.com/)
 
 
-[evoila](https://evoila.com/de)
-
-Auf folgenden Plattformen bin ich aktiv, gerne kannst du mich kontaktieren. 
+### Auf folgenden Plattformen bin ich aktiv, gerne kannst du mich kontaktieren. 
 
 [linkedin](https://www.linkedin.com/in/christian-kremer-it)
 
