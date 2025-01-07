@@ -41,10 +41,10 @@ Viel Spaß beim Lesen!
 
 [vExpert](https://vexpert.vmware.com/directory/9014)
 
-## GitHub 
+## GitHub Homelab
 [vi-universe-lab auf GitHub](https://github.com/vi-universe/vi-universe-lab)
 
-## Ansible Roles - NSX DEMO
+## Ansible Roles - NSX DEMO VMs
 [NSX DEMO VMs Ansible  auf GitHub](https://github.com/vi-universe/vi-universe-lab/tree/37adcfd61debc5373ae9439d98a3656188e7d3f4/Ansible)
 
 
