@@ -83,6 +83,53 @@
     </item>
     
     <item>
+      <title>Homelab-1.3</title>
+      <link>https://vi-universe.github.io/posts/homelab_1.3/</link>
+      <pubDate>Sun, 10 Nov 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/homelab_1.3/</guid>
+      
+      <description>&lt;p&gt;Nachdem mein Management-Nuc vorbereitet ist, folgt nun der NSX-Manager. Zunächst erstelle ich den DNS-Eintrag einschließlich des Reverse-Eintrags. Danach erfolgt die Installation des NSX-Managers.&lt;/p&gt;
+&lt;p&gt;Rechtsklick auf den vCenter-Cluster -&amp;gt; „Deploy OVF Template“.
+&lt;figure&gt;&lt;a href=&#34;nsx-manager-1.png&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/homelab_1.3/nsx-manager-1.png&#34;
+    alt=&#34;NSX Manager&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
+      &lt;p&gt;NSX Manager - Klick zum vergrößern&lt;/p&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Wähle im Bildschirm &amp;ldquo;Select an OVF Template&amp;rdquo; die NSX Unified Appliance OVA-Datei aus.&lt;/p&gt;
+&lt;figure&gt;&lt;a href=&#34;nsx-manager-2.png&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/homelab_1.3/nsx-manager-2.png&#34;
+    alt=&#34;NSX Manager&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
+      &lt;p&gt;NSX Manager - Klick zum vergrößern&lt;/p&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Wähle im Bildschirm &amp;ldquo;Select a name and folder&amp;rdquo; das Ziel-Datacenter-Objekt aus.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Homelab-1.2</title>
+      <link>https://vi-universe.github.io/posts/homelab_1.2/</link>
+      <pubDate>Thu, 25 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/homelab_1.2/</guid>
+      
+      <description>&lt;p&gt;Da ich im Beitrag &lt;em&gt;Homelab-1.0&lt;/em&gt; bereits meine Anforderungen definiert hatte, wusste ich, dass ich insgesamt &lt;strong&gt;19 vCPU und 62 GB RAM&lt;/strong&gt; benötige. Daher entschied ich mich, für meinen Management-NUC direkt zu Beginn Memory Tiering zu aktivieren.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ressourcenanforderungen&#34;&gt;Ressourcenanforderungen&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;vCenter&lt;/strong&gt;: Small, 4 vCPU, 14 GB RAM&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NSX Manager&lt;/strong&gt;: Small, 4 vCPU, 16 GB RAM&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NSX Edge&lt;/strong&gt;: 2x Medium, jeweils 4 vCPU, 8 GB RAM&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NSX ALB Controller&lt;/strong&gt;: 6 vCPU, 24 GB RAM&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DNS&lt;/strong&gt;: 1 vCPU, 1 GB RAM&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Gesamtanforderungen&lt;/strong&gt;: 19 vCPU und 62 GB RAM&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>Homelab-1.1</title>
       <link>https://vi-universe.github.io/posts/homelab_1.1/</link>
       <pubDate>Wed, 15 May 2024 00:00:00 +0000</pubDate>

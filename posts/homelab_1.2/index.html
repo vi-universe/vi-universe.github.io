@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="de-de"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">Homelab-1.2 | blog.vi-universe.de</title>
+<meta property="og:title" content="Homelab-1.2 | blog.vi-universe.de" />
+<meta name="twitter:title" content="Homelab-1.2 | blog.vi-universe.de" />
+<meta itemprop="name" content="Homelab-1.2 | blog.vi-universe.de" />
+<meta name="application-name" content="Homelab-1.2 | blog.vi-universe.de" />
+<meta property="og:site_name" content="blog.vi-universe.de" />
+
+<meta name="description" content="vi-universe.de | Christian Kremer">
+<meta itemprop="description" content="vi-universe.de | Christian Kremer" />
+<meta property="og:description" content="vi-universe.de | Christian Kremer" />
+<meta name="twitter:description" content="vi-universe.de | Christian Kremer" />
+
+<meta property="og:locale" content="de-de" />
+<meta name="language" content="de-de" />
+
+  <link rel="alternate" hreflang="de-de" href="https://vi-universe.github.io/posts/homelab_1.2/" title="German" />
+
+
+
+
+
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2024-07-25T00:00:00Z />
+    <meta property="article:published_time" content=2024-07-25T00:00:00Z />
+    <meta property="og:url" content="https://vi-universe.github.io/posts/homelab_1.2/" />
+
+    
+    <meta property="og:article:author" content="Christian Kremer" />
+    <meta property="article:author" content="Christian Kremer" />
+    <meta name="author" content="Christian Kremer" />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "Homelab-1.2",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2024-07-25",
+        "description": "",
+        "wordCount":  457 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2024-07-25",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "blog.vi-universe.de"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.147.8">
+
+    
+    <meta property="og:url" content="https://vi-universe.github.io/posts/homelab_1.2/">
+  <meta property="og:site_name" content="blog.vi-universe.de">
+  <meta property="og:title" content="Homelab-1.2">
+  <meta property="og:description" content="Da ich im Beitrag Homelab-1.0 bereits meine Anforderungen definiert hatte, wusste ich, dass ich insgesamt 19 vCPU und 62 GB RAM benötige. Daher entschied ich mich, für meinen Management-NUC direkt zu Beginn Memory Tiering zu aktivieren.
+Ressourcenanforderungen vCenter: Small, 4 vCPU, 14 GB RAM NSX Manager: Small, 4 vCPU, 16 GB RAM NSX Edge: 2x Medium, jeweils 4 vCPU, 8 GB RAM NSX ALB Controller: 6 vCPU, 24 GB RAM DNS: 1 vCPU, 1 GB RAM Gesamtanforderungen: 19 vCPU und 62 GB RAM">
+  <meta property="og:locale" content="de_de">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-07-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-25T00:00:00+00:00">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Homelab-1.2">
+  <meta name="twitter:description" content="Da ich im Beitrag Homelab-1.0 bereits meine Anforderungen definiert hatte, wusste ich, dass ich insgesamt 19 vCPU und 62 GB RAM benötige. Daher entschied ich mich, für meinen Management-NUC direkt zu Beginn Memory Tiering zu aktivieren.
+Ressourcenanforderungen vCenter: Small, 4 vCPU, 14 GB RAM NSX Manager: Small, 4 vCPU, 16 GB RAM NSX Edge: 2x Medium, jeweils 4 vCPU, 8 GB RAM NSX ALB Controller: 6 vCPU, 24 GB RAM DNS: 1 vCPU, 1 GB RAM Gesamtanforderungen: 19 vCPU und 62 GB RAM">
+
+
+    
+
+    <link rel="canonical" href="https://vi-universe.github.io/posts/homelab_1.2/">
+    <link href="/style.min.2d921c18cf1ec555ffc03d59a8adc211c402c68c930c27d6a0c306ab175a8d09.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://vi-universe.github.io/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+</head>
+<body data-theme = "auto" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="https://vi-universe.github.io/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Startseite</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Startseite
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Beiträge
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/pages/about/">
+                        Über mich
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Homelab-1.2</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2024-07-25T00:00:00&#43;00:00" itemprop="datePublished"> 25.07.2024 </time>
+                </div>
+                
+            </header>
+            
+    
+    <details class="toc" ZgotmplZ>
+        <summary><b>Inhaltsverzeichnis</b></summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#ressourcenanforderungen">Ressourcenanforderungen</a></li>
+    <li><a href="#memory-tiering">Memory Tiering</a>
+      <ul>
+        <li><a href="#vorteile">Vorteile:</a></li>
+        <li><a href="#standardkonfiguration">Standardkonfiguration:</a></li>
+        <li><a href="#umsetzung">Umsetzung:</a></li>
+        <li><a href="#konfiguration-in-der-esxi-shell">Konfiguration in der ESXi-Shell:</a></li>
+        <li><a href="#cpu">CPU</a></li>
+      </ul>
+    </li>
+    <li><a href="#hahahugoshortcode3s0hbhb"><a href="/assets/2024-07-25-Homelab_1.2/esxi-purble-cpu.png"><img src="/assets/2024-07-25-Homelab_1.2/esxi-purble-cpu-s.png" alt="Homelab-CPU"></a>
+HAHAHUGOSHORTCODE3s0HBHB</a></li>
+    <li><a href="#workaround">Workaround</a></li>
+    <li><a href="#vorgehensweise">Vorgehensweise</a></li>
+  </ul>
+</nav>
+    </details>
+            <div class="page-content">
+                <p>Da ich im Beitrag <em>Homelab-1.0</em> bereits meine Anforderungen definiert hatte, wusste ich, dass ich insgesamt <strong>19 vCPU und 62 GB RAM</strong> benötige. Daher entschied ich mich, für meinen Management-NUC direkt zu Beginn Memory Tiering zu aktivieren.</p>
+<hr>
+<h2 id="ressourcenanforderungen">Ressourcenanforderungen</h2>
+<ul>
+<li><strong>vCenter</strong>: Small, 4 vCPU, 14 GB RAM</li>
+<li><strong>NSX Manager</strong>: Small, 4 vCPU, 16 GB RAM</li>
+<li><strong>NSX Edge</strong>: 2x Medium, jeweils 4 vCPU, 8 GB RAM</li>
+<li><strong>NSX ALB Controller</strong>: 6 vCPU, 24 GB RAM</li>
+<li><strong>DNS</strong>: 1 vCPU, 1 GB RAM</li>
+</ul>
+<p><strong>Gesamtanforderungen</strong>: 19 vCPU und 62 GB RAM</p>
+<hr>
+<h2 id="memory-tiering">Memory Tiering</h2>
+<p>Memory Tiering ist ab der Version <strong>ESXi 8.0 Update 3</strong> als Tech-Preview-Feature verfügbar. Es ermöglicht die Nutzung von NVMe-Flash-Geräten als zusätzliche Speicherebene neben dem DRAM. Dies erweitert den verfügbaren Arbeitsspeicher eines ESXi-Hosts und optimiert die Leistung, indem der VM-Speicher je nach Bedarf auf NVMe-Geräte oder DRAM verteilt wird.</p>
+<h3 id="vorteile">Vorteile:</h3>
+<ul>
+<li><strong>Mehr verfügbarer Arbeitsspeicher</strong></li>
+<li><strong>Höhere Workload-Kapazität</strong></li>
+<li><strong>Bessere Workload- und VM-Konsolidierung</strong> durch Ausgleich von Ungleichgewichten zwischen CPU und Arbeitsspeicher</li>
+</ul>
+<h3 id="standardkonfiguration">Standardkonfiguration:</h3>
+<ul>
+<li><strong>4:1-Verhältnis</strong> zwischen DRAM und NVMe (z. B. 1 TB DRAM → 256 GB NVMe als Memory Tier)</li>
+<li>Maximale Nutzung: <strong>400 %</strong> der DRAM-Kapazität als NVMe-Tier</li>
+</ul>
+<h3 id="umsetzung">Umsetzung:</h3>
+<p>Da mein Intel NUC bereits <strong>64 GB DDR4-RAM</strong> verbaut hat, entschied ich mich, eine <strong>1 TB NVMe-SSD (Samsung 960 PRO)</strong> ausschließlich für Memory Tiering mit einer <strong>400-%-Konfiguration</strong> zu verwenden. Dadurch ergeben sich:</p>
+<ul>
+<li><strong>64 GB DDR4-RAM + 256 GB Memory Tier = 340 GB verfügbarer Arbeitsspeicher</strong></li>
+</ul>
+<p><strong>Hinweis:</strong> Die NVMe-SSD wird ausschließlich für Memory Tiering genutzt und kann nicht für die Bereitstellung eines VMFS-Datastores oder vSAN verwendet werden. Um die Lebensdauer der NVMe-SSD zu erhöhen, empfiehlt es sich, ein größeres Modell, mit z.B. 1 TB, zu wählen.</p>
+<p>Weitere Details finden Sie im vSphere 8.0.3 Technical Guide.
+<a href="https://knowledge.broadcom.com/external/article/311934/using-the-memory-tiering-over-nvme-featu.html">vSphere 8.0.3 Technical Guide</a></p>
+<h3 id="konfiguration-in-der-esxi-shell">Konfiguration in der ESXi-Shell:</h3>
+<pre tabindex="0"><code class="language-esxi" data-lang="esxi">esxcli system settings kernel set -s MemoryTiering -v TRUE
+esxcli system tierdevice create -d /vmfs/devices/disks/**NVME**
+esxcli system settings advanced set -o /Mem/TierNvmePct -i 400
+</code></pre><h3 id="cpu">CPU</h3>
+<p>Der Intel NUC 13 Pro i7 enthält einen <strong>Intel Core i7-Prozessor der 13. Generation</strong> mit 6 P-Kernen und 8 E-Kernen. Bei Desktop- und mobilen CPUs ist die <strong>Big.Little-Architektur</strong> seit der 12. Generation Standard.</p>
+<p>Ohne das Deaktivieren der P- oder E-Kerne im BIOS, um eine einheitliche Architektur zu gewährleisten, führt die Installation des ESXi-Hypervisors zu einem Fehler mit einem <strong>&ldquo;Purple Screen of Death&rdquo;</strong>.</p>
+<h2 id="hahahugoshortcode3s0hbhb"><a href="/assets/2024-07-25-Homelab_1.2/esxi-purble-cpu.png"><img src="/assets/2024-07-25-Homelab_1.2/esxi-purble-cpu-s.png" alt="Homelab-CPU"></a>
+<figure><a href="01.jpg"><img src="homelab_1.2/01.jpg"
+    alt="PurbleScreen"></a><figcaption>
+      <p>Purble Screen - Klick zum vergrößern</p>
+    </figcaption>
+</figure>
+</h2>
+<h2 id="workaround">Workaround</h2>
+<p>Falls das Deaktivieren der E-Kerne im BIOS nicht gewünscht ist, kann die folgende Konfiguration helfen:</p>
+<pre tabindex="0"><code class="language-esxi" data-lang="esxi">esxcli system settings kernel set -s cpuUniformityHardCheckPanic -v FALSE
+esxcli system settings kernel set -s ignoreMsrFaults -v TRUE
+</code></pre><h2 id="vorgehensweise">Vorgehensweise</h2>
+<ol>
+<li><strong>E-Kerne im BIOS deaktivieren.</strong></li>
+<li><strong>Installation von ESXi</strong> auf der verbauten <strong>2,5&quot;-SSD (1 TB).</strong></li>
+<li><strong>Einstellung von <code>cpuUniformityHardCheckPanic</code> auf <code>false</code> und <code>ignoreMsrsFaults</code> auf <code>true</code> .</strong></li>
+<li><strong>Neustart und Aktivierung der E-Kerne</strong> im BIOS.</li>
+</ol>
+<hr>
+<p>Nach erfolgreicher Installation von ESXi und Aktivierung von Memory Tiering konfigurierte ich grundlegende Dienste wie <strong>DNS</strong> und <strong>NTP</strong> -Server.</p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/vi-universe" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://www.linkedin.com/in/christian-kremer-it" target="_blank" rel="noopener noreferrer me"
+    title="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+<a href="/index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2025 Christian Kremer.
+        Unterstützt durch <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
+    </small>
+</footer><a href="#" title="Zum Seitenanfang" id="totop">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" stroke="currentColor" viewBox="0 96 960 960">
+    <path d="M283 704.739 234.261 656 480 410.261 725.739 656 677 704.739l-197-197-197 197Z"/>
+</svg>
+
+</a>
+
+
+    
+
+
+
+
+    
+    
+        
+    
+
+    
+    
+        
+    
+
+
+
+    
+    <script src="https://vi-universe.github.io/js/main.min.35f435a5d8eac613c52daa28d8af544a4512337d3e95236e4a4978417b8dcb2f.js" integrity="sha256-NfQ1pdjqxhPFLaoo2K9USkUSM30&#43;lSNuSkl4QXuNyy8="></script>
+
+    
+
+</body>
+</html>
