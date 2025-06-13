@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de-de"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<html lang="de-de"><head><meta charset="utf-8">
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="de-de" />
 <meta name="language" content="de-de" />
 
-  <link rel="alternate" hreflang="de-de" href="http://localhost:1313/posts/nsx_antrea_avi_ocp/" title="German" />
+  <link rel="alternate" hreflang="de-de" href="https://vi-universe.github.io/posts/nsx_antrea_avi_ocp/" title="German" />
 
 
 
@@ -31,7 +31,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:article:published_time" content=2025-05-30T00:00:00Z />
     <meta property="article:published_time" content=2025-05-30T00:00:00Z />
-    <meta property="og:url" content="http://localhost:1313/posts/nsx_antrea_avi_ocp/" />
+    <meta property="og:url" content="https://vi-universe.github.io/posts/nsx_antrea_avi_ocp/" />
 
     
     <meta property="og:article:author" content="Christian Kremer" />
@@ -53,7 +53,7 @@
         },
         "datePublished": "2025-05-30",
         "description": "",
-        "wordCount":  2280 ,
+        "wordCount":  2448 ,
         "mainEntityOfPage": "True",
         "dateModified": "2025-05-30",
         "image": {
@@ -71,7 +71,7 @@
 <meta name="generator" content="Hugo 0.147.8">
 
     
-    <meta property="og:url" content="http://localhost:1313/posts/nsx_antrea_avi_ocp/">
+    <meta property="og:url" content="https://vi-universe.github.io/posts/nsx_antrea_avi_ocp/">
   <meta property="og:site_name" content="blog.vi-universe.de">
   <meta property="og:title" content="OpenShift Integration mit VMware NSX und Antrea CNI">
   <meta property="og:description" content="Die Integration von Red Hat OpenShift mit VMware NSX und dem Antrea Container Network Interface (CNI) eröffnet neue Möglichkeiten für fortschrittliches Netzwerkmanagement in Kubernetes-Umgebungen. In diesem technischen Blog-Artikel dokumentiere ich die Implementierung eines Proof of Concept (PoC), der die erfolgreiche Integration dieser Technologien demonstriert.
@@ -93,7 +93,7 @@ Zielsetzung und Motivation Der Hauptzweck dieses PoC liegt in der Validierung de
 
     
 
-    <link rel="canonical" href="http://localhost:1313/posts/nsx_antrea_avi_ocp/">
+    <link rel="canonical" href="https://vi-universe.github.io/posts/nsx_antrea_avi_ocp/">
     <link href="/style.min.cf5e90893fe6ed558990ae94c193d330841d6aabc33aa8f6f65ef6e15b25378e.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -107,7 +107,7 @@ Zielsetzung und Motivation Der Hauptzweck dieses PoC liegt in der Validierung de
 
 
 
-<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+<link rel="manifest" href="https://vi-universe.github.io/site.webmanifest">
 
 <meta name="msapplication-config" content="/browserconfig.xml">
 <meta name="msapplication-TileColor" content="#2d89ef">
@@ -118,14 +118,15 @@ Zielsetzung und Motivation Der Hauptzweck dieses PoC liegt in der Validierung de
 
     
     
+    
 </head>
 <body data-theme = "auto" class="notransition">
 
-<script src="/js/theme.js"></script>
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
 
 <div class="navbar" role="navigation">
     <nav class="menu" aria-label="Main Navigation">
-        <a href="http://localhost:1313/" class="logo">
+        <a href="https://vi-universe.github.io/" class="logo">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
 stroke-linejoin="round" class="feather feather-home">
@@ -215,6 +216,7 @@ stroke-linejoin="round" class="feather feather-home">
             <li><a href="#t0-router">T0 Router</a></li>
             <li><a href="#t1-router">T1 Router</a></li>
             <li><a href="#overlay-segment">Overlay Segment</a></li>
+            <li><a href="#firewall-dfw--gw">Firewall (DFW / GW)</a></li>
           </ul>
         </li>
         <li><a href="#nsx-advanced-loadbalancer-konfiguration">NSX Advanced LoadBalancer Konfiguration</a>
@@ -349,14 +351,128 @@ stroke-linejoin="round" class="feather feather-home">
 </figure>
 </p>
 <h4 id="overlay-segment">Overlay Segment</h4>
-<p>Ein Overlay-Segment für die OpenShift Plattform. In diesem Segment befinden sich sowohl die OpenShift VMs als auch die LoadBalancer Service Engines. Eine wichtige Anforderung von OpenShift ist, dass sich die VIP für Ingress und API im selben &ldquo;MachineNetwork&rdquo; befinden.</p>
-<p>Für das Management der NSX Advanced LoadBalancer Service Engines wird ein Overlay-Segment erstellt und mit dem T1 Router der dafür erstellt wurde verbunden.
+<p>Ein Overlay-Segment für die OpenShift Plattform. In diesem Segment befinden sich sowohl die OpenShift VMs als auch die LoadBalancer Service Engines. Eine wichtige Anforderung von OpenShift ist, dass sich die VIP für Ingress und API im selben &ldquo;MachineNetwork&rdquo; befinden.
 <figure><a href="03.png"><img src="/nsx_antrea_avi_ocp/03.png"
-    alt="Segment Übersicht"></a><figcaption>
+    alt="OCP Segment Übersicht"></a><figcaption>
       <p>Segment Übersicht - Klick zum vergrößern</p>
     </figcaption>
 </figure>
 </p>
+<p>Für das Management der NSX Advanced LoadBalancer Service Engines wird ein Overlay-Segment erstellt und mit dem T1 Router der dafür erstellt wurde verbunden.</p>
+<h4 id="firewall-dfw--gw">Firewall (DFW / GW)</h4>
+<p>Wird eine Firewall wie zum Beispiel die Distributed Firewall verwendet, müssen folgende Freischaltungen erstellt werden.
+Genaue Angaben zu den benötigten Firewall Freischaltungen findet man unter ports.broadcom.com oder in den Installationsunterlagen von OpenShift.</p>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Quelle</strong></th>
+          <th><strong>Ziel</strong></th>
+          <th><strong>Protokoll</strong></th>
+          <th><strong>Port(s)</strong></th>
+          <th><strong>Zweck</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>OCP Nodes</td>
+          <td>OCP Nodes</td>
+          <td>TCP</td>
+          <td>1936</td>
+          <td>Metrics</td>
+      </tr>
+      <tr>
+          <td>OCP Nodes</td>
+          <td>OCP Nodes</td>
+          <td>TCP</td>
+          <td>9000-9999</td>
+          <td>Host Level Services</td>
+      </tr>
+      <tr>
+          <td>OCP Nodes</td>
+          <td>OCP Nodes</td>
+          <td>TCP</td>
+          <td>10250-10259</td>
+          <td>Default Ports Kubernetes</td>
+      </tr>
+      <tr>
+          <td>OCP Nodes</td>
+          <td>OCP Nodes</td>
+          <td>TCP</td>
+          <td>2379-2380</td>
+          <td>etcd server and peer</td>
+      </tr>
+      <tr>
+          <td>OCP Nodes</td>
+          <td>OCP Nodes</td>
+          <td>TCP</td>
+          <td>6443</td>
+          <td>Kubernetes API</td>
+      </tr>
+      <tr>
+          <td>OCP Nodes</td>
+          <td>OCP Nodes</td>
+          <td>UDP</td>
+          <td>6081</td>
+          <td>Geneve</td>
+      </tr>
+      <tr>
+          <td>OCP Nodes</td>
+          <td>OCP Nodes</td>
+          <td>UDP</td>
+          <td>9000-9999</td>
+          <td>Host Level Services</td>
+      </tr>
+      <tr>
+          <td>OCP Nodes</td>
+          <td>OCP Nodes</td>
+          <td>UDP</td>
+          <td>500</td>
+          <td>IPsec IKE</td>
+      </tr>
+      <tr>
+          <td>OCP Nodes</td>
+          <td>OCP Nodes</td>
+          <td>UDP</td>
+          <td>4500</td>
+          <td>IPsec NAT-T</td>
+      </tr>
+      <tr>
+          <td>Control Plane</td>
+          <td>Control Plane</td>
+          <td>TCP</td>
+          <td>6443</td>
+          <td>Kubernetes API</td>
+      </tr>
+      <tr>
+          <td>OCP</td>
+          <td>vCenter, NSX Manager, NSX Advanced LB</td>
+          <td>TCP</td>
+          <td>443</td>
+          <td>API, UI</td>
+      </tr>
+      <tr>
+          <td>OpenShift</td>
+          <td>NSX Manager</td>
+          <td>TCP</td>
+          <td>1234</td>
+          <td>NSX RPC</td>
+      </tr>
+      <tr>
+          <td>OpenShift</td>
+          <td>NSX Manager</td>
+          <td>TCP</td>
+          <td>1235</td>
+          <td>NSX RPC</td>
+      </tr>
+      <tr>
+          <td>Service Engine</td>
+          <td>OpenShift</td>
+          <td>TCP</td>
+          <td>6443, 22623, 80 ,443</td>
+          <td>NSX LB</td>
+      </tr>
+  </tbody>
+</table>
 <h3 id="nsx-advanced-loadbalancer-konfiguration">NSX Advanced LoadBalancer Konfiguration</h3>
 <h4 id="content-library">Content Library</h4>
 <p>Der NSX Advanced LoadBalancer benöntigt eine Content Library für die automatische Bereitstellung der Service Engines</p>
@@ -435,13 +551,13 @@ Infrastructure → Cloud Ressources → VRF Context</p>
       </tr>
   </tbody>
 </table>
-<p>Alle Virtual Services werden als &ldquo;System-L4-Application&rdquo; erstellt, mit System-TCP Health Monitor und der entsprechenden Service Engine Group.</p>
+<p>Alle Virtual Services werden als &ldquo;System-L4-Application&rdquo; erstellt, mit System-TCP Health Monitor und der entsprechenden Service Engine Group.
 <figure><a href="07.png"><img src="/nsx_antrea_avi_ocp/07.png"
-    alt="Avi L4 Virtual Service (vor Installation)"></a><figcaption>
-      <p>Avi L4 Virtual Service (vor Installation) - Klick zum vergrößern</p>
+    alt="Avi L4 Virtual Service"></a><figcaption>
+      <p>Avi L4 Virtual Service - Klick zum vergrößern</p>
     </figcaption>
 </figure>
-
+</p>
 <p>Nach der Erstellung der Virtual Services, werden diese als &ldquo;Down&rdquo; angezeigt, da noch keine Backend Server existieren.
 <figure><a href="08.png"><img src="/nsx_antrea_avi_ocp/08.png"
     alt="Avi Virtual Service down (vor Installation)"></a><figcaption>
@@ -500,6 +616,8 @@ Infrastructure → Cloud Ressources → VRF Context</p>
 </span></span></code></pre></div><h3 id="erstellung-der-installationskonfiguration">Erstellung der Installationskonfiguration</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">openshift-install create install-config
 </span></span></code></pre></div><p>Der interaktive Assistent fragt nach verschiedenen Parametern wie Plattform (vSphere), Cluster-Name, vCenter-Zugangsdaten und Ingress / VIP IP-Adresse. Die Ingress IP muss mit dem DNS A Record *.apps.ocp01.vi-universe.lab übereinstimmen und die VIP IP mit dem API und API-Int A-Record.</p>
+<blockquote>
+<p>Die vCenter CA muss auf dem Installationsnode als &ldquo;Trusted&rdquo; hinterlegt werden.</p></blockquote>
 <h4 id="beispiel-install-configyaml">Beispiel install-config.yaml</h4>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">additionalTrustBundlePolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Proxyonly</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
@@ -916,7 +1034,7 @@ Ein Beispiel dafür wäre die Trennung von Kubernetes Namespaces, welche ein ded
 
 
     
-    <script async src="http://localhost:1313/js/main.js" ></script>
+    <script src="https://vi-universe.github.io/js/main.min.35f435a5d8eac613c52daa28d8af544a4512337d3e95236e4a4978417b8dcb2f.js" integrity="sha256-NfQ1pdjqxhPFLaoo2K9USkUSM30&#43;lSNuSkl4QXuNyy8="></script>
 
     
 
