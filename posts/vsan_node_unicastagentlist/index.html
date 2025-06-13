@@ -212,11 +212,8 @@ stroke-linejoin="round" class="feather feather-home">
       <ul>
         <li><a href="#vsan-umgebung">vSAN Umgebung</a></li>
         <li><a href="#die-ausgangslage">Die Ausgangslage</a></li>
-        <li><a href="#zu-diesem-zeitpunkt-waren-keine-vms-gestartet-und-alle-nodes-im-wartungsmodus">Zu diesem Zeitpunkt waren keine VMs gestartet und alle Nodes im Wartungsmodus</a>
-          <ul>
-            <li><a href="#node04-selbst-darf-nicht-eingetragen-werden">Node04 selbst darf nicht eingetragen werden</a></li>
-          </ul>
-        </li>
+        <li><a href="#zu-diesem-zeitpunkt-waren-keine-vms-gestartet-und-alle-nodes-im-wartungsmodus">Zu diesem Zeitpunkt waren keine VMs gestartet und alle Nodes im Wartungsmodus</a></li>
+        <li><a href="#node04-selbst-darf-nicht-eingetragen-werden">Node04 selbst darf nicht eingetragen werden</a></li>
       </ul>
     </li>
   </ul>
@@ -231,7 +228,7 @@ Normalerweise ist dieser Vorgang nicht unbedingt kritisch, dennoch bin ich in le
 <p>Nach einem &ldquo;Cluster Shutdown&rdquo; fanden nur noch 7 von 8 Nodes ihre vSAN-Partner.<br>
 Auf meinem Screenshot erkennt man die &ldquo;Command-Ausgabe&rdquo; von Node04.<br>
 In der Zeile &ldquo;Sub-Cluster Member HostName&rdquo; ist deutlich zu erkennen das seine vSAN Partner fehlen.</p>
-<figure><a href="01.jpg"><img src="vsan_node_unicast/01.jpg"
+<figure><a href="01.jpg"><img src="/vsan_node_unicastagentlist/01.jpg"
     alt="vSAN CLI Output"></a><figcaption>
       <p>vSAN CLI Output- Klick zum vergrößern</p>
     </figcaption>
@@ -260,7 +257,7 @@ So far so good - Ich konnte über VMKernelport vmk3 alle anderen Nodes inkl. Wit
 Folgender Befehl gibt mir die Host_UUID aus.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cmmds-tool whoami
 </span></span></code></pre></div><p>Nun füge ich auf meinem betroffen Node04 alle anderen vSAN Partner manuell hinzu.</p>
-<h4 id="node04-selbst-darf-nicht-eingetragen-werden">Node04 selbst darf nicht eingetragen werden</h4>
+<h3 id="node04-selbst-darf-nicht-eingetragen-werden">Node04 selbst darf nicht eingetragen werden</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">esxcli vsan cluster unicastagent add -t node -u &lt;Host_UUID&gt; -U <span class="nb">true</span> -a &lt;Host_VSAN_IP&gt; -p <span class="m">12321</span>
 </span></span></code></pre></div><p>Um den vSAN-Witness hinzuzufügen, muss der Command etwas geändert werden.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">esxcli vsan cluster unicastagent add -t witness -u &lt;Host_UUID&gt; -U <span class="nb">true</span> -a &lt;Host_VSAN_IP&gt; -p <span class="m">12321</span>
