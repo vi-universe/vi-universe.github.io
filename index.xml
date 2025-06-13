@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blog.vi-universe.de</title>
+    <link>https://vi-universe.github.io/</link>
+    <description>Recent content on blog.vi-universe.de</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de-de</language>
+    <lastBuildDate>Thu, 12 Jun 2025 13:13:23 +0200</lastBuildDate><atom:link href="https://vi-universe.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DELL-VxRail Cheat-Sheet</title>
+      <link>https://vi-universe.github.io/posts/vxrail_cheat_sheet/</link>
+      <pubDate>Tue, 30 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/vxrail_cheat_sheet/</guid>
+      
+      <description>&lt;h4 id=&#34;standard-passwörter&#34;&gt;Standard Passwörter&lt;/h4&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Component&lt;/th&gt;
+          &lt;th&gt;Username&lt;/th&gt;
+          &lt;th&gt;Default Password&lt;/th&gt;
+          &lt;th&gt;Network (Default)&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;iDRAC&lt;/td&gt;
+          &lt;td&gt;root&lt;/td&gt;
+          &lt;td&gt;calvin&lt;/td&gt;
+          &lt;td&gt;DHCP&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ESXi root&lt;/td&gt;
+          &lt;td&gt;root&lt;/td&gt;
+          &lt;td&gt;Passw0rd!&lt;/td&gt;
+          &lt;td&gt;DHCP&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;VxRail Manager&lt;/td&gt;
+          &lt;td&gt;mystic&lt;/td&gt;
+          &lt;td&gt;VxRailManager@201602!&lt;/td&gt;
+          &lt;td&gt;192.168.10.200&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;VxRail Manager&lt;/td&gt;
+          &lt;td&gt;root&lt;/td&gt;
+          &lt;td&gt;Passw0rd!&lt;/td&gt;
+          &lt;td&gt;192.168.10.200&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;loudmouth-services&#34;&gt;Loudmouth Services&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# ESXi Shell
+/etc/init.d/loudmouth [start|stop|status|restart]
+
+# VxRail  Manager
+systemctl [start|stop|status|restart] vmware-loudmouth
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;zeit&#34;&gt;Zeit&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# ESXi Shell
+esxcli system time get 
+esxcli system time set d|–day -H|–hour -m|–min -M|–month -s|–sec -y|–year
+
+# VxRail Manager
+date
+date -s “30 JAN 2024 12:30:00”
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;vxrail-manager-ip-einstellung&#34;&gt;VxRail Manager IP-Einstellung&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# ESXi Shell
+
+vxrail-primary --config --vxrail-address XXX.XXX.XXX.XXX --vxrail-netmask XXX.XXX.XXX.XXX --vxrail-gateway XXX.XXX.XXX.XXX --vlan XXX
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;vxrail-manager&#34;&gt;VxRail Manager&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# ESXi Shell
+esxcli vm process list
+
+vim-cmd vmsvc/getallvms
+vim-cmd vmsvc/power.shutdown vmid
+vim-cmd vmsvc/power.getstate vmid
+vim-cmd vmsvc/power.on vmid
+vim-cmd vmsvc/power.getstate vmid
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;vxrail-manager-installation-logs&#34;&gt;VxRail Manager Installation-Logs&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# VxRail Manager
+cat dayone.log
+tail -f dayone.log
+tail -f dayone.log | grep ERROR
+tail -n 100 dayone.log
+more dayone.log
+
+# Loudmouth Discovery 
+/usr/lib/vmware-loudmouth/bin/loudmouthc query | grep -o &amp;#34;applianceID=...............&amp;#34; | sort
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>ESXi Architektur und Logs</title>
+      <link>https://vi-universe.github.io/posts/esxi_architecture_logs/</link>
+      <pubDate>Fri, 10 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/esxi_architecture_logs/</guid>
+      
+      <description>&lt;p&gt;Ein wichtiger Punkt beim &amp;ldquo;Troubleshooting&amp;rdquo; ist zu wissen, welche Log-Dateien gibt es und welche Information findet man in der jeweiligen Log-Datei.
+Die Log-Dateien lassen sich außerdem filtern. -&amp;gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; cat /var/log/vmkernel.log | grep warning
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;esxi-architektur-und-logs-übersicht&#34;&gt;ESXi Architektur und Logs Übersicht&lt;/h4&gt;
+&lt;figure&gt;&lt;a href=&#34;01.jpg&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/esxi_architecture_logs/01.jpg&#34;
+    alt=&#34;ESXi Architecture&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
+      &lt;p&gt;ESXi Architecture - Klick zum vergrößern&lt;/p&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

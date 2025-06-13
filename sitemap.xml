@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://vi-universe.github.io/</loc>
+    <lastmod>2025-06-12T13:13:23+02:00</lastmod>
+  </url><url>
+    <loc>https://vi-universe.github.io/posts/</loc>
+    <lastmod>2025-05-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://vi-universe.github.io/posts/vxrail_cheat_sheet/</loc>
+    <lastmod>2024-01-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://vi-universe.github.io/posts/esxi_architecture_logs/</loc>
+    <lastmod>2023-11-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://vi-universe.github.io/categories/</loc>
+  </url><url>
+    <loc>https://vi-universe.github.io/tags/</loc>
+  </url>
+</urlset>
