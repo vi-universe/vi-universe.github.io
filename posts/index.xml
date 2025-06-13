@@ -309,6 +309,21 @@ Die Anmeldung am VxRail-Manager erfolgt mit dem Benutzer &amp;ldquo;Mystic&amp;r
     </item>
     
     <item>
+      <title>DELL-VxRail RASR Reset</title>
+      <link>https://vi-universe.github.io/posts/vxrail_rasr_reset/</link>
+      <pubDate>Fri, 24 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/vxrail_rasr_reset/</guid>
+      
+      <description>&lt;h4 id=&#34;vxrail-rasr&#34;&gt;VxRail RASR&lt;/h4&gt;
+&lt;p&gt;Um einen VxRail-Node in den Auslieferungszustand zu versetzen, ist es notwendig, einen RASR-Reset durchzuführen.
+Ein RASR-Reset löscht alle Daten und Einstellungen. Notwendig ist dies, wenn zum Beispiel die initiale Installation fehlschlägt.
+Ab der Generation 15 (E/P/V/D/S/G) 6XX , sind keine SD-Karten mit dem RASR-Image in der VxRail verbaut. Um das RASR-Image zu erhalten, benötigt man die &amp;ldquo;solve-prozedur&amp;rdquo; welche unter solve.dell.com erstellt werden kann.
+Anschließend muss der VxRail-Node mit dem RASR-Image gestartet werden.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>ESXi Architektur und Logs</title>
       <link>https://vi-universe.github.io/posts/esxi_architecture_logs/</link>
       <pubDate>Fri, 10 Nov 2023 00:00:00 +0000</pubDate>
