@@ -3,11 +3,11 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">Posts | blog.vi-universe.de</title>
-<meta property="og:title" content="Posts | blog.vi-universe.de" />
-<meta name="twitter:title" content="Posts | blog.vi-universe.de" />
-<meta itemprop="name" content="Posts | blog.vi-universe.de" />
-<meta name="application-name" content="Posts | blog.vi-universe.de" />
+<title itemprop="name">VMware ESXi Konfiguration „Backup und Restore“ mit PowerCli | blog.vi-universe.de</title>
+<meta property="og:title" content="VMware ESXi Konfiguration „Backup und Restore“ mit PowerCli | blog.vi-universe.de" />
+<meta name="twitter:title" content="VMware ESXi Konfiguration „Backup und Restore“ mit PowerCli | blog.vi-universe.de" />
+<meta itemprop="name" content="VMware ESXi Konfiguration „Backup und Restore“ mit PowerCli | blog.vi-universe.de" />
+<meta name="application-name" content="VMware ESXi Konfiguration „Backup und Restore“ mit PowerCli | blog.vi-universe.de" />
 <meta property="og:site_name" content="blog.vi-universe.de" />
 
 <meta name="description" content="vi-universe.de | Christian Kremer">
@@ -18,28 +18,20 @@
 <meta property="og:locale" content="de-de" />
 <meta name="language" content="de-de" />
 
-  <link rel="alternate" hreflang="de-de" href="https://vi-universe.github.io/posts/" title="German" />
+  <link rel="alternate" hreflang="de-de" href="https://vi-universe.github.io/posts/esxi_config_backup_restore/" title="German" />
 
 
 
 
 
-    
-    
-    
-    
-    
-    <link rel="first" href="/posts/" />
-    <link rel="last" href="/posts/" />
-    
     
     
     
 
     <meta property="og:type" content="article" />
-    <meta property="og:article:published_time" content=2025-05-30T00:00:00Z />
-    <meta property="article:published_time" content=2025-05-30T00:00:00Z />
-    <meta property="og:url" content="https://vi-universe.github.io/posts/" />
+    <meta property="og:article:published_time" content=2023-02-12T00:00:00Z />
+    <meta property="article:published_time" content=2023-02-12T00:00:00Z />
+    <meta property="og:url" content="https://vi-universe.github.io/posts/esxi_config_backup_restore/" />
 
     
     <meta property="og:article:author" content="Christian Kremer" />
@@ -54,16 +46,16 @@
     {
         "@context": "http://schema.org",
         "@type": "Article",
-        "headline": "Posts",
+        "headline": "VMware ESXi Konfiguration „Backup und Restore“ mit PowerCli",
         "author": {
         "@type": "Person",
         "name": ""
         },
-        "datePublished": "2025-05-30",
+        "datePublished": "2023-02-12",
         "description": "",
-        "wordCount":  0 ,
+        "wordCount":  119 ,
         "mainEntityOfPage": "True",
-        "dateModified": "2025-05-30",
+        "dateModified": "2023-02-12",
         "image": {
         "@type": "imageObject",
         "url": ""
@@ -79,26 +71,29 @@
 <meta name="generator" content="Hugo 0.147.8">
 
     
-    <meta property="og:url" content="https://vi-universe.github.io/posts/">
+    <meta property="og:url" content="https://vi-universe.github.io/posts/esxi_config_backup_restore/">
   <meta property="og:site_name" content="blog.vi-universe.de">
-  <meta property="og:title" content="Posts">
-  <meta property="og:description" content="vi-universe.de | Christian Kremer">
+  <meta property="og:title" content="VMware ESXi Konfiguration „Backup und Restore“ mit PowerCli">
+  <meta property="og:description" content="Besonders vor kritischen Arbeiten oder Update/Upgrades ist es sinnvoll, die Konfiguration eines ESX-Hosts zu sichern.
+ESXi Konfiguration Backup write-host &#34;Specify local backup destination path&#34; -ForegroundColor Green $Path= Read-Host &#34;Enter backup destination path on your local device&#34; write-host &#34;Specify ESXi IP&#34; -ForegroundColor Green $ESXiHost= Read-Host &#34;Enter your ESXi IP&#34; write-host &#34;Connecting to Host&#34; -ForegroundColor Green Connect-VIServer $ESXiHost Get-VMHost | Get-VMHostFirmware -BackupConfiguration -DestinationPath $Path ESXi Konfiguration Restore write-host &#34;Specify local backup destination path and the config file&#34; -ForegroundColor Green $Path= Read-Host &#34;Enter backup destination path on your local device&#34; write-host &#34;Specify ESXi IP&#34; -ForegroundColor Green $ESXiHost= Read-Host &#34;Enter your ESXi IP&#34; write-host &#34;Connecting to Host&#34; -ForegroundColor Green Connect-VIServer $ESXiHost Get-VMHost | Set-VMHost -State Maintenance Get-VMHost | Set-VMHostFirmware -Restore -Force -SourcePath $Path">
   <meta property="og:locale" content="de_de">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-02-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-02-12T00:00:00+00:00">
 
 
     
     
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Posts">
-  <meta name="twitter:description" content="vi-universe.de | Christian Kremer">
+  <meta name="twitter:title" content="VMware ESXi Konfiguration „Backup und Restore“ mit PowerCli">
+  <meta name="twitter:description" content="Besonders vor kritischen Arbeiten oder Update/Upgrades ist es sinnvoll, die Konfiguration eines ESX-Hosts zu sichern.
+ESXi Konfiguration Backup write-host &#34;Specify local backup destination path&#34; -ForegroundColor Green $Path= Read-Host &#34;Enter backup destination path on your local device&#34; write-host &#34;Specify ESXi IP&#34; -ForegroundColor Green $ESXiHost= Read-Host &#34;Enter your ESXi IP&#34; write-host &#34;Connecting to Host&#34; -ForegroundColor Green Connect-VIServer $ESXiHost Get-VMHost | Get-VMHostFirmware -BackupConfiguration -DestinationPath $Path ESXi Konfiguration Restore write-host &#34;Specify local backup destination path and the config file&#34; -ForegroundColor Green $Path= Read-Host &#34;Enter backup destination path on your local device&#34; write-host &#34;Specify ESXi IP&#34; -ForegroundColor Green $ESXiHost= Read-Host &#34;Enter your ESXi IP&#34; write-host &#34;Connecting to Host&#34; -ForegroundColor Green Connect-VIServer $ESXiHost Get-VMHost | Set-VMHost -State Maintenance Get-VMHost | Set-VMHostFirmware -Restore -Force -SourcePath $Path">
 
 
     
 
-    <link rel="canonical" href="https://vi-universe.github.io/posts/">
-    <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="blog.vi-universe.de">
-    <link href="/posts/index.xml" rel="feed" type="application/rss+xml" title="blog.vi-universe.de">
+    <link rel="canonical" href="https://vi-universe.github.io/posts/esxi_config_backup_restore/">
     <link href="/style.min.2d921c18cf1ec555ffc03d59a8adc211c402c68c930c27d6a0c306ab175a8d09.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -187,116 +182,75 @@ stroke-linejoin="round" class="feather feather-home">
         </div>
     </nav>
 </div>
-<div class="wrapper list-page">
-    <header class="header">
-        <h1 class="header-title center">Posts</h1>
-    </header>
+
+<div class="wrapper post">
     <main class="page-content" aria-label="Content">
-        
-        
-        <h2 class="post-year">2024</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/nsx_cheat_sheet/">NSX Cheat Sheet</a>
-    </h4>
+        <article>
+            <header class="header">
+                <h1 class="header-title">VMware ESXi Konfiguration „Backup und Restore“ mit PowerCli</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2023-02-12T00:00:00&#43;00:00" itemprop="datePublished"> 12.02.2023 </time>
+                </div>
+                
+            </header>
+            
     
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-12-20T00:00:00Z">
-        20 Dez. 2024
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/vxrail_cheat_sheet/">DELL-VxRail Cheat-Sheet</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-01-30T00:00:00Z">
-        30 Jan. 2024
-        
-    </time>
-</article>
-
-
-         
-
-        
-        
-        <h2 class="post-year">2023</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/esxi_architecture_logs/">ESXi Architektur und Logs</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-11-10T00:00:00Z">
-        10 Nov. 2023
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/esxi_config_backup_restore/">VMware ESXi Konfiguration „Backup und Restore“ mit PowerCli</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-02-12T00:00:00Z">
-        12 Feb. 2023
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/esxi_passwort_reset/">ESXi Passwort Reset</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-01-29T00:00:00Z">
-        29 Jan. 2023
-        
-    </time>
-</article>
-
-
-         
-
-         
-
-    </main>
-</div><footer class="footer">
+    <details class="toc" ZgotmplZ>
+        <summary><b>Inhaltsverzeichnis</b></summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#esxi-konfiguration-backup">ESXi Konfiguration Backup</a></li>
+            <li><a href="#esxi-konfiguration-restore">ESXi Konfiguration Restore</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </details>
+            <div class="page-content">
+                <p>Besonders vor kritischen Arbeiten oder Update/Upgrades ist es sinnvoll, die Konfiguration eines ESX-Hosts
+zu sichern.</p>
+<h4 id="esxi-konfiguration-backup">ESXi Konfiguration Backup</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">write-host</span> <span class="s2">&#34;Specify local backup destination path&#34;</span> <span class="n">-ForegroundColor</span> <span class="n">Green</span> 
+</span></span><span class="line"><span class="cl"><span class="nv">$Path</span><span class="p">=</span> <span class="nb">Read-Host</span> <span class="s2">&#34;Enter backup destination path on your local device&#34;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">write-host</span> <span class="s2">&#34;Specify ESXi IP&#34;</span> <span class="n">-ForegroundColor</span> <span class="n">Green</span> 
+</span></span><span class="line"><span class="cl"><span class="nv">$ESXiHost</span><span class="p">=</span> <span class="nb">Read-Host</span> <span class="s2">&#34;Enter your ESXi IP&#34;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">write-host</span> <span class="s2">&#34;Connecting to Host&#34;</span> <span class="n">-ForegroundColor</span> <span class="n">Green</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Connect-VIServer</span> <span class="nv">$ESXiHost</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Get-VMHost</span> <span class="p">|</span> <span class="nb">Get-VMHostFirmware</span> <span class="n">-BackupConfiguration</span> <span class="n">-DestinationPath</span> <span class="nv">$Path</span>
+</span></span></code></pre></div><h4 id="esxi-konfiguration-restore">ESXi Konfiguration Restore</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">write-host</span> <span class="s2">&#34;Specify local backup destination path and the config file&#34;</span> <span class="n">-ForegroundColor</span> <span class="n">Green</span> 
+</span></span><span class="line"><span class="cl"><span class="nv">$Path</span><span class="p">=</span> <span class="nb">Read-Host</span> <span class="s2">&#34;Enter backup destination path on your local device&#34;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">write-host</span> <span class="s2">&#34;Specify ESXi IP&#34;</span> <span class="n">-ForegroundColor</span> <span class="n">Green</span> 
+</span></span><span class="line"><span class="cl"><span class="nv">$ESXiHost</span><span class="p">=</span> <span class="nb">Read-Host</span> <span class="s2">&#34;Enter your ESXi IP&#34;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">write-host</span> <span class="s2">&#34;Connecting to Host&#34;</span> <span class="n">-ForegroundColor</span> <span class="n">Green</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Connect-VIServer</span> <span class="nv">$ESXiHost</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Get-VMHost</span> <span class="p">|</span> <span class="nb">Set-VMHost</span> <span class="n">-State</span> <span class="n">Maintenance</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Get-VMHost</span> <span class="p">|</span> <span class="nb">Set-VMHostFirmware</span> <span class="n">-Restore</span> <span class="n">-Force</span> <span class="n">-SourcePath</span> <span class="nv">$Path</span>
+</span></span></code></pre></div>
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
     <span class="footer_item"> </span>
     &nbsp;
 

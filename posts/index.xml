@@ -186,5 +186,63 @@ Die Log-Dateien lassen sich außerdem filtern. -&amp;gt;&lt;/p&gt;
       
     </item>
     
+    <item>
+      <title>VMware ESXi Konfiguration „Backup und Restore“ mit PowerCli</title>
+      <link>https://vi-universe.github.io/posts/esxi_config_backup_restore/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/esxi_config_backup_restore/</guid>
+      
+      <description>&lt;p&gt;Besonders vor kritischen Arbeiten oder Update/Upgrades ist es sinnvoll, die Konfiguration eines ESX-Hosts
+zu sichern.&lt;/p&gt;
+&lt;h4 id=&#34;esxi-konfiguration-backup&#34;&gt;ESXi Konfiguration Backup&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;write-host&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Specify local backup destination path&amp;#34;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-ForegroundColor&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Green&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$Path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Read-Host&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Enter backup destination path on your local device&amp;#34;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;write-host&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Specify ESXi IP&amp;#34;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-ForegroundColor&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Green&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$ESXiHost&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Read-Host&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Enter your ESXi IP&amp;#34;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;write-host&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Connecting to Host&amp;#34;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-ForegroundColor&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Green&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Connect-VIServer&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$ESXiHost&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Get-VMHost&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Get-VMHostFirmware&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-BackupConfiguration&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-DestinationPath&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$Path&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;esxi-konfiguration-restore&#34;&gt;ESXi Konfiguration Restore&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;write-host&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Specify local backup destination path and the config file&amp;#34;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-ForegroundColor&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Green&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$Path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Read-Host&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Enter backup destination path on your local device&amp;#34;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;write-host&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Specify ESXi IP&amp;#34;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-ForegroundColor&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Green&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$ESXiHost&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Read-Host&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Enter your ESXi IP&amp;#34;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;write-host&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Connecting to Host&amp;#34;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-ForegroundColor&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Green&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Connect-VIServer&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$ESXiHost&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Get-VMHost&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Set-VMHost&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-State&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Maintenance&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Get-VMHost&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Set-VMHostFirmware&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-Restore&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-Force&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-SourcePath&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$Path&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>ESXi Passwort Reset</title>
+      <link>https://vi-universe.github.io/posts/esxi_passwort_reset/</link>
+      <pubDate>Sun, 29 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/esxi_passwort_reset/</guid>
+      
+      <description>&lt;p&gt;Sperrt man sich den ESXi-Root Benutzer, ist es wichtig, zu wissen, dass der Zugriff nur noch über die DCUI und die ESXi-Shell möglich ist.
+Sämtliche andere Möglichkeiten sind von der Sperre betroffen, wie z.B Web-GUI, SSH etc.
+Folgende Anleitung entsperrt den &amp;ldquo;root&amp;rdquo; Benutzer oder jeden anderen beliebigen Benutzer.&lt;/p&gt;
+&lt;h3 id=&#34;1-login-an-der-dcui--mit-root-und-passwort&#34;&gt;1. Login an der DCUI  mit root und Passwort&lt;/h3&gt;
+&lt;h3 id=&#34;2-esxi-shell-aktivieren--troubleshooting-options&#34;&gt;2. ESXi Shell aktivieren &amp;gt; Troubleshooting Options&lt;/h3&gt;
+&lt;h3 id=&#34;3-in-die-esxi-shell-wechseln--strgaltf1&#34;&gt;3. In die ESXi-Shell wechseln &amp;gt; STRG+ALT+F1&lt;/h3&gt;
+&lt;h3 id=&#34;4-befehl--pam_tally2-user-root--r&#34;&gt;4. Befehl &amp;gt; pam_tally2 &amp;ndash;user root -r&lt;/h3&gt;</description>
+      
+    </item>
+    
   </channel>
 </rss>
