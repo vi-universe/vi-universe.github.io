@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="de-de"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">NSX Cheat Sheet | blog.vi-universe.de</title>
+<meta property="og:title" content="NSX Cheat Sheet | blog.vi-universe.de" />
+<meta name="twitter:title" content="NSX Cheat Sheet | blog.vi-universe.de" />
+<meta itemprop="name" content="NSX Cheat Sheet | blog.vi-universe.de" />
+<meta name="application-name" content="NSX Cheat Sheet | blog.vi-universe.de" />
+<meta property="og:site_name" content="blog.vi-universe.de" />
+
+<meta name="description" content="vi-universe.de | Christian Kremer">
+<meta itemprop="description" content="vi-universe.de | Christian Kremer" />
+<meta property="og:description" content="vi-universe.de | Christian Kremer" />
+<meta name="twitter:description" content="vi-universe.de | Christian Kremer" />
+
+<meta property="og:locale" content="de-de" />
+<meta name="language" content="de-de" />
+
+  <link rel="alternate" hreflang="de-de" href="https://vi-universe.github.io/posts/nsx_cheat_sheet/" title="German" />
+
+
+
+
+
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2024-12-20T00:00:00Z />
+    <meta property="article:published_time" content=2024-12-20T00:00:00Z />
+    <meta property="og:url" content="https://vi-universe.github.io/posts/nsx_cheat_sheet/" />
+
+    
+    <meta property="og:article:author" content="Christian Kremer" />
+    <meta property="article:author" content="Christian Kremer" />
+    <meta name="author" content="Christian Kremer" />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "NSX Cheat Sheet",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2024-12-20",
+        "description": "",
+        "wordCount":  306 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2024-12-20",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "blog.vi-universe.de"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.147.8">
+
+    
+    <meta property="og:url" content="https://vi-universe.github.io/posts/nsx_cheat_sheet/">
+  <meta property="og:site_name" content="blog.vi-universe.de">
+  <meta property="og:title" content="NSX Cheat Sheet">
+  <meta property="og:description" content="Log &amp; Log-Verzeichnis Auf NSX-Appliances befinden sich Syslog-Nachrichten in /var/log/syslog.
+Auf NSX-Appliances können Sie den folgenden NSX-CLI-Befehl verwenden, um die Logs anzuzeigen:
+get log-file &lt;auth.log | controller | controller-error | http.log | kern.log | manager.log | node-mgmt.log | syslog&gt; [follow] Name Beschreibung auth.log Authentifizierungslog controller Controller-Log controller-error Controller-Fehler-Log http.log HTTP-Dienst-Log kern.log Kernel-Log manager.log Manager-Dienst-Log node-mgmt.log Node-Management-Log nsx-audit-write.log NSX-Audit-Schreib-Log nsx-audit.log NSX-Audit-Log syslog System-Log Syslog Konfiguration ESXi esxcli network firewall ruleset set -r syslog -e true esxcli system syslog config set --loghost=udp://&lt;log server ip&gt;:&lt;Port&gt; esxcli system syslog reload esxcli system syslog mark -s &#34;This is a test message&#34; NSX-Manager Syslog-Konfiguration set logging-server &lt;log server ip or FQDN&gt;:514 proto udp level info Weitere Befehle:">
+  <meta property="og:locale" content="de_de">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-20T00:00:00+00:00">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NSX Cheat Sheet">
+  <meta name="twitter:description" content="Log &amp; Log-Verzeichnis Auf NSX-Appliances befinden sich Syslog-Nachrichten in /var/log/syslog.
+Auf NSX-Appliances können Sie den folgenden NSX-CLI-Befehl verwenden, um die Logs anzuzeigen:
+get log-file &lt;auth.log | controller | controller-error | http.log | kern.log | manager.log | node-mgmt.log | syslog&gt; [follow] Name Beschreibung auth.log Authentifizierungslog controller Controller-Log controller-error Controller-Fehler-Log http.log HTTP-Dienst-Log kern.log Kernel-Log manager.log Manager-Dienst-Log node-mgmt.log Node-Management-Log nsx-audit-write.log NSX-Audit-Schreib-Log nsx-audit.log NSX-Audit-Log syslog System-Log Syslog Konfiguration ESXi esxcli network firewall ruleset set -r syslog -e true esxcli system syslog config set --loghost=udp://&lt;log server ip&gt;:&lt;Port&gt; esxcli system syslog reload esxcli system syslog mark -s &#34;This is a test message&#34; NSX-Manager Syslog-Konfiguration set logging-server &lt;log server ip or FQDN&gt;:514 proto udp level info Weitere Befehle:">
+
+
+    
+
+    <link rel="canonical" href="https://vi-universe.github.io/posts/nsx_cheat_sheet/">
+    <link href="/style.min.2d921c18cf1ec555ffc03d59a8adc211c402c68c930c27d6a0c306ab175a8d09.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://vi-universe.github.io/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+</head>
+<body data-theme = "auto" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="https://vi-universe.github.io/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Startseite</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Startseite
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Beiträge
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/about/">
+                        Über mich
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">NSX Cheat Sheet</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2024-12-20T00:00:00&#43;00:00" itemprop="datePublished"> 20.12.2024 </time>
+                </div>
+                
+            </header>
+            
+    
+    <details class="toc" ZgotmplZ>
+        <summary><b>Inhaltsverzeichnis</b></summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#log--log-verzeichnis">Log &amp; Log-Verzeichnis</a></li>
+    <li><a href="#syslog-konfiguration">Syslog Konfiguration</a>
+      <ul>
+        <li><a href="#esxi">ESXi</a></li>
+      </ul>
+    </li>
+    <li><a href="#nsx-manager-syslog-konfiguration">NSX-Manager Syslog-Konfiguration</a></li>
+    <li><a href="#nsx-edge">NSX-Edge</a></li>
+    <li><a href="#nsx-edge-join-management-plane">NSX-Edge: join management-plane</a></li>
+    <li><a href="#esxi-distributed-firewall">ESXi Distributed Firewall</a></li>
+    <li><a href="#pktcap-uw">pktcap-uw</a>
+      <ul>
+        <li><a href="#beispiel-für-die-verwendung">Beispiel für die Verwendung</a></li>
+      </ul>
+    </li>
+    <li><a href="#esxtop">ESXTOP</a></li>
+    <li><a href="#net-stats">Net-stats</a></li>
+    <li><a href="#esxcli">ESXCLI</a></li>
+  </ul>
+</nav>
+    </details>
+            <div class="page-content">
+                <h2 id="log--log-verzeichnis">Log &amp; Log-Verzeichnis</h2>
+<p>Auf NSX-Appliances befinden sich Syslog-Nachrichten in <code>/var/log/syslog</code>.</p>
+<p>Auf NSX-Appliances können Sie den folgenden NSX-CLI-Befehl verwenden, um die Logs anzuzeigen:</p>
+<pre tabindex="0"><code>get log-file &lt;auth.log | controller | controller-error | http.log | kern.log | manager.log | node-mgmt.log | syslog&gt; [follow]
+</code></pre><table>
+  <thead>
+      <tr>
+          <th>Name</th>
+          <th>Beschreibung</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>auth.log</td>
+          <td>Authentifizierungslog</td>
+      </tr>
+      <tr>
+          <td>controller</td>
+          <td>Controller-Log</td>
+      </tr>
+      <tr>
+          <td>controller-error</td>
+          <td>Controller-Fehler-Log</td>
+      </tr>
+      <tr>
+          <td>http.log</td>
+          <td>HTTP-Dienst-Log</td>
+      </tr>
+      <tr>
+          <td>kern.log</td>
+          <td>Kernel-Log</td>
+      </tr>
+      <tr>
+          <td>manager.log</td>
+          <td>Manager-Dienst-Log</td>
+      </tr>
+      <tr>
+          <td>node-mgmt.log</td>
+          <td>Node-Management-Log</td>
+      </tr>
+      <tr>
+          <td>nsx-audit-write.log</td>
+          <td>NSX-Audit-Schreib-Log</td>
+      </tr>
+      <tr>
+          <td>nsx-audit.log</td>
+          <td>NSX-Audit-Log</td>
+      </tr>
+      <tr>
+          <td>syslog</td>
+          <td>System-Log</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="syslog-konfiguration">Syslog Konfiguration</h2>
+<h3 id="esxi">ESXi</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">esxcli network firewall ruleset <span class="nb">set</span> -r syslog -e <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">esxcli system syslog config <span class="nb">set</span> --loghost<span class="o">=</span>udp://&lt;log server ip&gt;:&lt;Port&gt;
+</span></span><span class="line"><span class="cl">esxcli system syslog reload
+</span></span><span class="line"><span class="cl">esxcli system syslog mark -s <span class="s2">&#34;This is a test message&#34;</span>
+</span></span></code></pre></div><hr>
+<h2 id="nsx-manager-syslog-konfiguration">NSX-Manager Syslog-Konfiguration</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">set</span> logging-server &lt;log server ip or FQDN&gt;:514 proto udp level info
+</span></span></code></pre></div><p>Weitere Befehle:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Anzeigen der Cluster-Konfiguration</span>
+</span></span><span class="line"><span class="cl">get cluster config
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Anzeigen des API-Zertifikat-Thumbprints</span>
+</span></span><span class="line"><span class="cl">get certificate api thumbprint
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Hinzufügen eines Knotens zum Cluster</span>
+</span></span><span class="line"><span class="cl">join &lt;ip&gt; cluster-id &lt;ID&gt; thumbprint &lt;thumbprint&gt; username &lt;username&gt; password &lt;password&gt;
+</span></span></code></pre></div><hr>
+<h2 id="nsx-edge">NSX-Edge</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">get managers
+</span></span><span class="line"><span class="cl">get node-uuid
+</span></span><span class="line"><span class="cl">get vteps
+</span></span><span class="line"><span class="cl">get interfaces
+</span></span><span class="line"><span class="cl">get host-switches
+</span></span><span class="line"><span class="cl">get logical-routers
+</span></span><span class="line"><span class="cl">get route bgp
+</span></span><span class="line"><span class="cl">get bgp neighbor summary
+</span></span><span class="line"><span class="cl">get ospf route
+</span></span><span class="line"><span class="cl">get ospf neighbor
+</span></span></code></pre></div><hr>
+<h2 id="nsx-edge-join-management-plane">NSX-Edge: join management-plane</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Auf dem nsx-manager</span>
+</span></span><span class="line"><span class="cl">get certificate api thumbprint
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Auf dem nsx-edge</span>
+</span></span><span class="line"><span class="cl">join management-plane &lt;ip&gt; thumbprint &lt;thumbprint&gt; username &lt;username&gt; password &lt;password&gt;
+</span></span></code></pre></div><hr>
+<h2 id="esxi-distributed-firewall">ESXi Distributed Firewall</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">summarize-dvfilter <span class="p">|</span> grep -A <span class="m">3</span> vmm
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">vsipioctl getrules -f &lt;name nic&gt;       <span class="c1"># -s für Firewall-Statistiken</span>
+</span></span><span class="line"><span class="cl">vsipioctl getaddrset -f &lt;name nic&gt;
+</span></span><span class="line"><span class="cl">vsipioctl getflows -f &lt;name nic&gt;
+</span></span><span class="line"><span class="cl">vsipioctl getfwconfig -f &lt;name nic&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Hilfe-Menü</span>
+</span></span><span class="line"><span class="cl">vsipioctl -h
+</span></span></code></pre></div><hr>
+<h2 id="pktcap-uw">pktcap-uw</h2>
+<h3 id="beispiel-für-die-verwendung">Beispiel für die Verwendung</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pktcap-uw --switchport &lt;port nummer&gt; --dir <span class="m">0</span> -o capture.pcap
+</span></span><span class="line"><span class="cl">pktcap-uw --vmk vmk10 --dir <span class="m">2</span> -o - <span class="p">|</span> tcpdump-uw -enr -
+</span></span><span class="line"><span class="cl">pktcap-uw --switchport &lt;port nummer&gt; --trace
+</span></span></code></pre></div><p><strong>Hinweise:</strong></p>
+<ul>
+<li>
+<p><code>--dir 0</code>: eingehender Traffic</p>
+</li>
+<li>
+<p><code>--dir 1</code>: ausgehender Traffic</p>
+</li>
+<li>
+<p><code>--dir 2</code>: beidseitiger Traffic</p>
+</li>
+<li>
+<p><code>--stage 0</code>: vor dem dvfilter</p>
+</li>
+<li>
+<p><code>--stage 1</code>: nach dem dvfilter</p>
+</li>
+</ul>
+<hr>
+<h2 id="esxtop">ESXTOP</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">esxtop -&gt; PORT-ID
+</span></span></code></pre></div><hr>
+<h2 id="net-stats">Net-stats</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">net-stats -l   <span class="c1"># Zeigt PortNum an</span>
+</span></span></code></pre></div><hr>
+<h2 id="esxcli">ESXCLI</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">esxcli network nic list   <span class="c1"># Zeigt physikalische NICs (Name)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">summarize-dvfilter        <span class="c1"># Zeigt VM-Filter-Infos</span>
+</span></span></code></pre></div>
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/vi-universe" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://www.linkedin.com/in/christian-kremer-it" target="_blank" rel="noopener noreferrer me"
+    title="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+<a href="/index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2025 Christian Kremer.
+        Unterstützt durch <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
+    </small>
+</footer><a href="#" title="Zum Seitenanfang" id="totop">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" stroke="currentColor" viewBox="0 96 960 960">
+    <path d="M283 704.739 234.261 656 480 410.261 725.739 656 677 704.739l-197-197-197 197Z"/>
+</svg>
+
+</a>
+
+
+    
+
+
+
+
+    
+    
+        
+    
+
+    
+    
+        
+    
+
+
+
+    
+    <script src="https://vi-universe.github.io/js/main.min.35f435a5d8eac613c52daa28d8af544a4512337d3e95236e4a4978417b8dcb2f.js" integrity="sha256-NfQ1pdjqxhPFLaoo2K9USkUSM30&#43;lSNuSkl4QXuNyy8="></script>
+
+    
+
+</body>
+</html>

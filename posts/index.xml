@@ -8,6 +8,81 @@
     <language>de-de</language>
     <lastBuildDate>Fri, 30 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://vi-universe.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>NSX Cheat Sheet</title>
+      <link>https://vi-universe.github.io/posts/nsx_cheat_sheet/</link>
+      <pubDate>Fri, 20 Dec 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/nsx_cheat_sheet/</guid>
+      
+      <description>&lt;h2 id=&#34;log--log-verzeichnis&#34;&gt;Log &amp;amp; Log-Verzeichnis&lt;/h2&gt;
+&lt;p&gt;Auf NSX-Appliances befinden sich Syslog-Nachrichten in &lt;code&gt;/var/log/syslog&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Auf NSX-Appliances können Sie den folgenden NSX-CLI-Befehl verwenden, um die Logs anzuzeigen:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;get log-file &amp;lt;auth.log | controller | controller-error | http.log | kern.log | manager.log | node-mgmt.log | syslog&amp;gt; [follow]
+&lt;/code&gt;&lt;/pre&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Name&lt;/th&gt;
+          &lt;th&gt;Beschreibung&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;auth.log&lt;/td&gt;
+          &lt;td&gt;Authentifizierungslog&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;controller&lt;/td&gt;
+          &lt;td&gt;Controller-Log&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;controller-error&lt;/td&gt;
+          &lt;td&gt;Controller-Fehler-Log&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;http.log&lt;/td&gt;
+          &lt;td&gt;HTTP-Dienst-Log&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;kern.log&lt;/td&gt;
+          &lt;td&gt;Kernel-Log&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;manager.log&lt;/td&gt;
+          &lt;td&gt;Manager-Dienst-Log&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;node-mgmt.log&lt;/td&gt;
+          &lt;td&gt;Node-Management-Log&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;nsx-audit-write.log&lt;/td&gt;
+          &lt;td&gt;NSX-Audit-Schreib-Log&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;nsx-audit.log&lt;/td&gt;
+          &lt;td&gt;NSX-Audit-Log&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;syslog&lt;/td&gt;
+          &lt;td&gt;System-Log&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;syslog-konfiguration&#34;&gt;Syslog Konfiguration&lt;/h2&gt;
+&lt;h3 id=&#34;esxi&#34;&gt;ESXi&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;esxcli network firewall ruleset &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; -r syslog -e &lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;esxcli system syslog config &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; --loghost&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;udp://&amp;lt;log server ip&amp;gt;:&amp;lt;Port&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;esxcli system syslog reload
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;esxcli system syslog mark -s &lt;span class=&#34;s2&#34;&gt;&amp;#34;This is a test message&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;nsx-manager-syslog-konfiguration&#34;&gt;NSX-Manager Syslog-Konfiguration&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; logging-server &amp;lt;log server ip or FQDN&amp;gt;:514 proto udp level info
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Weitere Befehle:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>DELL-VxRail Cheat-Sheet</title>
       <link>https://vi-universe.github.io/posts/vxrail_cheat_sheet/</link>
       <pubDate>Tue, 30 Jan 2024 00:00:00 +0000</pubDate>
