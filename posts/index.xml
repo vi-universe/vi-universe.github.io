@@ -8,6 +8,19 @@
     <language>de-de</language>
     <lastBuildDate>Fri, 30 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://vi-universe.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>OpenShift Integration mit VMware NSX und Antrea CNI</title>
+      <link>https://vi-universe.github.io/posts/nsx_avi_openshift/</link>
+      <pubDate>Fri, 30 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/nsx_avi_openshift/</guid>
+      
+      <description>&lt;p&gt;Die Integration von Red Hat OpenShift mit VMware NSX und dem Antrea Container Network Interface (CNI) eröffnet neue Möglichkeiten für fortschrittliches Netzwerkmanagement in Kubernetes-Umgebungen. In diesem technischen Blog-Artikel dokumentiere ich die Implementierung eines Proof of Concept (PoC), der die erfolgreiche Integration dieser Technologien demonstriert.&lt;/p&gt;
+&lt;h2 id=&#34;zielsetzung-und-motivation&#34;&gt;Zielsetzung und Motivation&lt;/h2&gt;
+&lt;p&gt;Der Hauptzweck dieses PoC liegt in der Validierung der erfolgreichen Integration von OpenShift mit VMware NSX und NSX Avi LoadBalancer. Dabei stehen zwei zentrale Aspekte im Fokus:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>NSX Cheat Sheet</title>
       <link>https://vi-universe.github.io/posts/nsx_cheat_sheet/</link>
       <pubDate>Fri, 20 Dec 2024 00:00:00 +0000</pubDate>

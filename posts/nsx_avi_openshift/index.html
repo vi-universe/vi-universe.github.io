@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="de-de"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">OpenShift Integration mit VMware NSX und Antrea CNI | blog.vi-universe.de</title>
+<meta property="og:title" content="OpenShift Integration mit VMware NSX und Antrea CNI | blog.vi-universe.de" />
+<meta name="twitter:title" content="OpenShift Integration mit VMware NSX und Antrea CNI | blog.vi-universe.de" />
+<meta itemprop="name" content="OpenShift Integration mit VMware NSX und Antrea CNI | blog.vi-universe.de" />
+<meta name="application-name" content="OpenShift Integration mit VMware NSX und Antrea CNI | blog.vi-universe.de" />
+<meta property="og:site_name" content="blog.vi-universe.de" />
+
+<meta name="description" content="vi-universe.de | Christian Kremer">
+<meta itemprop="description" content="vi-universe.de | Christian Kremer" />
+<meta property="og:description" content="vi-universe.de | Christian Kremer" />
+<meta name="twitter:description" content="vi-universe.de | Christian Kremer" />
+
+<meta property="og:locale" content="de-de" />
+<meta name="language" content="de-de" />
+
+  <link rel="alternate" hreflang="de-de" href="https://vi-universe.github.io/posts/nsx_avi_openshift/" title="German" />
+
+
+
+
+
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2025-05-30T00:00:00Z />
+    <meta property="article:published_time" content=2025-05-30T00:00:00Z />
+    <meta property="og:url" content="https://vi-universe.github.io/posts/nsx_avi_openshift/" />
+
+    
+    <meta property="og:article:author" content="Christian Kremer" />
+    <meta property="article:author" content="Christian Kremer" />
+    <meta name="author" content="Christian Kremer" />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "OpenShift Integration mit VMware NSX und Antrea CNI",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2025-05-30",
+        "description": "",
+        "wordCount":  2280 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2025-05-30",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "blog.vi-universe.de"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.147.8">
+
+    
+    <meta property="og:url" content="https://vi-universe.github.io/posts/nsx_avi_openshift/">
+  <meta property="og:site_name" content="blog.vi-universe.de">
+  <meta property="og:title" content="OpenShift Integration mit VMware NSX und Antrea CNI">
+  <meta property="og:description" content="Die Integration von Red Hat OpenShift mit VMware NSX und dem Antrea Container Network Interface (CNI) eröffnet neue Möglichkeiten für fortschrittliches Netzwerkmanagement in Kubernetes-Umgebungen. In diesem technischen Blog-Artikel dokumentiere ich die Implementierung eines Proof of Concept (PoC), der die erfolgreiche Integration dieser Technologien demonstriert.
+Zielsetzung und Motivation Der Hauptzweck dieses PoC liegt in der Validierung der erfolgreichen Integration von OpenShift mit VMware NSX und NSX Avi LoadBalancer. Dabei stehen zwei zentrale Aspekte im Fokus:">
+  <meta property="og:locale" content="de_de">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-30T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-05-30T00:00:00+00:00">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="OpenShift Integration mit VMware NSX und Antrea CNI">
+  <meta name="twitter:description" content="Die Integration von Red Hat OpenShift mit VMware NSX und dem Antrea Container Network Interface (CNI) eröffnet neue Möglichkeiten für fortschrittliches Netzwerkmanagement in Kubernetes-Umgebungen. In diesem technischen Blog-Artikel dokumentiere ich die Implementierung eines Proof of Concept (PoC), der die erfolgreiche Integration dieser Technologien demonstriert.
+Zielsetzung und Motivation Der Hauptzweck dieses PoC liegt in der Validierung der erfolgreichen Integration von OpenShift mit VMware NSX und NSX Avi LoadBalancer. Dabei stehen zwei zentrale Aspekte im Fokus:">
+
+
+    
+
+    <link rel="canonical" href="https://vi-universe.github.io/posts/nsx_avi_openshift/">
+    <link href="/style.min.2d921c18cf1ec555ffc03d59a8adc211c402c68c930c27d6a0c306ab175a8d09.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://vi-universe.github.io/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+</head>
+<body data-theme = "auto" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="https://vi-universe.github.io/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Startseite</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Startseite
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Beiträge
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/pages/about/">
+                        Über mich
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">OpenShift Integration mit VMware NSX und Antrea CNI</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2025-05-30T00:00:00&#43;00:00" itemprop="datePublished"> 30.05.2025 </time>
+                </div>
+                
+            </header>
+            
+    
+    <details class="toc" ZgotmplZ>
+        <summary><b>Inhaltsverzeichnis</b></summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#zielsetzung-und-motivation">Zielsetzung und Motivation</a>
+      <ul>
+        <li><a href="#egress-traffic-management">Egress Traffic Management</a></li>
+        <li><a href="#ingress-traffic-management">Ingress Traffic Management</a></li>
+      </ul>
+    </li>
+    <li><a href="#lab-und-versionen">Lab und Versionen</a></li>
+    <li><a href="#vorbereitung-der-nsx-infrastruktur">Vorbereitung der NSX-Infrastruktur</a>
+      <ul>
+        <li><a href="#nsx-konfiguration">NSX-Konfiguration</a>
+          <ul>
+            <li><a href="#t0-router">T0 Router</a></li>
+            <li><a href="#t1-router">T1 Router</a></li>
+            <li><a href="#overlay-segment">Overlay Segment</a></li>
+          </ul>
+        </li>
+        <li><a href="#nsx-advanced-loadbalancer-konfiguration">NSX Advanced LoadBalancer Konfiguration</a>
+          <ul>
+            <li><a href="#content-library">Content Library</a></li>
+            <li><a href="#cloud-konfiguration">Cloud-Konfiguration</a></li>
+            <li><a href="#network-profile">Network Profile</a></li>
+            <li><a href="#ipam-profile">IPAM Profile</a></li>
+            <li><a href="#routing--vrf-context">Routing / VRF Context</a></li>
+            <li><a href="#service-engine-group">Service Engine Group</a></li>
+            <li><a href="#virtual-services">Virtual Services</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#dns-und-ntp-konfiguration">DNS und NTP-Konfiguration</a>
+      <ul>
+        <li><a href="#ntp-server">NTP-Server</a></li>
+        <li><a href="#dns-einträge">DNS-Einträge</a>
+          <ul>
+            <li><a href="#forward-zone">Forward-Zone</a></li>
+            <li><a href="#reverse-zone">Reverse-Zone</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#openshift-installation-mit-antrea-cni">OpenShift Installation mit Antrea CNI</a>
+      <ul>
+        <li><a href="#vorbereitung-der-installationsdateien">Vorbereitung der Installationsdateien</a>
+          <ul>
+            <li><a href="#download-der-erforderlichen-komponenten">Download der erforderlichen Komponenten</a></li>
+            <li><a href="#installationsverzeichnis-erstellen">Installationsverzeichnis erstellen</a></li>
+          </ul>
+        </li>
+        <li><a href="#erstellung-der-installationskonfiguration">Erstellung der Installationskonfiguration</a>
+          <ul>
+            <li><a href="#beispiel-install-configyaml">Beispiel install-config.yaml</a></li>
+          </ul>
+        </li>
+        <li><a href="#manifest-erstellung-und-antrea-integration">Manifest-Erstellung und Antrea-Integration</a>
+          <ul>
+            <li><a href="#operatoryaml">operator.yaml</a></li>
+            <li><a href="#operatorantreavmwarecom_v1_antreainstall_cryaml">operator.antrea.vmware.com_v1_antreainstall_cr.yaml</a></li>
+          </ul>
+        </li>
+        <li><a href="#installation-openshift">Installation OpenShift</a></li>
+      </ul>
+    </li>
+    <li><a href="#registrierung-von-antrea-cni-mit-nsx-manager">Registrierung von Antrea CNI mit NSX Manager</a>
+      <ul>
+        <li><a href="#zertifikat-erstellung-für-service-principal">Zertifikat-Erstellung für Service Principal</a></li>
+        <li><a href="#nsx-principal-identity-konfigurieren">NSX Principal Identity konfigurieren</a></li>
+        <li><a href="#registrierung-durchführen">Registrierung durchführen</a>
+          <ul>
+            <li><a href="#base64-kodierung-der-zertifikate">Base64-Kodierung der Zertifikate</a></li>
+            <li><a href="#nsx-certyaml-erstellen">nsx-cert.yaml erstellen</a></li>
+            <li><a href="#interworking-aktivieren">Interworking aktivieren</a></li>
+            <li><a href="#anwendung-der-konfiguration">Anwendung der Konfiguration</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#verifikation-und-troubleshooting">Verifikation und Troubleshooting</a>
+      <ul>
+        <li><a href="#wichtige-prüfpunkte">Wichtige Prüfpunkte</a></li>
+      </ul>
+    </li>
+    <li><a href="#antrea-egress-und-childsegments">Antrea Egress und ChildSegments</a>
+      <ul>
+        <li><a href="#nsx-childsegments">NSX ChildSegments</a></li>
+        <li><a href="#nicht-unterstützte-features">Nicht unterstützte Features</a></li>
+        <li><a href="#unterstützte-features">Unterstützte Features</a></li>
+        <li><a href="#connection-binding-zwischen-parent-und-childsegment">Connection Binding zwischen Parent und ChildSegment</a></li>
+        <li><a href="#überprüfung-des-bindings">Überprüfung des Bindings</a></li>
+        <li><a href="#openshift-external-ip-pool-und-egress-ressource">OpenShift External IP Pool und Egress Ressource</a></li>
+        <li><a href="#external-ip-pool">External IP Pool</a></li>
+        <li><a href="#egress-ressource">Egress Ressource</a></li>
+      </ul>
+    </li>
+    <li><a href="#nsx-advanced-loadbalancer-und-ako">NSX Advanced LoadBalancer und AKO</a>
+      <ul>
+        <li><a href="#ako-installation">AKO Installation</a></li>
+        <li><a href="#valuesyaml-konfiguration">Values.yaml Konfiguration</a></li>
+        <li><a href="#helm-installation">Helm Installation</a></li>
+        <li><a href="#wichtige-prüfpunkte-1">Wichtige Prüfpunkte</a></li>
+        <li><a href="#dediziertes-ingress-netzwerk">Dediziertes Ingress Netzwerk</a></li>
+        <li><a href="#l4-virtual-service-beispiel">L4 Virtual Service Beispiel</a></li>
+      </ul>
+    </li>
+    <li><a href="#fazit-und-ausblick">Fazit und Ausblick</a></li>
+  </ul>
+</nav>
+    </details>
+            <div class="page-content">
+                <p>Die Integration von Red Hat OpenShift mit VMware NSX und dem Antrea Container Network Interface (CNI) eröffnet neue Möglichkeiten für fortschrittliches Netzwerkmanagement in Kubernetes-Umgebungen. In diesem technischen Blog-Artikel dokumentiere ich die Implementierung eines Proof of Concept (PoC), der die erfolgreiche Integration dieser Technologien demonstriert.</p>
+<h2 id="zielsetzung-und-motivation">Zielsetzung und Motivation</h2>
+<p>Der Hauptzweck dieses PoC liegt in der Validierung der erfolgreichen Integration von OpenShift mit VMware NSX und NSX Avi LoadBalancer. Dabei stehen zwei zentrale Aspekte im Fokus:</p>
+<h3 id="egress-traffic-management">Egress Traffic Management</h3>
+<p>Die Implementierung von Antrea Egress Pools ermöglicht es, ausgehenden Datenverkehr von spezifischen Namespaces oder Pods über dedizierte und vordefinierte Egress-IP-Adressen zu leiten. Dies ist besonders wichtig für Mandantenfähigkeit und Compliance-Anforderungen.</p>
+<p>Antrea bietet als CNI-Plugin erweiterte Netzwerkfunktionen wie richtliniengesteuerte Verkehrskontrolle und IP-basiertes Egress-Routing, die über die nativen Funktionen der Standard-CNI von OpenShift (OVN-Kubernetes) hinausgehen.</p>
+<h3 id="ingress-traffic-management">Ingress Traffic Management</h3>
+<p>Durch die Integration des NSX Avi LoadBalancers wird eine hochverfügbare und skalierbare Lösung für eingehenden Datenverkehr bereitgestellt.</p>
+<h2 id="lab-und-versionen">Lab und Versionen</h2>
+<p>Für die Implementierung wurde eine Testumgebung  mit folgenden Versionen aufgebaut:</p>
+<ul>
+<li><strong>vCenter</strong>: 8.0.3 (Build 24674346)</li>
+<li><strong>ESXi</strong>: 8.0.3 (Build 24674464)</li>
+<li><strong>NSX</strong>: 4.2.2.0 (Build 24730888)</li>
+<li><strong>NSX Avi LoadBalancer</strong>: 22.1.7</li>
+<li><strong>OpenShift</strong>: 4.18.9</li>
+<li><strong>Antrea</strong>: VMware Antrea v1.11.0</li>
+</ul>
+<h2 id="vorbereitung-der-nsx-infrastruktur">Vorbereitung der NSX-Infrastruktur</h2>
+<h3 id="nsx-konfiguration">NSX-Konfiguration</h3>
+<p>Die NSX-Umgebung erfordert mehrere grundlegende Komponenten:</p>
+<h4 id="t0-router">T0 Router</h4>
+<p>Für den PoC wurde ein vorhandener T0 Router verwendet, der als Active-Active konfiguriert ist und per BGP mit einem MikroTik Switch über zwei Uplink-VLANs peert.
+<figure><a href="01.png"><img src="nsx_avi_openshift/01.png"
+    alt="T0 Router Übersicht"></a><figcaption>
+      <p>T0 Router Übersicht - Klick zum vergrößern</p>
+    </figcaption>
+</figure>
+</p>
+<h4 id="t1-router">T1 Router</h4>
+<p>Ein dedizierter T1 Router wurde speziell für den PoC erstellt und als &ldquo;Distributed Only&rdquo; konfiguriert. T1 Router im HA-Modus &ldquo;Distributed Only&rdquo; haben den Vorteil, dass der Traffic distributed geroutet wird und nicht über die Edge Nodes läuft, was sich positiv auf die Performance auswirkt.</p>
+<p>T1 Router für NSX Advanced LoadBalancer Management</p>
+<p>Für den NSX Advanced LoadBalancer wird ein dedizierter T1 Router &ldquo;Distributed Only&rdquo; für das Service Engine Management Segment erstellt.
+<figure><a href="02.png"><img src="nsx_avi_openshift/02.png"
+    alt="T1 Router Übersicht"></a><figcaption>
+      <p>T1 Router Übersicht - Klick zum vergrößern</p>
+    </figcaption>
+</figure>
+</p>
+<h4 id="overlay-segment">Overlay Segment</h4>
+<p>Ein Overlay-Segment für die OpenShift Plattform. In diesem Segment befinden sich sowohl die OpenShift VMs als auch die LoadBalancer Service Engines. Eine wichtige Anforderung von OpenShift ist, dass sich die VIP für Ingress und API im selben &ldquo;MachineNetwork&rdquo; befinden.</p>
+<p>Für das Management der NSX Advanced LoadBalancer Service Engines wird ein Overlay-Segment erstellt und mit dem T1 Router der dafür erstellt wurde verbunden.
+<figure><a href="03.png"><img src="nsx_avi_openshift/03.png"
+    alt="Segment Übersicht"></a><figcaption>
+      <p>Segment Übersicht - Klick zum vergrößern</p>
+    </figcaption>
+</figure>
+</p>
+<h3 id="nsx-advanced-loadbalancer-konfiguration">NSX Advanced LoadBalancer Konfiguration</h3>
+<h4 id="content-library">Content Library</h4>
+<p>Der NSX Advanced LoadBalancer benöntigt eine Content Library für die automatische Bereitstellung der Service Engines</p>
+<h4 id="cloud-konfiguration">Cloud-Konfiguration</h4>
+<p>Das Management Segment und der T1 Router wird als Management Network hinzugefügt. Das ls-ocp01 Segment muss als Data Network Segment in der NSX Cloud hinzugefügt werden.
+<figure><a href="04.png"><img src="nsx_avi_openshift/04.png"
+    alt="Avi NSX Cloud"></a><figcaption>
+      <p>Avi NSX Cloud - Klick zum vergrößern</p>
+    </figcaption>
+</figure>
+</p>
+<h4 id="network-profile">Network Profile</h4>
+<p>Unter &ldquo;Infrastructure&rdquo; → &ldquo;Cloud Resources&rdquo; → &ldquo;Networks&rdquo; muss das Network Profile für ls-ocp01 und Management entsprechend konfiguriert werden.
+<figure><a href="05.png"><img src="nsx_avi_openshift/05.png"
+    alt="Avi Network Profile"></a><figcaption>
+      <p>Avi Network Profile - Klick zum vergrößern</p>
+    </figcaption>
+</figure>
+</p>
+<h4 id="ipam-profile">IPAM Profile</h4>
+<p>Das Segment muss im IPAM/DNS Profile ergänzt werden, um automatische IP-Zuweisung zu ermöglichen.
+<figure><a href="06.png"><img src="nsx_avi_openshift/06.png"
+    alt="Avi IPAM"></a><figcaption>
+      <p>Avi IPAM - Klick zum vergrößern</p>
+    </figcaption>
+</figure>
+</p>
+<h4 id="routing--vrf-context">Routing / VRF Context</h4>
+<p>Für das &ldquo;Shared&rdquo; OpenShift Segement ist keine Route notwendig. Möchte man für AKO und virtual Services ein dediziertes Ingress-Segment verwenden, muss für dieses eine &ldquo;Default Route&rdquo; konfiguriert werden.
+Infrastructure → Cloud Ressources → VRF Context</p>
+<h4 id="service-engine-group">Service Engine Group</h4>
+<p>Eine dedizierte Service Engine Group wurde mit folgender Konfiguration erstellt:
+(Dies ist optional, es kann auch eine bestehende Service Engine Group verwendet werden)</p>
+<ul>
+<li>Active/Standby Modus</li>
+<li>1 vCPU pro Service Engine</li>
+<li>2 GB Memory pro Service Engine</li>
+<li>SE Name Prefix: ocp01</li>
+<li>25 Virtual Services pro Service Engine</li>
+</ul>
+<h4 id="virtual-services">Virtual Services</h4>
+<p>Für die OpenShift-Installation werden initial vier Virtual Services benötigt:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Service</th>
+          <th>Protokoll</th>
+          <th>Port</th>
+          <th>Ziel</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>API</td>
+          <td>TCP</td>
+          <td>6443</td>
+          <td>Control Plane Nodes <strong>Temporär Bootstrap Node kann nach der Installation entfernt werden</strong></td>
+      </tr>
+      <tr>
+          <td>API-Int</td>
+          <td>TCP</td>
+          <td>22623</td>
+          <td>Control Plane Nodes <strong>Temporär Bootstrap Node kann nach der Installation entfernt werden</strong></td>
+      </tr>
+      <tr>
+          <td>Ingress HTTP</td>
+          <td>TCP</td>
+          <td>80</td>
+          <td>Worker Nodes</td>
+      </tr>
+      <tr>
+          <td>Ingress HTTPS</td>
+          <td>TCP</td>
+          <td>443</td>
+          <td>Worker Nodes</td>
+      </tr>
+  </tbody>
+</table>
+<p>Alle Virtual Services werden als &ldquo;System-L4-Application&rdquo; erstellt, mit System-TCP Health Monitor und der entsprechenden Service Engine Group.</p>
+<figure><a href="07.png"><img src="nsx_avi_openshift/07.png"
+    alt="Avi L4 Virtual Service (vor Installation)"></a><figcaption>
+      <p>Avi L4 Virtual Service (vor Installation) - Klick zum vergrößern</p>
+    </figcaption>
+</figure>
+
+<p>Nach der Erstellung der Virtual Services, werden diese als &ldquo;Down&rdquo; angezeigt, da noch keine Backend Server existieren.
+<figure><a href="08.png"><img src="nsx_avi_openshift/08.png"
+    alt="Avi Virtual Service down (vor Installation)"></a><figcaption>
+      <p>Avi Virtual Service down (vor Installation) - Klick zum vergrößern</p>
+    </figcaption>
+</figure>
+</p>
+<p>Folgender Ablauf ist während der OpenShift Installation zu beobachten:</p>
+<ol>
+<li>Nach Erstellung der Virtual Services -&gt; &ldquo;Down&rdquo;</li>
+<li>OpenShift Installation beginnt und die Bootstrap VM wird erstellt -&gt; Virtual Service api und api-int sind &ldquo;Up&rdquo;</li>
+<li>Im Verlauf der OpenShift Installation -&gt; Virtual Service ingress-http und https sind &ldquo;Up&rdquo;</li>
+<li>Installation von OpenShift ist abgeschlossen -&gt; Alle Virtual Service sind im Status &ldquo;Up&rdquo;</li>
+<li>Der Server Pool der Virtual Services api und api-int zeigt 3/4 Server als &ldquo;Up&rdquo; an, die Bootstrap VM wird während der Installation automatisch zerstört und ist nicht mehr vorhanden und kann aus dem Server Pool entfernt werden.</li>
+</ol>
+<h2 id="dns-und-ntp-konfiguration">DNS und NTP-Konfiguration</h2>
+<h3 id="ntp-server">NTP-Server</h3>
+<p>Ein zentraler NTP-Zeitserver ist für die Synchronisation aller Komponenten erforderlich.</p>
+<h3 id="dns-einträge">DNS-Einträge</h3>
+<h4 id="forward-zone">Forward-Zone</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dns" data-lang="dns"><span class="line"><span class="cl"><span class="c">; lab ocp01</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nc">master-01.ocp</span><span class="err">01</span><span class="w">     </span><span class="k">IN</span><span class="w"> </span><span class="k">A</span><span class="w"> </span><span class="mi">10.172.145.1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nc">master-02.ocp</span><span class="err">01</span><span class="w">     </span><span class="k">IN</span><span class="w"> </span><span class="k">A</span><span class="w"> </span><span class="mi">10.172.145.2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nc">master-03.ocp</span><span class="err">01</span><span class="w">     </span><span class="k">IN</span><span class="w"> </span><span class="k">A</span><span class="w"> </span><span class="mi">10.172.145.3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nc">bootstrap.ocp</span><span class="err">01</span><span class="w">     </span><span class="k">IN</span><span class="w"> </span><span class="k">A</span><span class="w"> </span><span class="mi">10.172.145.20</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nc">api.ocp</span><span class="err">01</span><span class="w">           </span><span class="k">IN</span><span class="w"> </span><span class="k">A</span><span class="w"> </span><span class="mi">10.172.145.225</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nc">api-int.ocp</span><span class="err">01</span><span class="w">       </span><span class="k">IN</span><span class="w"> </span><span class="k">A</span><span class="w"> </span><span class="mi">10.172.145.225</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">*</span><span class="nc">.apps.ocp</span><span class="err">01</span><span class="w">        </span><span class="k">IN</span><span class="w"> </span><span class="k">A</span><span class="w"> </span><span class="mi">10.172.145.230</span><span class="w">
+</span></span></span></code></pre></div><h4 id="reverse-zone">Reverse-Zone</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dns" data-lang="dns"><span class="line"><span class="cl"><span class="c">; lab ocp01</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="sc">1</span><span class="err">.</span><span class="sc">145</span><span class="w">   </span><span class="k">IN</span><span class="w"> </span><span class="k">PTR</span><span class="w"> </span><span class="py">master-01.ocp01.vi-universe.lab.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="sc">2</span><span class="err">.</span><span class="sc">145</span><span class="w">   </span><span class="k">IN</span><span class="w"> </span><span class="k">PTR</span><span class="w"> </span><span class="py">master-02.ocp01.vi-universe.lab.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="sc">3</span><span class="err">.</span><span class="sc">145</span><span class="w">   </span><span class="k">IN</span><span class="w"> </span><span class="k">PTR</span><span class="w"> </span><span class="py">master-03.ocp01.vi-universe.lab.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="sc">20</span><span class="err">.</span><span class="sc">145</span><span class="w">  </span><span class="k">IN</span><span class="w"> </span><span class="k">PTR</span><span class="w"> </span><span class="py">bootstrap.ocp01.vi-universe.lab.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="sc">225</span><span class="err">.</span><span class="sc">145</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">PTR</span><span class="w"> </span><span class="py">api.ocp01.vi-universe.lab.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="sc">225</span><span class="err">.</span><span class="sc">145</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">PTR</span><span class="w"> </span><span class="py">api-int.ocp01.vi-universe.lab.</span><span class="w">
+</span></span></span></code></pre></div><h2 id="openshift-installation-mit-antrea-cni">OpenShift Installation mit Antrea CNI</h2>
+<h3 id="vorbereitung-der-installationsdateien">Vorbereitung der Installationsdateien</h3>
+<h4 id="download-der-erforderlichen-komponenten">Download der erforderlichen Komponenten</h4>
+<ul>
+<li><strong>OpenShift</strong>: Von <a href="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/">https://mirror.openshift.com/pub/openshift-v4/clients/ocp/</a>
+<ul>
+<li>openshift-client-xx.tar.gz</li>
+<li>openshift-install-xxx.tar.gz</li>
+</ul>
+</li>
+<li><strong>Antrea</strong>: Von support.broadcom.com unter &ldquo;My Downloads&rdquo;
+<ul>
+<li>&ldquo;VMware Container Networking with Antrea, K8s Operator Manifests&rdquo; (deploy.tar.gz)</li>
+</ul>
+</li>
+</ul>
+<h4 id="installationsverzeichnis-erstellen">Installationsverzeichnis erstellen</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir ~/ocp-install
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~/ocp-install
+</span></span></code></pre></div><h3 id="erstellung-der-installationskonfiguration">Erstellung der Installationskonfiguration</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">openshift-install create install-config
+</span></span></code></pre></div><p>Der interaktive Assistent fragt nach verschiedenen Parametern wie Plattform (vSphere), Cluster-Name, vCenter-Zugangsdaten und Ingress / VIP IP-Adresse. Die Ingress IP muss mit dem DNS A Record *.apps.ocp01.vi-universe.lab übereinstimmen und die VIP IP mit dem API und API-Int A-Record.</p>
+<h4 id="beispiel-install-configyaml">Beispiel install-config.yaml</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">additionalTrustBundlePolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Proxyonly</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">baseDomain</span><span class="p">:</span><span class="w"> </span><span class="l">vi-universe.lab</span><span class="w"> </span><span class="c">#Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">compute</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">architecture</span><span class="p">:</span><span class="w"> </span><span class="l">amd64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hyperthreading</span><span class="p">:</span><span class="w"> </span><span class="l">Enabled</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">worker</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">controlPlane</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">architecture</span><span class="p">:</span><span class="w"> </span><span class="l">amd64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hyperthreading</span><span class="p">:</span><span class="w"> </span><span class="l">Enabled</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">master</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">creationTimestamp</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ocp01      </span><span class="w"> </span><span class="c">#Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">networking</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">clusterNetwork</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="m">10.128.0.0</span><span class="l">/14 </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">hostPrefix</span><span class="p">:</span><span class="w"> </span><span class="m">23</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">machineNetwork</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="m">10.172.145.0</span><span class="l">/24</span><span class="w"> </span><span class="c">#Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">networkType</span><span class="p">:</span><span class="w"> </span><span class="l">antrea    </span><span class="w"> </span><span class="c">#Muss entsprechend auf Antrea angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">serviceNetwork</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="m">172.30.0.0</span><span class="l">/16</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">platform</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">vsphere</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">apiVIPs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">10.172.145.225</span><span class="w">     </span><span class="c"># Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">failureDomains</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">generated-failure-domain</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l">generated-region</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="l">vcsa-01a.vi-universe.lab </span><span class="w"> </span><span class="c"># Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">topology</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">computeCluster</span><span class="p">:</span><span class="w"> </span><span class="l">/vi-universe-datacenter/host/nuc11pro-i5</span><span class="w"> </span><span class="c"># Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">datacenter</span><span class="p">:</span><span class="w"> </span><span class="l">vi-universe-datacenter</span><span class="w"> </span><span class="c"># Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">datastore</span><span class="p">:</span><span class="w"> </span><span class="l">/vi-universe-datacenter/datastore/local-esxi-01a_sata_ssd_ds01</span><span class="w"> </span><span class="c"># Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">ls.ocp01</span><span class="w"> </span><span class="c"># Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">resourcePool</span><span class="p">:</span><span class="w"> </span><span class="l">/vi-universe-datacenter/host/nuc11pro-i5/Resources</span><span class="w"> </span><span class="c"># Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">zone</span><span class="p">:</span><span class="w"> </span><span class="l">generated-zone</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ingressVIPs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="m">10.172.145.230</span><span class="w"> </span><span class="c"># Muss entsprechend angepasst werden </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">loadBalancer</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">UserManaged</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">hosts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">bootstrap </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">networkDevice</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">ipAddrs</span><span class="p">:</span><span class="w"> </span><span class="c"># Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="m">10.172.145.20</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="m">10.172.145.254</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">nameservers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="m">10.172.254.255</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">control-plane</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">networkDevice</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">ipAddrs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="m">10.172.145.1</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="m">10.172.145.254</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">nameservers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="m">10.172.254.255</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">control-plane</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">networkDevice</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">ipAddrs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="m">10.172.145.2</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="m">10.172.145.254</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">nameservers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="m">10.172.254.255</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l">control-plane</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">networkDevice</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">ipAddrs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="m">10.172.145.3</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="m">10.172.145.254</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">nameservers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="m">10.172.254.255</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">vcenters</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">datacenters</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">vi-universe-datacenter</span><span class="w"> </span><span class="c"># Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">VMware1!</span><span class="w"> </span><span class="c"># Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">443</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="l">vcsa-01a.vi-universe.lab</span><span class="w"> </span><span class="c"># Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l">administrator@vsphere.local</span><span class="w"> </span><span class="c"># Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">publish</span><span class="p">:</span><span class="w"> </span><span class="l">External</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">pullSecret</span><span class="p">:</span><span class="w"> </span><span class="l">&#39;{&#34;auths&#34;:{&#34;cloud.openshift.com&#34;:  </span><span class="w"> </span><span class="c"># Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">sshKey</span><span class="p">:</span><span class="w">         </span><span class="c"># Muss entsprechend angepasst werden</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
+<p><strong>Wichtiger Hinweis</strong>: Vor der Erstellung der Manifests sollte unbedingt eine Kopie der install-config.yaml erstellt werden, da diese nach dem nächsten Befehl aufgelöst wird.</p></blockquote>
+<h3 id="manifest-erstellung-und-antrea-integration">Manifest-Erstellung und Antrea-Integration</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">openshift-install create manifests
+</span></span></code></pre></div><p>In den Manifest-Ordner müssen alle <strong>Dateien aus dem Antrea-Download</strong> kopiert werden.
+Inhalt Antrea-Download
+<figure><a href="09.png"><img src="nsx_avi_openshift/09.png"
+    alt="Inhalt Antrea Download"></a><figcaption>
+      <p>Inhalt Antrea Download - Klick zum vergrößern</p>
+    </figcaption>
+</figure>
+</p>
+<p>Dabei sind folgende Anpassungen erforderlich:</p>
+<h4 id="operatoryaml">operator.yaml</h4>
+<p>Der Imagepfad muss angepasst werden:</p>
+<blockquote>
+<p>Die Image-Pfade können aus den NSX Antrea 1.11.0 Release Notes entnommen werden.</p></blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">projects.packages.broadcom.com/antreainterworking/antrea-operator:v2.3.0_vmware.1</span><span class="w">
+</span></span></span></code></pre></div><h4 id="operatorantreavmwarecom_v1_antreainstall_cryaml">operator.antrea.vmware.com_v1_antreainstall_cr.yaml</h4>
+<p>Verschiedene Image-Pfade und Konfigurationen müssen angepasst werden:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">antreaAgentImage</span><span class="p">:</span><span class="w"> </span><span class="l">projects.packages.broadcom.com/antreainterworking/antrea-agent-ubi:v2.3.0_vmware.1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">antreaControllerImage</span><span class="p">:</span><span class="w"> </span><span class="l">projects.packages.broadcom.com/antreainterworking/antrea-controller-ubi:v2.3.0_vmware.1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">interworkingImage</span><span class="p">:</span><span class="w"> </span><span class="l">projects.packages.broadcom.com/antreainterworking/interworking-ubi:1.3.0_vmware.1</span><span class="w">
+</span></span></span></code></pre></div><p>Unter dem Abschnitt &ldquo;Feature Gates und MP Adapter&rdquo; müssen folgende Parameter konfiguriert werden.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">featureGates</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">NodePortLocal</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">  </span><span class="c"># Bei Verwendung mit NSX Advanced LoadBalancer notwendig</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">EgressSeparateSubnet</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">  </span><span class="c"># Notwendig für NSX ChildSegments</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">mpAdapterConfig</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">clusterName</span><span class="p">:</span><span class="w"> </span><span class="l">ocp01 </span><span class="w"> </span><span class="c"># Muss identisch zur install-config.yaml sein</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">nsxManagers</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;IP-Adressen der NSX Manager&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enableInterworking</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">  </span><span class="c"># Initial auf false, später auf true ändern</span><span class="w">
+</span></span></span></code></pre></div><p>Der folgende Screenshot zeigt die Ordnerstruktur, wie diese nach der Erstellung der Manifests aussieht.
+<figure><a href="10.png"><img src="nsx_avi_openshift/10.png"
+    alt="Inhalt OCP Manifests"></a><figcaption>
+      <p>Inhalt OCP Manifests - Klick zum vergrößern</p>
+    </figcaption>
+</figure>
+</p>
+<h3 id="installation-openshift">Installation OpenShift</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./openshift-install create cluster
+</span></span></code></pre></div><p>Zu beginn der OpenShift Installation, wird ein Bootstrap Node erstellt. Mit dem in der &ldquo;install-config&rdquo; angegebenen SSH-Key, kann sich mit dem Bootstrap, Master und Worker Nodes per SSH verbunden werden.</p>
+<p>Nach erfolgreicher Installation kann die Kubeconfig exportiert und der Cluster überprüft werden:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">KUBECONFIG</span><span class="o">=</span>auth/kubeconfig 
+</span></span><span class="line"><span class="cl">./oc get nodes,co
+</span></span></code></pre></div><figure><a href="11.png"><img src="nsx_avi_openshift/11.png"
+    alt="OpenShift Console"></a><figcaption>
+      <p>OpenShift Console - Klick zum vergrößern</p>
+    </figcaption>
+</figure>
+
+<h2 id="registrierung-von-antrea-cni-mit-nsx-manager">Registrierung von Antrea CNI mit NSX Manager</h2>
+<h3 id="zertifikat-erstellung-für-service-principal">Zertifikat-Erstellung für Service Principal</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Private Key generieren</span>
+</span></span><span class="line"><span class="cl">openssl genrsa -out antrea-sp.key <span class="m">2048</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Certificate Signing Request erstellen</span>
+</span></span><span class="line"><span class="cl">openssl req -new -key antrea-sp.key -out antrea-sp.csr <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -subj <span class="s2">&#34;/CN=antrea-sp,OU=NSX,O=MyOrg,L=City,C=DE&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Zertifikat generieren</span>
+</span></span><span class="line"><span class="cl">openssl x509 -req -in antrea-sp.csr -signkey antrea-sp.key -out antrea-sp.crt -days <span class="m">365</span>
+</span></span></code></pre></div><h3 id="nsx-principal-identity-konfigurieren">NSX Principal Identity konfigurieren</h3>
+<p>Im NSX Manager unter &ldquo;System&rdquo; → &ldquo;Settings&rdquo; → &ldquo;User Management&rdquo; → &ldquo;Add Principal Identity&rdquo; wird der Principal User mit der Rolle &ldquo;Enterprise Admin&rdquo; erstellt.</p>
+<h3 id="registrierung-durchführen">Registrierung durchführen</h3>
+<h4 id="base64-kodierung-der-zertifikate">Base64-Kodierung der Zertifikate</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat antrea-sp.crt <span class="p">|</span> base64 -w <span class="m">0</span> 
+</span></span><span class="line"><span class="cl">cat antrea-sp.key <span class="p">|</span> base64 -w <span class="m">0</span> 
+</span></span></code></pre></div><h4 id="nsx-certyaml-erstellen">nsx-cert.yaml erstellen</h4>
+<p>Die Base64-kodierten Werte werden in die nsx-cert.yaml eingefügt.</p>
+<h4 id="interworking-aktivieren">Interworking aktivieren</h4>
+<p>In der operator.antrea.vmware.com_v1_antreainstall_cr.yaml:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">enableInterworking</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span></code></pre></div><h4 id="anwendung-der-konfiguration">Anwendung der Konfiguration</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./oc apply -f operator.antrea.vmware.com_v1_antreainstall_cr.yaml -f nsx-cert.yaml
+</span></span><span class="line"><span class="cl">./oc get pods -n vmware-system-antrea
+</span></span></code></pre></div><h2 id="verifikation-und-troubleshooting">Verifikation und Troubleshooting</h2>
+<p>Nach erfolgreicher Registrierung sollte das OpenShift Cluster in NSX unter &ldquo;System&rdquo; → &ldquo;Fabric&rdquo; → &ldquo;Nodes&rdquo; → &ldquo;Container Clusters&rdquo; → &ldquo;Antrea&rdquo; sichtbar sein und einen grünen Status anzeigen.</p>
+<figure><a href="12.png"><img src="nsx_avi_openshift/12.png"
+    alt="Antrea Pods während der Registrierung"></a><figcaption>
+      <p>Antrea Pods während der Registrierung - Klick zum vergrößern</p>
+    </figcaption>
+</figure>
+
+<h3 id="wichtige-prüfpunkte">Wichtige Prüfpunkte</h3>
+<ol>
+<li><strong>Pod-Status überprüfen</strong>: Alle Antrea-Pods sollten im Status &ldquo;Running&rdquo; sein</li>
+<li><strong>NSX-Registrierung</strong>: Das Cluster sollte in NSX als registriert angezeigt werden</li>
+<li><strong>Netzwerkkonnektivität</strong>: Traffic zwischen Pods sollte ordnungsgemäß funktionieren</li>
+<li><strong>LoadBalancer-Funktionalität</strong>: Virtual Services sollten erreichbar sein</li>
+</ol>
+<h2 id="antrea-egress-und-childsegments">Antrea Egress und ChildSegments</h2>
+<p>Für die erfolgreiche Bereitstellung von NSX ChildSegments und Antrea Egress Pools müssen folgende Anforderungen erfüllt sein:</p>
+<ol>
+<li><strong>operator.antrea.vmware.com_v1_antreainstall_cr.yaml</strong> FeatureGates → Muss <code>EgressSeparateSubnet: true</code> gesetzt sein</li>
+<li><strong>OpenShift RP_Filter=2</strong> Die RP_Filters müssen auf 2 gesetzt werden, ansonsten wird der Traffic über das Antrea Interface verhindern. Diese Einstellungen können über den Cluster Node Tuning Operator vorgenommen werden.</li>
+</ol>
+<p>Die Option kann per Label auf eine bestimmte Gruppe von Hosts umgesetzt werden → <code>node-role.kubernetes.io/worker</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tuned.openshift.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Tuned</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">antrea</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">openshift-cluster-node-tuning-operator</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">profile</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">      [main]
+</span></span></span><span class="line"><span class="cl"><span class="sd">      summary=Update rp_filter for all
+</span></span></span><span class="line"><span class="cl"><span class="sd">      [sysctl]
+</span></span></span><span class="line"><span class="cl"><span class="sd">      net.ipv4.conf.all.rp_filter=2      </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">openshift-antrea</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">recommend</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">match</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l">node-role.kubernetes.io/worker</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">priority</span><span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">profile</span><span class="p">:</span><span class="w"> </span><span class="l">openshift-antrea</span><span class="w">
+</span></span></span></code></pre></div><h3 id="nsx-childsegments">NSX ChildSegments</h3>
+<ol>
+<li>Die verwendete Kubernetes Version muss mindestens 1.31 oder neuer sein</li>
+<li>Feature Übersicht für Container Workloads in ChildSegments</li>
+</ol>
+<h3 id="nicht-unterstützte-features">Nicht unterstützte Features</h3>
+<ul>
+<li>Distributed Firewall</li>
+<li>IP Discovery Segment Profile</li>
+<li>MAC Discovery Segment Profile</li>
+<li>Segment Security Segment Profile</li>
+<li>SpoofGuard Segment Profile</li>
+<li>QoS Segment Profile</li>
+<li>Port Mirroring</li>
+<li>IPFix</li>
+<li>NSGroup</li>
+<li>Latency-Funktionen</li>
+</ul>
+<h3 id="unterstützte-features">Unterstützte Features</h3>
+<ul>
+<li><strong>Uplink Teaming</strong>: Vollständig unterstützt</li>
+<li><strong>Mirror Configuration (Uplink Span)</strong>: Vollständig unterstützt</li>
+</ul>
+<p>NSX ChildSegments bieten die Möglichkeit, Kubernetes Egress-Traffic zu separieren und unterschiedlich zu routen oder zu &ldquo;NAT-en&rdquo;.
+Ein Beispiel dafür wäre die Trennung von Kubernetes Namespaces, welche ein dediziertes ChildSegment und unterschiedliche T1 Router und T0-VRFs verwenden.</p>
+<p>Dabei handelt es sich um reguläre NSX Segmente. Folgende Regeln gelten:</p>
+<ul>
+<li>Ein Child-Segment kann mit mehreren Parent-Segmenten verbunden werden</li>
+<li>Ein Parent-Segment kann zahlreiche Child-Segmente haben</li>
+<li>Jedes Child-Segment benötigt eine eindeutige VLAN-ID pro Parent-Segment</li>
+<li>Child-Segmente können nicht als Parent für andere Child-Segmente fungieren</li>
+<li>Innerhalb eines Parent-Segments müssen alle VLAN-IDs der Child-Segmente eindeutig sein</li>
+<li>Ein Child-Segment kann bei verschiedenen Parent-Segmenten dieselbe oder unterschiedliche VLAN-IDs verwenden</li>
+<li>Parent-Segmente senden nur Traffic an Child-Segmente, der mit der entsprechenden VLAN-ID getaggt ist</li>
+</ul>
+<h3 id="connection-binding-zwischen-parent-und-childsegment">Connection Binding zwischen Parent und ChildSegment</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl --location --request PUT <span class="s1">&#39;https://nsx-manager-IP-or-FQDN/policy/api/v1/infra/segments/Child-Segment/segment-connection-binding-maps/map100&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--header <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--header <span class="s1">&#39;Authorization: Basic YWRtaW46Vk13YXJlMSFWTXdhcmUxIQ==&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--data <span class="s1">&#39;{
+</span></span></span><span class="line"><span class="cl"><span class="s1"> &#34;segment_path&#34;: &#34;/infra/segments/Parent-Segment&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1"> &#34;vlan_traffic_tag&#34;: &#34;100&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="s1">}&#39;</span>
+</span></span></code></pre></div><h3 id="überprüfung-des-bindings">Überprüfung des Bindings</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl --location --request GET <span class="s1">&#39;https://nsx-manager-IP-or-FQDN/policy/api/v1/infra/segments/Child-Segment/segment-connection-binding-maps/&#39;</span>
+</span></span></code></pre></div><h3 id="openshift-external-ip-pool-und-egress-ressource">OpenShift External IP Pool und Egress Ressource</h3>
+<h3 id="external-ip-pool">External IP Pool</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">crd.antrea.io/v1beta1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ExternalIPPool</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">child-egress-ippool</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ipRanges</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">start</span><span class="p">:</span><span class="w"> </span><span class="m">10.172.170.1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">end</span><span class="p">:</span><span class="w"> </span><span class="m">10.172.170.199</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">subnetInfo</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="m">10.172.170.254</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">prefixLength</span><span class="p">:</span><span class="w"> </span><span class="m">24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">vlan</span><span class="p">:</span><span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="c"># VLAN ID welche beim Binding angegeben wurde</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">nodeSelector</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># Uncomment and modify below to limit which nodes are eligible</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># nodeSelector:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#   matchLabels:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#     network-role: egress-gateway</span><span class="w">
+</span></span></span></code></pre></div><h3 id="egress-ressource">Egress Ressource</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">crd.antrea.io/v1beta1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Egress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">child-egress-hello-world1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">appliedTo</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">podSelector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">externalIPPool</span><span class="p">:</span><span class="w"> </span><span class="l">child-egress-ippool</span><span class="w">
+</span></span></span></code></pre></div><h2 id="nsx-advanced-loadbalancer-und-ako">NSX Advanced LoadBalancer und AKO</h2>
+<h3 id="ako-installation">AKO Installation</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./oc create ns avi-system
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">helm show chart oci://projects.packages.broadcom.com/ako/helm-charts/ako --version 1.13.2
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">helm show values oci://projects.packages.broadcom.com/ako/helm-charts/ako --version 1.13.2 &gt; values.yaml
+</span></span></code></pre></div><h3 id="valuesyaml-konfiguration">Values.yaml Konfiguration</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">clusterName</span><span class="p">:</span><span class="w"> </span><span class="l">ocp01</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">cniPlugin</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;antrea&#39;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">vipNetworkList</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">networkName</span><span class="p">:</span><span class="w"> </span><span class="l">ls-ocp-1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#    networkUUID: net-1234</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="m">10.172.145.0</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">nsxtT1LR</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/infra/tier-1s/avi-t1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">ControllerSettings</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">serviceEngineGroupName</span><span class="p">:</span><span class="w"> </span><span class="l">ocp01 </span><span class="w"> </span><span class="c"># Name of the ServiceEngine Group.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">controllerVersion</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="c"># The controller API version</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cloudName</span><span class="p">:</span><span class="w"> </span><span class="l">nsx-01a  </span><span class="w"> </span><span class="c"># The configured cloud name on the Avi controller.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">controllerHost</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;10.172.10.225&#39;</span><span class="w"> </span><span class="c"># IP address or Hostname of Avi Controller</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tenantName</span><span class="p">:</span><span class="w"> </span><span class="l">admin  </span><span class="w">
+</span></span></span></code></pre></div><h3 id="helm-installation">Helm Installation</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">helm install ako oci://projects.packages.broadcom.com/ako/helm-charts/ako --version 1.13.2 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -f /path/to/values.yaml <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --set ControllerSettings.controllerHost<span class="o">=</span>&lt;controller IP or Hostname&gt; <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --set avicredentials.username<span class="o">=</span>&lt;avi-ctrl-username&gt; <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --set avicredentials.password<span class="o">=</span>&lt;avi-ctrl-password&gt; <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --namespace<span class="o">=</span>avi-system
+</span></span></code></pre></div><h3 id="wichtige-prüfpunkte-1">Wichtige Prüfpunkte</h3>
+<ol>
+<li><strong>Pod-Status überprüfen</strong>: Alle Pods im avi-system Namespace sollten im Status &ldquo;Running&rdquo; sein</li>
+</ol>
+<h3 id="dediziertes-ingress-netzwerk">Dediziertes Ingress Netzwerk</h3>
+<p>Für ein dediziertes Ingress Netzwerk kann folgendermaßen vorgegangen werden:</p>
+<ol>
+<li>Erstellen eines weiteren Overlay-Segments z.B. ls-ocp-ingress</li>
+<li>Hinzufügen im NSX Advanced LoadBalancer entsprechend der obigen Konfiguration</li>
+<li>Anpassung der values.yaml:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">vipNetworkList</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">networkName</span><span class="p">:</span><span class="w"> </span><span class="l">ls-ocp-ingress</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c">#    networkUUID: net-1234</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="m">10.172.150.0</span><span class="l">/24</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">nsxtT1LR</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/infra/tier-1s/avi-t1&#34;</span><span class="w">
+</span></span></span></code></pre></div><h3 id="l4-virtual-service-beispiel">L4 Virtual Service Beispiel</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">hello-world1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">loadBalancerClass</span><span class="p">:</span><span class="w"> </span><span class="l">ako.vmware.com/avi-lb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">LoadBalancer</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span>- <span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span></code></pre></div><h2 id="fazit-und-ausblick">Fazit und Ausblick</h2>
+<p>Die Integration von OpenShift mit VMware NSX und Antrea CNI bietet erweiterte Netzwerkfunktionen, die über Standard-CNI-Implementierungen hinausgehen. Besonders hervorzuheben sind:</p>
+<ul>
+<li><strong>Erweiterte Egress-Kontrolle</strong>: Durch Antrea Egress Pools</li>
+<li><strong>Erweiterte Ingress-Kontrolle</strong>: Durch NSX Avi LoadBalancer</li>
+<li><strong>Mandantenfähigkeit</strong>: Durch dedizierte IP-Adressen pro Namespace</li>
+<li><strong>Zentrale Verwaltung</strong>: Über NSX Manager</li>
+</ul>
+<p>Dieser PoC demonstriert erfolgreich, dass eine vollständige Integration möglich ist und sowohl für Entwicklungs- als auch Produktionsumgebungen geeignet ist. Die Lösung eignet sich besonders für Unternehmen, die bereits VMware vSphere-Infrastrukturen betreiben und erweiterte Netzwerkfunktionen für ihre Container-Plattformen benötigen.</p>
+<p>In zukünftigen Implementierungen sollten zusätzliche Sicherheitsrichtlinien, Monitoring-Lösungen und Automatisierungsaspekte berücksichtigt werden, um eine vollständige Enterprise-taugliche Lösung zu schaffen.</p>
+<hr>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/vi-universe" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://www.linkedin.com/in/christian-kremer-it" target="_blank" rel="noopener noreferrer me"
+    title="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+<a href="/index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2025 Christian Kremer.
+        Unterstützt durch <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
+    </small>
+</footer><a href="#" title="Zum Seitenanfang" id="totop">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" stroke="currentColor" viewBox="0 96 960 960">
+    <path d="M283 704.739 234.261 656 480 410.261 725.739 656 677 704.739l-197-197-197 197Z"/>
+</svg>
+
+</a>
+
+
+    
+
+
+
+
+    
+    
+        
+    
+
+    
+    
+        
+    
+
+
+
+    
+    <script src="https://vi-universe.github.io/js/main.min.35f435a5d8eac613c52daa28d8af544a4512337d3e95236e4a4978417b8dcb2f.js" integrity="sha256-NfQ1pdjqxhPFLaoo2K9USkUSM30&#43;lSNuSkl4QXuNyy8="></script>
+
+    
+
+</body>
+</html>
