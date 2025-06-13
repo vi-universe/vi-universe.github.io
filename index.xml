@@ -96,6 +96,46 @@
     </item>
     
     <item>
+      <title>Homelab-1.1</title>
+      <link>https://vi-universe.github.io/posts/homelab_1.1/</link>
+      <pubDate>Wed, 15 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/homelab_1.1/</guid>
+      
+      <description>&lt;p&gt;Während ich sehnsüchtig auf die Lieferung meiner beiden Intel NUCs wartete, begann ich mit der Planung und Einrichtung meines Netzwerks.
+Die folgende High-Level-Darstellung diente als Grundlage:&lt;/p&gt;
+&lt;figure&gt;&lt;a href=&#34;01.jpg&#34;&gt;&lt;img src=&#34;homelab_1.1/01.jpg&#34;
+    alt=&#34;Homelab-Highlevel&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
+      &lt;p&gt;Homelab Highlevel - Klick zum vergrößern&lt;/p&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Für die Infrastruktur verwendete ich eine &lt;strong&gt;FortiGate 60F&lt;/strong&gt; als Firewall und einen &lt;strong&gt;Aruba CX6300M&lt;/strong&gt; als Switch.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;firewall-konfiguration&#34;&gt;Firewall-Konfiguration&lt;/h2&gt;
+&lt;p&gt;Um später mehrere unabhängige Labs betreiben zu können, entschied ich mich direkt zu Beginn für die Nutzung von VDOMs (Virtual Domains).&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Homelab-1.0</title>
+      <link>https://vi-universe.github.io/posts/homelab_1.0/</link>
+      <pubDate>Wed, 01 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/homelab_1.0/</guid>
+      
+      <description>&lt;p&gt;Es war an der Zeit, mein Homelab zu modernisieren, da einige Komponenten unpraktisch geworden waren oder bereits veraltet waren. Doch der Reihe nach:&lt;/p&gt;
+&lt;h2 id=&#34;mein-bisheriges-setup&#34;&gt;Mein bisheriges Setup&lt;/h2&gt;
+&lt;p&gt;Mein bisheriges Setup bestand aus:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;2 Intel NUCs (7. Generation)&lt;/strong&gt; mit Intel Core i5 und jeweils 32 GB RAM, die als 2-Node-vSAN im Einsatz waren.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;1 Mac Mini (2012)&lt;/strong&gt; mit Intel Core i7 und 16 GB RAM, der ausschließlich als Host für die vSAN Witness Appliance diente.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Zusätzlich hatte ich:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>DELL-VxRail Cheat-Sheet</title>
       <link>https://vi-universe.github.io/posts/vxrail_cheat_sheet/</link>
       <pubDate>Tue, 30 Jan 2024 00:00:00 +0000</pubDate>
@@ -196,6 +236,27 @@ Die Log-Dateien lassen sich außerdem filtern. -&amp;gt;&lt;/p&gt;
       &lt;p&gt;ESXi Architecture - Klick zum vergrößern&lt;/p&gt;
     &lt;/figcaption&gt;
 &lt;/figure&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>VMware vSphere Standard Switch - Migrationsscript</title>
+      <link>https://vi-universe.github.io/posts/esxi_vss_migration/</link>
+      <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/esxi_vss_migration/</guid>
+      
+      <description>&lt;figure&gt;&lt;a href=&#34;01.jpg&#34;&gt;&lt;img src=&#34;esxi_vss_migration/01.jpg&#34;
+    alt=&#34;Switch&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
+      &lt;p&gt;Switch - Klick zum vergrößern&lt;/p&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Wer kennt es nicht, gefühlt 100 Port-Groups auf einem vSphere &amp;ldquo;Standard Switch&amp;rdquo;.
+Und dann kommt der Zeitpunkt, an dem ein neuer ESXi-Host im Cluster dazu kommt und man genau diese 100 Port-Groups fein säuberlich am besten noch ohne Fehler von Hand anlegen darf.
+Oder man betreibt eine kleine vSphere Umgebungen mit nur einem ESXi-Host und muss diese auf einen neuen ESXi-Host migrieren.&lt;/p&gt;
+&lt;p&gt;Dafür habe ich folgendes Script zusammengestellt.&lt;br&gt;
+&lt;a href=&#34;https://github.com/vi-universe/vmware/blob/1b8cb303fd68010e9ef9a23e4ffb655d45aa2cb7/PowerCLI/Migrationstool_vSphere-StandardSwitch.ps1&#34;&gt;Migrationstool_vSphere-StandardSwitch&lt;/a&gt;&lt;/p&gt;</description>
       
     </item>
     
