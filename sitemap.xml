@@ -29,6 +29,9 @@
     <loc>https://vi-universe.github.io/posts/homelab_1.0/</loc>
     <lastmod>2024-05-01T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://vi-universe.github.io/posts/vxrail_report_to_teams/</loc>
+    <lastmod>2024-03-05T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://vi-universe.github.io/posts/vxrail_cheat_sheet/</loc>
     <lastmod>2024-01-30T00:00:00+00:00</lastmod>
   </url><url>
@@ -38,7 +41,13 @@
     <loc>https://vi-universe.github.io/posts/esxi_architecture_logs/</loc>
     <lastmod>2023-11-10T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://vi-universe.github.io/posts/vxrail_vmk1_idrac_issue/</loc>
+    <lastmod>2023-03-28T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://vi-universe.github.io/posts/vcsa_cli_deployment/</loc>
+    <lastmod>2023-02-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://vi-universe.github.io/posts/vdocumentation/</loc>
     <lastmod>2023-02-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vi-universe.github.io/posts/esxi_vss_migration/</loc>
@@ -50,7 +59,13 @@
     <loc>https://vi-universe.github.io/posts/esxi_config_backup_restore/</loc>
     <lastmod>2023-02-12T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://vi-universe.github.io/posts/vsan_trim_unmap/</loc>
+    <lastmod>2023-02-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://vi-universe.github.io/posts/esxi_passwort_reset/</loc>
+    <lastmod>2023-01-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://vi-universe.github.io/posts/vsan_node_unicastagentlist/</loc>
     <lastmod>2023-01-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vi-universe.github.io/categories/</loc>

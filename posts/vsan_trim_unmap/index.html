@@ -3,11 +3,11 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">Posts | blog.vi-universe.de</title>
-<meta property="og:title" content="Posts | blog.vi-universe.de" />
-<meta name="twitter:title" content="Posts | blog.vi-universe.de" />
-<meta itemprop="name" content="Posts | blog.vi-universe.de" />
-<meta name="application-name" content="Posts | blog.vi-universe.de" />
+<title itemprop="name">vSAN space reclamation - Trim Unmap | blog.vi-universe.de</title>
+<meta property="og:title" content="vSAN space reclamation - Trim Unmap | blog.vi-universe.de" />
+<meta name="twitter:title" content="vSAN space reclamation - Trim Unmap | blog.vi-universe.de" />
+<meta itemprop="name" content="vSAN space reclamation - Trim Unmap | blog.vi-universe.de" />
+<meta name="application-name" content="vSAN space reclamation - Trim Unmap | blog.vi-universe.de" />
 <meta property="og:site_name" content="blog.vi-universe.de" />
 
 <meta name="description" content="vi-universe.de | Christian Kremer">
@@ -18,28 +18,20 @@
 <meta property="og:locale" content="de-de" />
 <meta name="language" content="de-de" />
 
-  <link rel="alternate" hreflang="de-de" href="https://vi-universe.github.io/posts/" title="German" />
+  <link rel="alternate" hreflang="de-de" href="https://vi-universe.github.io/posts/vsan_trim_unmap/" title="German" />
 
 
 
 
 
-    
-    
-    
-    
-    
-    <link rel="first" href="/posts/" />
-    <link rel="last" href="/posts/" />
-    
     
     
     
 
     <meta property="og:type" content="article" />
-    <meta property="og:article:published_time" content=2025-05-30T00:00:00Z />
-    <meta property="article:published_time" content=2025-05-30T00:00:00Z />
-    <meta property="og:url" content="https://vi-universe.github.io/posts/" />
+    <meta property="og:article:published_time" content=2023-02-01T00:00:00Z />
+    <meta property="article:published_time" content=2023-02-01T00:00:00Z />
+    <meta property="og:url" content="https://vi-universe.github.io/posts/vsan_trim_unmap/" />
 
     
     <meta property="og:article:author" content="Christian Kremer" />
@@ -54,16 +46,16 @@
     {
         "@context": "http://schema.org",
         "@type": "Article",
-        "headline": "Posts",
+        "headline": "vSAN space reclamation - Trim Unmap",
         "author": {
         "@type": "Person",
         "name": ""
         },
-        "datePublished": "2025-05-30",
+        "datePublished": "2023-02-01",
         "description": "",
-        "wordCount":  0 ,
+        "wordCount":  215 ,
         "mainEntityOfPage": "True",
-        "dateModified": "2025-05-30",
+        "dateModified": "2023-02-01",
         "image": {
         "@type": "imageObject",
         "url": ""
@@ -79,26 +71,29 @@
 <meta name="generator" content="Hugo 0.147.8">
 
     
-    <meta property="og:url" content="https://vi-universe.github.io/posts/">
+    <meta property="og:url" content="https://vi-universe.github.io/posts/vsan_trim_unmap/">
   <meta property="og:site_name" content="blog.vi-universe.de">
-  <meta property="og:title" content="Posts">
-  <meta property="og:description" content="vi-universe.de | Christian Kremer">
+  <meta property="og:title" content="vSAN space reclamation - Trim Unmap">
+  <meta property="og:description" content="Thin Provisioning ist eine Möglichkeit, Speicher effektiv zu nutzen. “Thin Provisioned” Festplatten wachsen dynamisch an. Geben aber Speicherplatz nicht frei, selbst wenn die Daten im Gast-Betriebsystem gelöscht wurden. Mithilfe von Trim/Unmap Befehlen kann für das jeweilige ATA und SCSI Protokoll der Speicherplatz wieder zurückgewonnen werden. VMware vSAN erkennt vollständig vom Gastbetriebssysteme diese Befehle und kann den zugewiesenen Speicher als freien Speicherplatz zurückfordern.
+Als primärer Vorteil steht die daraus resultierende Effizienz im Fokus, allerdings ergeben sich daraus auch sekundäre Vorteile.">
   <meta property="og:locale" content="de_de">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-02-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-02-01T00:00:00+00:00">
 
 
     
     
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Posts">
-  <meta name="twitter:description" content="vi-universe.de | Christian Kremer">
+  <meta name="twitter:title" content="vSAN space reclamation - Trim Unmap">
+  <meta name="twitter:description" content="Thin Provisioning ist eine Möglichkeit, Speicher effektiv zu nutzen. “Thin Provisioned” Festplatten wachsen dynamisch an. Geben aber Speicherplatz nicht frei, selbst wenn die Daten im Gast-Betriebsystem gelöscht wurden. Mithilfe von Trim/Unmap Befehlen kann für das jeweilige ATA und SCSI Protokoll der Speicherplatz wieder zurückgewonnen werden. VMware vSAN erkennt vollständig vom Gastbetriebssysteme diese Befehle und kann den zugewiesenen Speicher als freien Speicherplatz zurückfordern.
+Als primärer Vorteil steht die daraus resultierende Effizienz im Fokus, allerdings ergeben sich daraus auch sekundäre Vorteile.">
 
 
     
 
-    <link rel="canonical" href="https://vi-universe.github.io/posts/">
-    <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="blog.vi-universe.de">
-    <link href="/posts/index.xml" rel="feed" type="application/rss+xml" title="blog.vi-universe.de">
+    <link rel="canonical" href="https://vi-universe.github.io/posts/vsan_trim_unmap/">
     <link href="/style.min.2d921c18cf1ec555ffc03d59a8adc211c402c68c930c27d6a0c306ab175a8d09.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -187,337 +182,76 @@ stroke-linejoin="round" class="feather feather-home">
         </div>
     </nav>
 </div>
-<div class="wrapper list-page">
-    <header class="header">
-        <h1 class="header-title center">Posts</h1>
-    </header>
+
+<div class="wrapper post">
     <main class="page-content" aria-label="Content">
-        
-        
-        <h2 class="post-year">2024</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/nsx_cheat_sheet/">NSX Cheat Sheet</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-12-20T00:00:00Z">
-        20 Dez. 2024
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/homelab_1.3/">Homelab-1.3</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-11-10T00:00:00Z">
-        10 Nov. 2024
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/homelab_1.2/">Homelab-1.2</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-07-25T00:00:00Z">
-        25 Juli 2024
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/homelab_1.1/">Homelab-1.1</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-05-15T00:00:00Z">
-        15 Mai 2024
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/homelab_1.0/">Homelab-1.0</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-05-01T00:00:00Z">
-        1 Mai 2024
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/vxrail_report_to_teams/">DELL-VxRail Report to MS-Teams</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-03-05T00:00:00Z">
-        5 März 2024
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/vxrail_cheat_sheet/">DELL-VxRail Cheat-Sheet</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-01-30T00:00:00Z">
-        30 Jan. 2024
-        
-    </time>
-</article>
-
-
-         
-
-        
-        
-        <h2 class="post-year">2023</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/vxrail_log_bundle/">DELL-VxRail Log-Bundle</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-12-01T00:00:00Z">
-        1 Dez. 2023
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/esxi_architecture_logs/">ESXi Architektur und Logs</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-11-10T00:00:00Z">
-        10 Nov. 2023
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/vxrail_vmk1_idrac_issue/">DELL-VxRail &#34;missing vmk1 idrac issue&#34;</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-03-28T00:00:00Z">
-        28 März 2023
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/esxi_vss_migration/">VMware vSphere Standard Switch - Migrationsscript</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-02-18T00:00:00Z">
-        18 Feb. 2023
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/vdocumentation/">vDocumentation</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-02-18T00:00:00Z">
-        18 Feb. 2023
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/vcsa_cli_deployment/">VCSA 8 Installation per Cli</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-02-18T00:00:00Z">
-        18 Feb. 2023
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/esxi_config_backup_restore/">VMware ESXi Konfiguration „Backup und Restore“ mit PowerCli</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-02-12T00:00:00Z">
-        12 Feb. 2023
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/powercli_quickguide/">PowerCli13 Update/ Installation QuickGuide</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-02-12T00:00:00Z">
-        12 Feb. 2023
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/vsan_trim_unmap/">vSAN space reclamation - Trim Unmap</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-02-01T00:00:00Z">
-        1 Feb. 2023
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/vsan_node_unicastagentlist/">vSAN Node aktualisiert &#34;unicastagent list&#34; nicht automatisch nach Shutdown</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-01-29T00:00:00Z">
-        29 Jan. 2023
-        
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/posts/esxi_passwort_reset/">ESXi Passwort Reset</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-01-29T00:00:00Z">
-        29 Jan. 2023
-        
-    </time>
-</article>
-
-
-         
-
-         
-
-    </main>
-</div><footer class="footer">
+        <article>
+            <header class="header">
+                <h1 class="header-title">vSAN space reclamation - Trim Unmap</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2023-02-01T00:00:00&#43;00:00" itemprop="datePublished"> 01.02.2023 </time>
+                </div>
+                
+            </header>
+            
+    
+    <details class="toc" ZgotmplZ>
+        <summary><b>Inhaltsverzeichnis</b></summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#anforderungen">Anforderungen</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </details>
+            <div class="page-content">
+                <p>Thin Provisioning ist eine Möglichkeit, Speicher effektiv zu nutzen.
+&ldquo;Thin Provisioned&rdquo; Festplatten wachsen dynamisch an. Geben aber Speicherplatz nicht frei, selbst wenn die Daten im Gast-Betriebsystem gelöscht wurden.
+Mithilfe von Trim/Unmap Befehlen kann für das jeweilige ATA und SCSI Protokoll der Speicherplatz wieder zurückgewonnen werden.
+VMware vSAN erkennt vollständig vom Gastbetriebssysteme diese Befehle und kann den zugewiesenen Speicher als freien Speicherplatz zurückfordern.</p>
+<p>Als primärer Vorteil steht die daraus resultierende Effizienz im Fokus, allerdings ergeben sich daraus auch sekundäre Vorteile.</p>
+<ul>
+<li>Schnellere Reparatur, da zurückgewonnene Blöcke im Falle eines Gerätesausfalls nicht neu ausgeglichen oder neu gespiegelt werden müssen.</li>
+<li>Dirty-Cache-Seiten werden entfernt, was zu einer Entlastung des Cache führt.
+01
+<figure><a href="01.png"><img src="/vsan_trim_unmap/01.png"
+    alt="Trim Unmap"></a><figcaption>
+      <p>Trim Unmap - Klick zum vergrößern</p>
+    </figcaption>
+</figure>
+</li>
+</ul>
+<h3 id="anforderungen">Anforderungen</h3>
+<ul>
+<li>Min. Hardwareversion 11 virtuelle Maschinen für Windows</li>
+<li>Min. Hardwareversion 13 virtuelle Maschinen für Linux</li>
+<li>Nach Aktivierung auf Clusterebene müssen alle virtuelle Maschinen neu gestartet werden</li>
+<li>Das Flag &ldquo;disk.scsiUnmapAllowed&rdquo; darf nicht auf &ldquo;false&rdquo; gesetzt sein. Standardwert ist &ldquo;true&rdquo;.</li>
+</ul>
+<p>Mit folgenden Befehlen, kann der Status von Trim/Unmap abgefragt werden und Trim/Unmap aktiviert bzw. auch deaktiviert werden.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c">#Installation des PowerCLI Moduls</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Install-Module</span> <span class="n">VMware</span><span class="p">.</span><span class="py">PowerCli</span>
+</span></span><span class="line"><span class="cl"><span class="c">#Verbindung zum vCenter</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Connect-VIServer</span> <span class="s2">&#34;vCenter FQDN&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c">#Auflistung aller Cluster</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-Cluster</span>
+</span></span><span class="line"><span class="cl"><span class="c">#Trim/Unmap Status für vSAN Cluster anzeigen</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-Cluster</span> <span class="n">-Name</span> <span class="s2">&#34;Clustername&#34;</span> <span class="p">|</span> <span class="nb">Get-vsanclusterconfiguration</span> <span class="p">|</span> <span class="nb">ft </span><span class="n">GuestTrimUnmap</span>
+</span></span><span class="line"><span class="cl"><span class="c">#Trim/Unmap aktivieren</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-Cluster</span> <span class="n">-Name</span> <span class="s2">&#34;Clustername&#34;</span> <span class="p">|</span> <span class="nb">Set-vsanclusterconfiguration</span> <span class="n">-GuestTrimUnmap:</span><span class="vm">$true</span>
+</span></span><span class="line"><span class="cl"><span class="c">#Optional Trim/Unmap deaktivieren</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Get-Cluster</span> <span class="n">-Name</span> <span class="s2">&#34;Clustername&#34;</span> <span class="p">|</span> <span class="nb">Set-vsanclusterconfiguration</span> <span class="n">-GuestTrimUnmap:</span><span class="vm">$false</span>
+</span></span></code></pre></div>
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
     <span class="footer_item"> </span>
     &nbsp;
 

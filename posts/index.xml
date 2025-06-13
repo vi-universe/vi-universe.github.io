@@ -170,6 +170,29 @@ Die folgende High-Level-Darstellung diente als Grundlage:&lt;/p&gt;
     </item>
     
     <item>
+      <title>DELL-VxRail Report to MS-Teams</title>
+      <link>https://vi-universe.github.io/posts/vxrail_report_to_teams/</link>
+      <pubDate>Tue, 05 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/vxrail_report_to_teams/</guid>
+      
+      <description>&lt;p&gt;Da ich mir ohnehin seit längerem vorgenommen habe, die VxRail PowerShell Module anzusehen, bin ich auf die Idee gekommen, mir einen Report über alle Support relevante Daten zu erstellen und mir den Report in Teams &amp;ldquo;posten&amp;rdquo; zu lassen.&lt;/p&gt;
+&lt;figure&gt;&lt;a href=&#34;01.png&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/vxrail_report_to_teams/01.png&#34;
+    alt=&#34;Klick zum vergrößern&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
+      &lt;p&gt;Klick zum vergrößern&lt;/p&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/vi-universe/VxRail/blob/6769f389b127367d386f61b0c56edab5e2da1aca/reporting/vxrail_marvin-report-teams.ps1&#34;&gt;Link zu dem Script -&amp;gt; VxRail Report to Teams &lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/vi-universe/VxRail/tree/6769f389b127367d386f61b0c56edab5e2da1aca/VxRail-PowerShell-Module&#34;&gt;Link zu den PowerShell Modulen -&amp;gt; VxRail PowerShell-Module &lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Kleine Anleitung zum einrichten der &amp;ldquo;Webhooks&amp;rdquo; in Teams&lt;/p&gt;
+&lt;figure&gt;&lt;a href=&#34;02.png&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/vxrail_report_to_teams/02.png&#34;
+    alt=&#34;Klick zum vergrößern&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
+      &lt;p&gt;Klick zum vergrößern&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>DELL-VxRail Cheat-Sheet</title>
       <link>https://vi-universe.github.io/posts/vxrail_cheat_sheet/</link>
       <pubDate>Tue, 30 Jan 2024 00:00:00 +0000</pubDate>
@@ -305,6 +328,25 @@ Die Log-Dateien lassen sich außerdem filtern. -&amp;gt;&lt;/p&gt;
     </item>
     
     <item>
+      <title>DELL-VxRail &#34;missing vmk1 idrac issue&#34;</title>
+      <link>https://vi-universe.github.io/posts/vxrail_vmk1_idrac_issue/</link>
+      <pubDate>Tue, 28 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/vxrail_vmk1_idrac_issue/</guid>
+      
+      <description>&lt;p&gt;Seit der VxRail Version 7.0.240/241 wurde die interne Kommunikation zwischen VxRail Manager und ISM von PTAgent auf API Port 9090 umgestellt. &lt;br&gt;
+Intern wird dies LinZhi benannt.&lt;/p&gt;
+&lt;p&gt;Auschnitt aus einem vxdiag.log &lt;br&gt;
+[ip_linzhi] LinZhi is not listening yet (648 ports checked) [bmc] LinZhi IP xxx.xxx.xxx.xxx, Port 9090&lt;/p&gt;
+&lt;p&gt;Die Kommunikation ist zwingend erforderlich, da darüber der VxRail Manager den Node überwacht und managed.&lt;/p&gt;
+&lt;h4 id=&#34;architektur-linzhi&#34;&gt;Architektur LinZhi&lt;/h4&gt;
+&lt;figure&gt;&lt;a href=&#34;01.png&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/vxrail_vmk1_idrac_issue/01.png&#34;
+    alt=&#34;LinZhi Architecture&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
+      &lt;p&gt;LinZhi Architecture - Klick zum vergrößern&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>VCSA 8 Installation per Cli</title>
       <link>https://vi-universe.github.io/posts/vcsa_cli_deployment/</link>
       <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
@@ -323,6 +365,28 @@ Nachdem das VMware VCSA ISO File gemountet wurde, findet man unter folgenden Pfa
 &lt;p&gt;Unter folgenden link findet man eine Übersicht aller Parameter für das JSON-File.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-installation/GUID-3683BA76-B08A-4DDB-9CCF-66660F6AD1CF.html&#34;&gt;Docs-VMware&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Für das Deployment führt man folgenden Befehl in der Konsole (CMD oder Terminal) aus.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>vDocumentation</title>
+      <link>https://vi-universe.github.io/posts/vdocumentation/</link>
+      <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/vdocumentation/</guid>
+      
+      <description>&lt;p&gt;Ein tolles Tool zur Erfassung der VMware vSphere Umgebung ist vDocumentation von
+Ariel Sanchez Mora.
+&lt;a href=&#34;https://github.com/arielsanchezmora/vDocumentation&#34;&gt;vDocumentation&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Mit folgenden Befehlen lassen sich wichtige Informationen auslesen und in eine Excel oder CSV Datei exportieren.&lt;/p&gt;
+&lt;figure&gt;&lt;a href=&#34;01.png&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/vdocumentation/01.png&#34;
+    alt=&#34;vDocumentation&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
+      &lt;p&gt;vDocumentation - Klick zum vergrößern&lt;/p&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Als Basis nutze ich die Module von vDocumentation und habe diese um den Export der Firewall erweitert. Zudem konvertiere ich mir die CSV-Dateien in eine HTML zur besseren Ansicht um.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/vi-universe/vmware/blob/1b8cb303fd68010e9ef9a23e4ffb655d45aa2cb7/PowerCLI/VMware%20Sphere%20vDoc.ps1&#34;&gt;Hier geht es zu meiner angepassten Version&lt;/a&gt;&lt;/p&gt;</description>
       
     </item>
     
@@ -417,6 +481,21 @@ zu sichern.&lt;/p&gt;
     </item>
     
     <item>
+      <title>vSAN space reclamation - Trim Unmap</title>
+      <link>https://vi-universe.github.io/posts/vsan_trim_unmap/</link>
+      <pubDate>Wed, 01 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/vsan_trim_unmap/</guid>
+      
+      <description>&lt;p&gt;Thin Provisioning ist eine Möglichkeit, Speicher effektiv zu nutzen.
+&amp;ldquo;Thin Provisioned&amp;rdquo; Festplatten wachsen dynamisch an. Geben aber Speicherplatz nicht frei, selbst wenn die Daten im Gast-Betriebsystem gelöscht wurden.
+Mithilfe von Trim/Unmap Befehlen kann für das jeweilige ATA und SCSI Protokoll der Speicherplatz wieder zurückgewonnen werden.
+VMware vSAN erkennt vollständig vom Gastbetriebssysteme diese Befehle und kann den zugewiesenen Speicher als freien Speicherplatz zurückfordern.&lt;/p&gt;
+&lt;p&gt;Als primärer Vorteil steht die daraus resultierende Effizienz im Fokus, allerdings ergeben sich daraus auch sekundäre Vorteile.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>ESXi Passwort Reset</title>
       <link>https://vi-universe.github.io/posts/esxi_passwort_reset/</link>
       <pubDate>Sun, 29 Jan 2023 00:00:00 +0000</pubDate>
@@ -430,6 +509,24 @@ Folgende Anleitung entsperrt den &amp;ldquo;root&amp;rdquo; Benutzer oder jeden 
 &lt;h3 id=&#34;2-esxi-shell-aktivieren--troubleshooting-options&#34;&gt;2. ESXi Shell aktivieren &amp;gt; Troubleshooting Options&lt;/h3&gt;
 &lt;h3 id=&#34;3-in-die-esxi-shell-wechseln--strgaltf1&#34;&gt;3. In die ESXi-Shell wechseln &amp;gt; STRG+ALT+F1&lt;/h3&gt;
 &lt;h3 id=&#34;4-befehl--pam_tally2-user-root--r&#34;&gt;4. Befehl &amp;gt; pam_tally2 &amp;ndash;user root -r&lt;/h3&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>vSAN Node aktualisiert &#34;unicastagent list&#34; nicht automatisch nach Shutdown</title>
+      <link>https://vi-universe.github.io/posts/vsan_node_unicastagentlist/</link>
+      <pubDate>Sun, 29 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/vsan_node_unicastagentlist/</guid>
+      
+      <description>&lt;p&gt;Hin und wieder muss man für Wartungsarbeiten etc. seine vSAN Umgebung herunterfahren.
+Normalerweise ist dieser Vorgang nicht unbedingt kritisch, dennoch bin ich in letzter Zeit öfters darüber gestolpert, dass ein vSAN Node seine Partner nicht mehr gefunden hat.&lt;/p&gt;
+&lt;h3 id=&#34;vsan-umgebung&#34;&gt;vSAN Umgebung&lt;/h3&gt;
+&lt;p&gt;Die vSAN Umgebung umfasst 8 vSAN Nodes als Stretched Cluster + Witness. Also 4+4+N.&lt;/p&gt;
+&lt;h3 id=&#34;die-ausgangslage&#34;&gt;Die Ausgangslage&lt;/h3&gt;
+&lt;p&gt;Nach einem &amp;ldquo;Cluster Shutdown&amp;rdquo; fanden nur noch 7 von 8 Nodes ihre vSAN-Partner.&lt;br&gt;
+Auf meinem Screenshot erkennt man die &amp;ldquo;Command-Ausgabe&amp;rdquo; von Node04.&lt;br&gt;
+In der Zeile &amp;ldquo;Sub-Cluster Member HostName&amp;rdquo; ist deutlich zu erkennen das seine vSAN Partner fehlen.&lt;/p&gt;</description>
       
     </item>
     
