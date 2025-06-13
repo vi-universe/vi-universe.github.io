@@ -333,7 +333,7 @@ stroke-linejoin="round" class="feather feather-home">
 <p>Die NSX-Umgebung erfordert mehrere grundlegende Komponenten:</p>
 <h4 id="t0-router">T0 Router</h4>
 <p>Für den PoC wurde ein vorhandener T0 Router verwendet, der als Active-Active konfiguriert ist und per BGP mit einem MikroTik Switch über zwei Uplink-VLANs peert.
-<figure><a href="01.png"><img src="nsx_avi_openshift/01.png"
+<figure><a href="01.png"><img src="nsx-avi-openshift/01.png"
     alt="T0 Router Übersicht"></a><figcaption>
       <p>T0 Router Übersicht - Klick zum vergrößern</p>
     </figcaption>
@@ -343,7 +343,7 @@ stroke-linejoin="round" class="feather feather-home">
 <p>Ein dedizierter T1 Router wurde speziell für den PoC erstellt und als &ldquo;Distributed Only&rdquo; konfiguriert. T1 Router im HA-Modus &ldquo;Distributed Only&rdquo; haben den Vorteil, dass der Traffic distributed geroutet wird und nicht über die Edge Nodes läuft, was sich positiv auf die Performance auswirkt.</p>
 <p>T1 Router für NSX Advanced LoadBalancer Management</p>
 <p>Für den NSX Advanced LoadBalancer wird ein dedizierter T1 Router &ldquo;Distributed Only&rdquo; für das Service Engine Management Segment erstellt.
-<figure><a href="02.png"><img src="nsx_avi_openshift/02.png"
+<figure><a href="02.png"><img src="/nsx_avi_openshift/02.png"
     alt="T1 Router Übersicht"></a><figcaption>
       <p>T1 Router Übersicht - Klick zum vergrößern</p>
     </figcaption>
@@ -352,7 +352,7 @@ stroke-linejoin="round" class="feather feather-home">
 <h4 id="overlay-segment">Overlay Segment</h4>
 <p>Ein Overlay-Segment für die OpenShift Plattform. In diesem Segment befinden sich sowohl die OpenShift VMs als auch die LoadBalancer Service Engines. Eine wichtige Anforderung von OpenShift ist, dass sich die VIP für Ingress und API im selben &ldquo;MachineNetwork&rdquo; befinden.</p>
 <p>Für das Management der NSX Advanced LoadBalancer Service Engines wird ein Overlay-Segment erstellt und mit dem T1 Router der dafür erstellt wurde verbunden.
-<figure><a href="03.png"><img src="nsx_avi_openshift/03.png"
+<figure><a href="03.png"><img src="/nsx_avi_openshift/03.png"
     alt="Segment Übersicht"></a><figcaption>
       <p>Segment Übersicht - Klick zum vergrößern</p>
     </figcaption>
@@ -363,7 +363,7 @@ stroke-linejoin="round" class="feather feather-home">
 <p>Der NSX Advanced LoadBalancer benöntigt eine Content Library für die automatische Bereitstellung der Service Engines</p>
 <h4 id="cloud-konfiguration">Cloud-Konfiguration</h4>
 <p>Das Management Segment und der T1 Router wird als Management Network hinzugefügt. Das ls-ocp01 Segment muss als Data Network Segment in der NSX Cloud hinzugefügt werden.
-<figure><a href="04.png"><img src="nsx_avi_openshift/04.png"
+<figure><a href="04.png"><img src="/nsx_avi_openshift/04.png"
     alt="Avi NSX Cloud"></a><figcaption>
       <p>Avi NSX Cloud - Klick zum vergrößern</p>
     </figcaption>
@@ -371,7 +371,7 @@ stroke-linejoin="round" class="feather feather-home">
 </p>
 <h4 id="network-profile">Network Profile</h4>
 <p>Unter &ldquo;Infrastructure&rdquo; → &ldquo;Cloud Resources&rdquo; → &ldquo;Networks&rdquo; muss das Network Profile für ls-ocp01 und Management entsprechend konfiguriert werden.
-<figure><a href="05.png"><img src="nsx_avi_openshift/05.png"
+<figure><a href="05.png"><img src="/nsx_avi_openshift/05.png"
     alt="Avi Network Profile"></a><figcaption>
       <p>Avi Network Profile - Klick zum vergrößern</p>
     </figcaption>
@@ -379,7 +379,7 @@ stroke-linejoin="round" class="feather feather-home">
 </p>
 <h4 id="ipam-profile">IPAM Profile</h4>
 <p>Das Segment muss im IPAM/DNS Profile ergänzt werden, um automatische IP-Zuweisung zu ermöglichen.
-<figure><a href="06.png"><img src="nsx_avi_openshift/06.png"
+<figure><a href="06.png"><img src="/nsx_avi_openshift/06.png"
     alt="Avi IPAM"></a><figcaption>
       <p>Avi IPAM - Klick zum vergrößern</p>
     </figcaption>
@@ -437,14 +437,14 @@ Infrastructure → Cloud Ressources → VRF Context</p>
   </tbody>
 </table>
 <p>Alle Virtual Services werden als &ldquo;System-L4-Application&rdquo; erstellt, mit System-TCP Health Monitor und der entsprechenden Service Engine Group.</p>
-<figure><a href="07.png"><img src="nsx_avi_openshift/07.png"
+<figure><a href="07.png"><img src="/nsx_avi_openshift/07.png"
     alt="Avi L4 Virtual Service (vor Installation)"></a><figcaption>
       <p>Avi L4 Virtual Service (vor Installation) - Klick zum vergrößern</p>
     </figcaption>
 </figure>
 
 <p>Nach der Erstellung der Virtual Services, werden diese als &ldquo;Down&rdquo; angezeigt, da noch keine Backend Server existieren.
-<figure><a href="08.png"><img src="nsx_avi_openshift/08.png"
+<figure><a href="08.png"><img src="/nsx_avi_openshift/08.png"
     alt="Avi Virtual Service down (vor Installation)"></a><figcaption>
       <p>Avi Virtual Service down (vor Installation) - Klick zum vergrößern</p>
     </figcaption>
@@ -594,7 +594,7 @@ Infrastructure → Cloud Ressources → VRF Context</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">openshift-install create manifests
 </span></span></code></pre></div><p>In den Manifest-Ordner müssen alle <strong>Dateien aus dem Antrea-Download</strong> kopiert werden.
 Inhalt Antrea-Download
-<figure><a href="09.png"><img src="nsx_avi_openshift/09.png"
+<figure><a href="09.png"><img src="/nsx_avi_openshift/09.png"
     alt="Inhalt Antrea Download"></a><figcaption>
       <p>Inhalt Antrea Download - Klick zum vergrößern</p>
     </figcaption>
@@ -621,7 +621,7 @@ Inhalt Antrea-Download
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">nsxManagers</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;IP-Adressen der NSX Manager&#34;</span><span class="p">]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enableInterworking</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">  </span><span class="c"># Initial auf false, später auf true ändern</span><span class="w">
 </span></span></span></code></pre></div><p>Der folgende Screenshot zeigt die Ordnerstruktur, wie diese nach der Erstellung der Manifests aussieht.
-<figure><a href="10.png"><img src="nsx_avi_openshift/10.png"
+<figure><a href="10.png"><img src="/nsx_avi_openshift/10.png"
     alt="Inhalt OCP Manifests"></a><figcaption>
       <p>Inhalt OCP Manifests - Klick zum vergrößern</p>
     </figcaption>
@@ -633,7 +633,7 @@ Inhalt Antrea-Download
 <p>Nach erfolgreicher Installation kann die Kubeconfig exportiert und der Cluster überprüft werden:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">KUBECONFIG</span><span class="o">=</span>auth/kubeconfig 
 </span></span><span class="line"><span class="cl">./oc get nodes,co
-</span></span></code></pre></div><figure><a href="11.png"><img src="nsx_avi_openshift/11.png"
+</span></span></code></pre></div><figure><a href="11.png"><img src="/nsx_avi_openshift/11.png"
     alt="OpenShift Console"></a><figcaption>
       <p>OpenShift Console - Klick zum vergrößern</p>
     </figcaption>
@@ -666,7 +666,7 @@ Inhalt Antrea-Download
 </span></span><span class="line"><span class="cl">./oc get pods -n vmware-system-antrea
 </span></span></code></pre></div><h2 id="verifikation-und-troubleshooting">Verifikation und Troubleshooting</h2>
 <p>Nach erfolgreicher Registrierung sollte das OpenShift Cluster in NSX unter &ldquo;System&rdquo; → &ldquo;Fabric&rdquo; → &ldquo;Nodes&rdquo; → &ldquo;Container Clusters&rdquo; → &ldquo;Antrea&rdquo; sichtbar sein und einen grünen Status anzeigen.</p>
-<figure><a href="12.png"><img src="nsx_avi_openshift/12.png"
+<figure><a href="12.png"><img src="/nsx_avi_openshift/12.png"
     alt="Antrea Pods während der Registrierung"></a><figcaption>
       <p>Antrea Pods während der Registrierung - Klick zum vergrößern</p>
     </figcaption>
