@@ -268,6 +268,37 @@ more dayone.log
     </item>
     
     <item>
+      <title>DELL-VxRail Log-Bundle</title>
+      <link>https://vi-universe.github.io/posts/vxrail_log_bundle/</link>
+      <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/vxrail_log_bundle/</guid>
+      
+      <description>&lt;h4 id=&#34;log-bundle-shell&#34;&gt;Log-Bundle (Shell)&lt;/h4&gt;
+&lt;p&gt;Das Log-Bundle kann direkt auf dem VxRail Manager erstellt werden und anschließend heruntergeladen werden.
+Entweder man nutzt ssh und verbindet sich direkt mit dem VxRail-Manager oder nutzt die VM Konsole.
+Die Anmeldung am VxRail-Manager erfolgt mit dem Benutzer &amp;ldquo;Mystic&amp;rdquo;. Nach erfolgreicher Anmeldung wechselt man mit su root auf den &amp;ldquo;root&amp;rdquo; Benutzer.&lt;/p&gt;
+&lt;p&gt;Der Pfad zu dem Log-Bundle ist nach der Erstellung -&amp;gt; /tmp/mystic/dc/&lt;/p&gt;
+&lt;h4 id=&#34;vollständiges-log-bundle-beinhaltet-vxrail-manager-vcenter-esxi-idrac-plattform&#34;&gt;Vollständiges Log-Bundle (beinhaltet VxRail-Manager, vCenter, ESXi, iDRAC, Plattform)&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;/mystic/generateLogBundle.py
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;vxrail-manager-log-bundle&#34;&gt;VxRail Manager Log-Bundle&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;/mystic/generateLogBundle.py -v
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;vmware-vcenter-log-bundle&#34;&gt;VMware vCenter Log-Bundle&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;/mystic/generateLogBundle.py -c
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;vmware-esxi-log-bundle&#34;&gt;VMware ESXi Log-Bundle&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;/mystic/generateLogBundle.py -e
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;vxrail-idrac-log-bundle&#34;&gt;VxRail iDRAC Log-Bundle&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;/mystic/generateLogBundle.py -i
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;vxrail-plattform-log-bundle&#34;&gt;VxRail Plattform Log-Bundle&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;/mystic/generateLogBundle.py -p
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;vsan-witness-log-bundle&#34;&gt;vSAN Witness Log-Bundle&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;go&#34;&gt;/mystic/generateLogBundle.py -w
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;log-bundle-per-vcenter-gui&#34;&gt;Log-Bundle per vCenter GUI&lt;/h4&gt;
+&lt;p&gt;Alternativ kann das Log-Bundle im vSphere Client erstellt, heruntergeladen und gelöscht werden.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>ESXi Architektur und Logs</title>
       <link>https://vi-universe.github.io/posts/esxi_architecture_logs/</link>
       <pubDate>Fri, 10 Nov 2023 00:00:00 +0000</pubDate>
@@ -304,6 +335,34 @@ Und dann kommt der Zeitpunkt, an dem ein neuer ESXi-Host im Cluster dazu kommt u
 Oder man betreibt eine kleine vSphere Umgebungen mit nur einem ESXi-Host und muss diese auf einen neuen ESXi-Host migrieren.&lt;/p&gt;
 &lt;p&gt;Dafür habe ich folgendes Script zusammengestellt.&lt;br&gt;
 &lt;a href=&#34;https://github.com/vi-universe/vmware/blob/1b8cb303fd68010e9ef9a23e4ffb655d45aa2cb7/PowerCLI/Migrationstool_vSphere-StandardSwitch.ps1&#34;&gt;Migrationstool_vSphere-StandardSwitch&lt;/a&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>PowerCli13 Update/ Installation QuickGuide</title>
+      <link>https://vi-universe.github.io/posts/powercli_quickguide/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://vi-universe.github.io/posts/powercli_quickguide/</guid>
+      
+      <description>&lt;h3 id=&#34;quick-guide-mit-allen-links-und-informationen-für-die-powercli-version-13&#34;&gt;Quick Guide mit allen Links und Informationen für die PowerCLI Version 13&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;c&#34;&gt;# Deinstallation &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Get-Module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;VMware&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;PowerCLI&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-ListAvailable&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Uninstall-Module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-Force&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# Installation &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Install-Module&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vmware&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;powercli&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-SkipPublisherCheck&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h6 id=&#34;python-37&#34;&gt;Python 3.7&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.python.org/downloads/release/python-370/&#34;&gt;Python 3.7 Donwload&lt;/a&gt;&lt;/p&gt;
+&lt;h6 id=&#34;pip3&#34;&gt;Pip3&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://bootstrap.pypa.io/get-pip.py&#34;&gt;Pip3 Download&lt;/a&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-terminal&#34; data-lang=&#34;terminal&#34;&gt;&amp;lt;python3.7-directory&amp;gt;\python.exe &amp;lt;get-pip-directory&amp;gt;\get-pip.py 
+&amp;lt;python3.7-directory&amp;gt;\Scripts\pip3.7.exe install six psutil lxml pyopenssl
+&lt;/code&gt;&lt;/pre&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# Python Pfad Powershell&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;Set-PowerCLIConfiguration&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-PythonPath&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;python3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;-directory&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;python&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;py&#34;&gt;exe&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-Scope&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;User&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;issues&#34;&gt;Issues&lt;/h3&gt;
+&lt;p&gt;The old certificate that we used had expired and we had to replace it with a new one, which however was from different publisher. And it seems like PowerShell has some issues with that. Just remove the old version and install from scratch.&lt;/p&gt;</description>
       
     </item>
     
