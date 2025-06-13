@@ -326,7 +326,7 @@ Die Log-Dateien lassen sich außerdem filtern. -&amp;gt;&lt;/p&gt;
       
       <description>&lt;p&gt;Gerade wenn es darum geht, unkompliziert und schnell eine vCenter Appliance bereitzustellen, ist es wirklich smart, diese Möglichkeit zu nutzen.
 Nachdem das VMware VCSA ISO File gemountet wurde, findet man unter folgenden Pfad bereits einige Templates.&lt;/p&gt;
-&lt;figure&gt;&lt;a href=&#34;01.jpg&#34;&gt;&lt;img src=&#34;vcsa_cli_deployment/01.jpg&#34;
+&lt;figure&gt;&lt;a href=&#34;01.png&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/vcsa_cli_deployment/01.png&#34;
     alt=&#34;Deployment&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
       &lt;p&gt;Deployment - Klick zum vergrößern&lt;/p&gt;
     &lt;/figcaption&gt;
