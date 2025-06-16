@@ -3,17 +3,17 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">DELL-VxRail Cheat-Sheet | blog.vi-universe.de</title>
-<meta property="og:title" content="DELL-VxRail Cheat-Sheet | blog.vi-universe.de" />
-<meta name="twitter:title" content="DELL-VxRail Cheat-Sheet | blog.vi-universe.de" />
-<meta itemprop="name" content="DELL-VxRail Cheat-Sheet | blog.vi-universe.de" />
-<meta name="application-name" content="DELL-VxRail Cheat-Sheet | blog.vi-universe.de" />
-<meta property="og:site_name" content="blog.vi-universe.de" />
+<title itemprop="name">DELL-VxRail Cheat-Sheet | vi-universe.github.io | Christian Kremer</title>
+<meta property="og:title" content="DELL-VxRail Cheat-Sheet | vi-universe.github.io | Christian Kremer" />
+<meta name="twitter:title" content="DELL-VxRail Cheat-Sheet | vi-universe.github.io | Christian Kremer" />
+<meta itemprop="name" content="DELL-VxRail Cheat-Sheet | vi-universe.github.io | Christian Kremer" />
+<meta name="application-name" content="DELL-VxRail Cheat-Sheet | vi-universe.github.io | Christian Kremer" />
+<meta property="og:site_name" content="vi-universe.github.io" />
 
-<meta name="description" content="vi-universe.de | Christian Kremer">
-<meta itemprop="description" content="vi-universe.de | Christian Kremer" />
-<meta property="og:description" content="vi-universe.de | Christian Kremer" />
-<meta name="twitter:description" content="vi-universe.de | Christian Kremer" />
+<meta name="description" content="vi-universe.github.io | Christian Kremer">
+<meta itemprop="description" content="vi-universe.github.io | Christian Kremer" />
+<meta property="og:description" content="vi-universe.github.io | Christian Kremer" />
+<meta name="twitter:description" content="vi-universe.github.io | Christian Kremer" />
 
 <meta property="og:locale" content="de-de" />
 <meta name="language" content="de-de" />
@@ -62,7 +62,7 @@
         },
         "publisher": {
         "@type": "Organization",
-        "name": "blog.vi-universe.de"
+        "name": "vi-universe.github.io | Christian Kremer"
         }
     }
     </script>
@@ -72,7 +72,7 @@
 
     
     <meta property="og:url" content="https://vi-universe.github.io/posts/vxrail_cheat_sheet/">
-  <meta property="og:site_name" content="blog.vi-universe.de">
+  <meta property="og:site_name" content="vi-universe.github.io | Christian Kremer">
   <meta property="og:title" content="DELL-VxRail Cheat-Sheet">
   <meta property="og:description" content="Standard Passwörter Component Username Default Password Network (Default) iDRAC root calvin DHCP ESXi root root Passw0rd! DHCP VxRail Manager mystic VxRailManager@201602! 192.168.10.200 VxRail Manager root Passw0rd! 192.168.10.200 Loudmouth Services # ESXi Shell /etc/init.d/loudmouth [start|stop|status|restart] # VxRail Manager systemctl [start|stop|status|restart] vmware-loudmouth Zeit # ESXi Shell esxcli system time get esxcli system time set d|–day -H|–hour -m|–min -M|–month -s|–sec -y|–year # VxRail Manager date date -s “30 JAN 2024 12:30:00” VxRail Manager IP-Einstellung # ESXi Shell vxrail-primary --config --vxrail-address XXX.XXX.XXX.XXX --vxrail-netmask XXX.XXX.XXX.XXX --vxrail-gateway XXX.XXX.XXX.XXX --vlan XXX VxRail Manager # ESXi Shell esxcli vm process list vim-cmd vmsvc/getallvms vim-cmd vmsvc/power.shutdown vmid vim-cmd vmsvc/power.getstate vmid vim-cmd vmsvc/power.on vmid vim-cmd vmsvc/power.getstate vmid VxRail Manager Installation-Logs # VxRail Manager cat dayone.log tail -f dayone.log tail -f dayone.log | grep ERROR tail -n 100 dayone.log more dayone.log # Loudmouth Discovery /usr/lib/vmware-loudmouth/bin/loudmouthc query | grep -o &#34;applianceID=...............&#34; | sort">
   <meta property="og:locale" content="de_de">
