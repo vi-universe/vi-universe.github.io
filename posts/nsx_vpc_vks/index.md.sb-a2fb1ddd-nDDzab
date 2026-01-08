@@ -1,0 +1,197 @@
++++
+date = '2025-10-21'
+draft = true
+title = 'VCF 9 VKS mit NSX VPC und Antrea Egress'
++++
+
+
+Mit dem Release von **VMware Cloud Foundation (VCF) 9** hat sich die Art und Weise, wie Kubernetes-Infrastruktur bereitgestellt wird, grundlegend weiterentwickelt. Der **vSphere Kubernetes Service (VKS)** kann nun das neue **NSX VPC-Modell** nutzen, um Entwicklern echte Self-Service-Funktionen bei gleichzeitig strikter Isolation zu bieten.
+
+In diesem Beitrag schauen wir uns an, wie das Zusammenspiel zwischen VKS, den virtuellen privaten Netzwerken (VPCs) und dem Container Networking Interface (CNI) **Antrea** funktioniert.
+
+---
+
+### Ressourcen zur Bereitstellung
+
+Bevor wir in die technischen Details einsteigen: In diesem Beitrag setze ich voraus, dass die Grundzüge von VCF 9 bekannt sind. Wenn du eine Schritt-für-Schritt-Anleitung zur initialen Bereitstellung suchst, empfehle ich diese exzellenten Quellen:
+
+* **VKS Deployment:** Wer wissen möchte, wie man VKS mit NSX unter VCF 9 bereitstellt, findet bei **Steven Schramm** einen detaillierten Guide:  
+    👉 [VKS mit NSX VPC – sdn-techtalk.com](https://sdn-techtalk.com/posts/vks-vpc/)
+* **NSX VPC Deep Dive:** Für ein tieferes Verständnis der Architektur hinter den NSX VPCs (Quotas, IPAM und Routing) ist die Blog-Serie von **Daniel Krieger** die beste Anlaufstelle:  
+    👉 [VCF 9 - NSX VPC Part 1 bis 3 – sdn-warrior.org](https://sdn-warrior.org/posts/vcf9-nsx-vpc/)
+
+---
+### Was ist Egress?
+
+**Egress** ist eine CRD-API (Custom Resource Definition), die den externen Zugriff von Pods innerhalb eines Clusters verwaltet. Sie ermöglicht es festzulegen, welche **Egress-IP (SNAT)** der ausgehende Datenverkehr von ausgewählten Pods in das externe Netzwerk verwenden soll.
+
+### Wie funktioniert es?
+Wenn ein ausgewählter Pod auf das externe Netzwerk zugreift, wird der Egress-Traffic durch einen Tunnel zu dem Node geleitet, der die entsprechende Egress-IP hostet (falls dies ein anderer Node ist als der, auf dem der Pod läuft). Beim Verlassen dieses Nodes wird der Traffic dann per **SNAT** (Source Network Address Translation) auf die definierte Egress-IP umgeschrieben.
+
+### Typische Einsatzszenarien:
+
+* **Konsistente IP-Adressen:** Wenn bestimmte Pods eine dauerhaft gleichbleibende IP-Adresse benötigen, um sich mit Diensten außerhalb des Clusters zu verbinden – etwa für die Quellverfolgung in Audit-Logs oder für die Filterung nach Quell-IPs in externen Firewalls.
+* **Gezielte Verkehrssteuerung:** Wenn du erzwingen möchtest, dass ausgehende externe Verbindungen den Cluster über ganz bestimmte Nodes verlassen, sei es aufgrund von Sicherheitskontrollen oder Einschränkungen in der Netzwerktopologie.
+
+### Egress Separate Subnet
+Durch das aktivieren von **EgressSeparateSubnet** wird die Funktion ermöglicht, Egress-IPs aus einem anderen Subnetz zuzuweisen als dem Standard-Node-Subnetz.
+
+### Standard Egress Verhalten
+* **Node-SNAT:** Wenn ein Pod mit einem Ziel außerhalb des Kubernetes-Clusters kommuniziert, wird seine Quell-IP standardmäßig auf die IP-Adresse des Worker-Nodes umgeschrieben (SNAT), auf dem der Pod gerade läuft. 
+
+### Antrea Egress im VKS-Paradigma
+
+Der ausgehende Datenverkehr (Outbound Traffic) der VKS-Cluster-Nodes läuft normalerweise über ein SNAT. Dies geschieht entweder am **VPC Gateway** (bei Supervisor-Clustern mit VCF Networking und VPC) oder am **vSphere Namespace Tier-1 Gateway** (im NSX Classic Mode).
+
+Dies führt zu einer Komplikation: Die spezifische **Antrea Egress-IP geht durch das SNAT verloren**. Infolgedessen sieht die Ziel-Workload (egal ob VM, Bare-Metal-Server oder Container-Workload) nicht die Antrea Egress-IP als Quelle des Traffics, sondern die durch SNAT übersetzte IP. 
+
+*Hinweis: Dies gilt für Szenarien, bei denen das Ziel außerhalb des Quell-vSphere-Namespace liegt. Befindet sich das Ziel im selben Namespace, wird der Traffic verteilt und unterliegt keinem SNAT.*
+
+####  Egress über NSX Child-Segmente / Egress Separate Subnet
+Dieses Problem kann gelöst werden, indem der Antrea Egress mit einem **NSX Child-Segment** verknüpft wird. Dabei dient das Segment der VKS-Cluster-Nodes als übergeordnetes Segment (Parent Segment). Innerhalb jeder VKS-Cluster-Node-VM ist **Open vSwitch (OVS)** dafür verantwortlich, den Netzwerkverkehr mit der entsprechenden VLAN-ID zu taggen, bevor die Pakete über die virtuelle Netzwerkschnittstelle (vNIC) übertragen werden. Dieses Tagging stellt sicher, dass die Pakete innerhalb der Netzwerkinfrastruktur korrekt identifiziert und ohne IP-Verlust geroutet werden.
+
+#### Schritte zur Aktivierung von Antrea EgressSeparateSubnet
+
+Die "Highlevel" Schritte zur Aktivierung von **Antrea EgressSeparateSubnet** auf einem VKS-Cluster sind wie folgt:
+
+1. **EgressSeparateSubnet aktivieren:** Aktiviere das Feature in der `antreaconfig`-Konfiguration des Ziel-VKS-Clusters.
+2. **Subnetz auf dem Supervisor erstellen:** Erstelle ein neues Subnetz auf dem Supervisor-Cluster mit dem gewünschten CIDR-Bereich.
+3. **SubnetConnectionBindingMap erstellen:** Erstelle eine `SubnetConnectionBindingMap` CR (Custom Resource) auf dem Supervisor-Cluster, um das `SubnetSet` des aktuellen Clusters mit dem gewünschten VLAN zu verknüpfen.
+4. **Antrea ExternalIPPool konfigurieren:** Erstelle einen `ExternalIPPool` innerhalb des Kubernetes-Clusters (auf dem Antrea läuft) unter Verwendung der zugewiesenen Daten (CIDR, Gateway und VLAN).
+5. **Antrea Egress-Ressource anlegen:** Erstelle die Antrea `Egress`-Ressource und verweise dabei auf den neu angelegten `ExternalIPPool`.
+
+#### EgressSeparateSubnet
+
+Bevor der VKS-Workload-Cluster erstellt wird, muss die Netzwerkkonfiguration im entsprechenden vSphere Namespace angepasst werden. Dies geschieht über die `AntreaConfig` Custom Resource. 
+
+Besonders wichtig ist hierbei die Aktivierung des Feature Gates `EgressSeparateSubnet`, um die spätere Zuweisung dedizierter Egress-IPs zu ermöglichen, sowie die Aktivierung der NSX-Integration.
+
+```yaml
+apiVersion: [cni.tanzu.vmware.com/v1alpha1](https://cni.tanzu.vmware.com/v1alpha1)
+kind: AntreaConfig
+metadata:
+  name: tkc-a-antrea-package # Das Prefix ist zwingend erforderlich
+  namespace: ns-vks-lab
+spec:
+  antrea:
+    config:
+      featureGates:
+        EgressSeparateSubnet: true
+        NodePortLocal: true
+  antreaNSX:
+    enable: true # Standardmäßig auf false; muss für NSX-Integration aktiviert werden
+```
+
+#### Subnetz auf dem Supervisor erstellen
+
+Nachdem die `AntreaConfig` vorbereitet wurde, muss das eigentliche Netzwerksegment auf Supervisor-Ebene definiert werden. Hierbei ist das Feld `accessMode` entscheidend, mögliche Werte sind hierbei **Public**, **PrivateTGW** oder **Private**.|
+Auf die jeweiligen Unterschiede und wann, wo und wie ein NAT passiert geht mein Kollegen Daniel Krieger in seinem Blog Artikel ein.
+👉 [VCF 9 - NSX VPC External-Connectivity– sdn-warrior.org](https://sdn-warrior.org/posts/vcf9-nsx-vpc/#external-connectivity)
+
+In diesem Beispiel erstellen wir ein Subnetz mit Public Subnet. Die "ipAddresses" muss ein Subnetz aus dem External IP-Address Block des Projects sein. 
+
+```yaml
+apiVersion: [crd.nsx.vmware.com/v1alpha1](https://crd.nsx.vmware.com/v1alpha1)
+kind: Subnet
+metadata:
+  name: egress1-public-sn
+spec:
+  accessMode: Public
+  subnetDHCPConfig:
+    mode: DHCPDeactivated
+  ipAddresses:
+  - 10.172.66.16/28
+```
+#### Subnetz-Definition anwenden
+
+Das Subnetz wird direkt im **Supervisor-Kontext** erstellt. Wichtig ist dabei, dass der Befehl gegen den Namespace ausgeführt wird, in dem dein VKS-Cluster betrieben wird.
+
+```bash
+kubectl apply -f egress-subnet.yaml -n ns-vks-lab
+```
+{{< figure src="nsx_vpc_vks/ippool-subnet.png" link="ippool-subnet.png" alt="NSX VPC IP-Pool Subnetz" caption="NSX VPC IP-Pool Übersicht – Klick zum Vergrößern" >}}
+
+#### SubnetConnectionBindingMap
+
+Nachdem das Subnetz erstellt wurde, muss es logisch mit dem SubnetSet verknüpft werden. Dies geschieht über die `SubnetConnectionBindingMap`. Diese Ressource bildet die Brücke zwischen dem definierten Subnetz und dem spezifischen `SubnetSet` deines Clusters.
+
+```yaml
+apiVersion: [crd.nsx.vmware.com/v1alpha1](https://crd.nsx.vmware.com/v1alpha1)
+kind: SubnetConnectionBindingMap
+metadata:
+  name: egress1-public-sn-binding
+spec:
+  subnetName: egress1-public-sn      # Name des zuvor erstellten Subnets
+  targetSubnetSetName: tkc-a-7vb9q   # Das SubnetSet deines VKS-Clusters
+  vlanTrafficTag: 16                 # Die VLAN-ID für das Tagging (OVS)
+```
+
+##### Identifikation des Subnet Sets
+
+```bash
+# Abfrage im Supervisor-Kontext
+kubectl get vsphereclusters -n ns-vks-lab -o yaml | grep name
+```
+* Ausgabe: 
+```bash
+cluster.x-k8s.io/cloned-from-name: tkc-infrastructure-v3.5.0
+      cluster.x-k8s.io/cluster-name: tkc-a
+    name: tkc-a-7vb9q  # <--- Dies ist der Name für targetSubnetSetName
+    namespace: ns-vks-lab
+      name: tkc-a
+ ```
+ 
+ #### Antrea ExternalIPPool 
+ 
+Innerhalb des **Workload-Clusters** definieren wir nun den IP-Pool, den Antrea für die Egress-Zuweisung nutzen soll. Die `vlan`-ID muss dabei zwingend mit dem `vlanTrafficTag` aus der zuvor erstellten `SubnetConnectionBindingMap` auf dem Supervisor übereinstimmen.
+
+```yaml
+apiVersion: crd.antrea.io/v1beta1
+kind: ExternalIPPool
+metadata:
+  name: egress1-ext-ippool
+spec:
+  ipRanges:
+  - start: 10.172.66.18
+    end: 10.172.66.30
+  subnetInfo:
+    gateway: 10.172.66.17
+    prefixLength: 28
+    vlan: 16
+  nodeSelector: {}
+  # Optional: Selektion spezifischer Nodes für den Egress-Traffic
+  # matchLabels:
+  #   network-role: egress-gateway
+  ```
+  
+  #### Antrea Egress-Ressource
+  
+  Mit der `Egress`-Ressource wird nun die Logik definiert: Welche Pods sollen die dedizierte Egress-IP verwenden? In diesem Beispiel selektieren wir gezielt einen Pod im `default`-Namespace.
+
+```yaml
+apiVersion: crd.antrea.io/v1beta1
+kind: Egress
+metadata:
+  name: nginx-evoila-demo-1-egress
+spec:
+  appliedTo:
+    namespaceSelector:
+      matchLabels:
+        kubernetes.io/metadata.name: default
+    podSelector:
+      matchLabels:
+        app: nginx-evoila-demo-1
+  externalIPPool: egress1-ext-ippool
+  ```
+  
+ 
+  #### Validierung und Test der Konfiguration
+
+Um sicherzustellen, dass die Konfiguration korrekt greift und der Traffic tatsächlich die zugewiesene IP aus dem Antrea-Pool nutzt, führen wir einen einfachen Test durch.
+
+Für die Validierung nutze ich ein Test-Deployment innerhalb des Kubernetes-Clusters und führe einen `curl`-Befehl gegen ein Ziel außerhalb der NSX-Umgebung aus. Als Ziel dient ein kleiner **FastAPI-Container**, der so konfiguriert ist, dass er lediglich die IP-Adresse des Anfragenden (**Requester IP**) im Body zurückgibt.
+
+Wir loggen uns in einen Pods ein und senden den Request:
+
+  {{< figure src="nsx_vpc_vks/egress-test.png" link="egress-test.png" alt="Egress Test" caption="Egress Test Übersicht – Klick zum Vergrößern" >}}
+  
