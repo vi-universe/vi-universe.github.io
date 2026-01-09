@@ -6,17 +6,33 @@
     <description>Recent content on vi-universe.github.io | Christian Kremer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>de-de</language>
-    <lastBuildDate>Thu, 08 Jan 2026 11:48:26 +0100</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VCF 9 VKS Kubernetes Gateway API mit NSX Avi LoadBalancer und AKO</title>
+      <link>http://localhost:1313/posts/vks_ako_gatewayapi/</link>
+      <pubDate>Fri, 19 Dec 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/vks_ako_gatewayapi/</guid>
+      
+      <description>&lt;p&gt;Die Kubernetes Gateway API ist weit mehr als nur ein Nachfolger für das klassische Ingress-Modell. Sie ist ein moderner Standard für das Service-Networking, der speziell für die Anforderungen von Enterprise-Umgebungen entwickelt wurde.
+Die Gateway API basiert auf einer klaren Trennung von Verantwortlichkeiten (&lt;strong&gt;Separation of Concerns&lt;/strong&gt;). Dies wird durch drei zentrale Objekttypen erreicht, die perfekt mit der Rollenverteilung in größeren IT-Organisationen harmonieren:&lt;/p&gt;
+&lt;h4 id=&#34;gatewayclass-das-fundament&#34;&gt;GatewayClass: Das Fundament&lt;/h4&gt;
+&lt;p&gt;Die &lt;strong&gt;GatewayClass&lt;/strong&gt; definiert eine Gruppe von Gateways, die eine gemeinsame Konfiguration und ein identisches Verhalten aufweisen.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>VCF 9 VKS mit NSX VPC und Antrea Egress</title>
       <link>http://localhost:1313/posts/nsx_vpc_vks/</link>
-      <pubDate>Thu, 08 Jan 2026 11:48:26 +0100</pubDate>
+      <pubDate>Tue, 21 Oct 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/posts/nsx_vpc_vks/</guid>
       
-      <description>&lt;h1 id=&#34;vmware-cloud-foundation-9-vks-mit-nsx-vpc-und-antrea-cni&#34;&gt;VMware Cloud Foundation 9: VKS mit NSX VPC und Antrea CNI&lt;/h1&gt;
-&lt;p&gt;Mit dem Release von &lt;strong&gt;VMware Cloud Foundation (VCF) 9&lt;/strong&gt; hat sich die Art und Weise, wie Kubernetes-Infrastruktur bereitgestellt wird, grundlegend weiterentwickelt. Der &lt;strong&gt;vSphere Kubernetes Service (VKS)&lt;/strong&gt; kann nun das neue &lt;strong&gt;NSX VPC-Modell&lt;/strong&gt; nutzen, um Entwicklern echte Self-Service-Funktionen bei gleichzeitig strikter Isolation zu bieten.&lt;/p&gt;
-&lt;p&gt;In diesem Beitrag schauen wir uns an, wie das Zusammenspiel zwischen VKS, den virtuellen privaten Netzwerken (VPCs) und dem Container Networking Interface (CNI) &lt;strong&gt;Antrea&lt;/strong&gt; funktioniert.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Mit dem Release von &lt;strong&gt;VMware Cloud Foundation (VCF) 9&lt;/strong&gt; hat sich die Art und Weise, wie Kubernetes-Infrastruktur bereitgestellt wird, grundlegend weiterentwickelt. Der &lt;strong&gt;vSphere Kubernetes Service (VKS)&lt;/strong&gt; kann nun das neue &lt;strong&gt;NSX VPC-Modell&lt;/strong&gt; nutzen, um Entwicklern echte Self-Service-Funktionen bei gleichzeitig strikter Isolation zu bieten.&lt;/p&gt;
+&lt;p&gt;In diesem Beitrag schauen wir uns an, wie das Zusammenspiel zwischen VKS, den virtuellen privaten Netzwerken (VPCs) und dem Container Networking Interface (CNI) &lt;strong&gt;Antrea&lt;/strong&gt; funktioniert.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;ressourcen-zur-bereitstellung&#34;&gt;Ressourcen zur Bereitstellung&lt;/h4&gt;
+&lt;p&gt;Bevor wir in die technischen Details einsteigen: In diesem Beitrag setze ich voraus, dass die Grundzüge von VCF 9 bekannt sind. Wenn du eine Schritt-für-Schritt-Anleitung zur initialen Bereitstellung suchst, empfehle ich diese exzellenten Quellen:&lt;/p&gt;</description>
       
     </item>
     

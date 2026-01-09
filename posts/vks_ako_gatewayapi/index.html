@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="de-de"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">VCF 9 VKS Kubernetes Gateway API mit NSX Avi LoadBalancer und AKO | vi-universe.github.io | Christian Kremer</title>
+<meta property="og:title" content="VCF 9 VKS Kubernetes Gateway API mit NSX Avi LoadBalancer und AKO | vi-universe.github.io | Christian Kremer" />
+<meta name="twitter:title" content="VCF 9 VKS Kubernetes Gateway API mit NSX Avi LoadBalancer und AKO | vi-universe.github.io | Christian Kremer" />
+<meta itemprop="name" content="VCF 9 VKS Kubernetes Gateway API mit NSX Avi LoadBalancer und AKO | vi-universe.github.io | Christian Kremer" />
+<meta name="application-name" content="VCF 9 VKS Kubernetes Gateway API mit NSX Avi LoadBalancer und AKO | vi-universe.github.io | Christian Kremer" />
+<meta property="og:site_name" content="vi-universe.github.io" />
+
+<meta name="description" content="vi-universe.github.io | Christian Kremer">
+<meta itemprop="description" content="vi-universe.github.io | Christian Kremer" />
+<meta property="og:description" content="vi-universe.github.io | Christian Kremer" />
+<meta name="twitter:description" content="vi-universe.github.io | Christian Kremer" />
+
+<meta property="og:locale" content="de-de" />
+<meta name="language" content="de-de" />
+
+  <link rel="alternate" hreflang="de-de" href="http://localhost:1313/posts/vks_ako_gatewayapi/" title="German" />
+
+
+
+
+
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2025-12-19T00:00:00Z />
+    <meta property="article:published_time" content=2025-12-19T00:00:00Z />
+    <meta property="og:url" content="http://localhost:1313/posts/vks_ako_gatewayapi/" />
+
+    
+    <meta property="og:article:author" content="Christian Kremer" />
+    <meta property="article:author" content="Christian Kremer" />
+    <meta name="author" content="Christian Kremer" />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "VCF 9 VKS Kubernetes Gateway API mit NSX Avi LoadBalancer und AKO",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2025-12-19",
+        "description": "",
+        "wordCount":  961 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2025-12-19",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "vi-universe.github.io | Christian Kremer"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.147.8">
+
+    
+    <meta property="og:url" content="http://localhost:1313/posts/vks_ako_gatewayapi/">
+  <meta property="og:site_name" content="vi-universe.github.io | Christian Kremer">
+  <meta property="og:title" content="VCF 9 VKS Kubernetes Gateway API mit NSX Avi LoadBalancer und AKO">
+  <meta property="og:description" content="Die Kubernetes Gateway API ist weit mehr als nur ein Nachfolger für das klassische Ingress-Modell. Sie ist ein moderner Standard für das Service-Networking, der speziell für die Anforderungen von Enterprise-Umgebungen entwickelt wurde. Die Gateway API basiert auf einer klaren Trennung von Verantwortlichkeiten (Separation of Concerns). Dies wird durch drei zentrale Objekttypen erreicht, die perfekt mit der Rollenverteilung in größeren IT-Organisationen harmonieren:
+GatewayClass: Das Fundament Die GatewayClass definiert eine Gruppe von Gateways, die eine gemeinsame Konfiguration und ein identisches Verhalten aufweisen.">
+  <meta property="og:locale" content="de_de">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-12-19T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-19T00:00:00+00:00">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="VCF 9 VKS Kubernetes Gateway API mit NSX Avi LoadBalancer und AKO">
+  <meta name="twitter:description" content="Die Kubernetes Gateway API ist weit mehr als nur ein Nachfolger für das klassische Ingress-Modell. Sie ist ein moderner Standard für das Service-Networking, der speziell für die Anforderungen von Enterprise-Umgebungen entwickelt wurde. Die Gateway API basiert auf einer klaren Trennung von Verantwortlichkeiten (Separation of Concerns). Dies wird durch drei zentrale Objekttypen erreicht, die perfekt mit der Rollenverteilung in größeren IT-Organisationen harmonieren:
+GatewayClass: Das Fundament Die GatewayClass definiert eine Gruppe von Gateways, die eine gemeinsame Konfiguration und ein identisches Verhalten aufweisen.">
+
+
+    
+
+    <link rel="canonical" href="http://localhost:1313/posts/vks_ako_gatewayapi/">
+    <link href="/style.min.cf5e90893fe6ed558990ae94c193d330841d6aabc33aa8f6f65ef6e15b25378e.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+      <meta name="google-site-verification" content="8-AAlYVqr7YS51n8n8D6dd01y8cm0kociCCSSUTR7LQ" />
+
+    
+</head>
+<body data-theme = "auto" class="notransition">
+
+<script src="/js/theme.js"></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1313/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Startseite</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Startseite
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Beiträge
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/pages/about/">
+                        Über mich
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">VCF 9 VKS Kubernetes Gateway API mit NSX Avi LoadBalancer und AKO</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2025-12-19T00:00:00&#43;00:00" itemprop="datePublished"> 19.12.2025 </time>
+                </div>
+                
+            </header>
+            
+    
+    <details class="toc" ZgotmplZ>
+        <summary><b>Inhaltsverzeichnis</b></summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#gatewayclass-das-fundament">GatewayClass: Das Fundament</a></li>
+            <li><a href="#gateway-der-einstiegspunkt">Gateway: Der Einstiegspunkt</a></li>
+            <li><a href="#routes-httproute-tcproute-etc">Routes (HTTPRoute, TCPRoute, etc.)</a></li>
+            <li><a href="#routes-an-gateways-anhängen">Routes an Gateways anhängen</a></li>
+            <li><a href="#beispiel-mit-ako">Beispiel mit AKO</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </details>
+            <div class="page-content">
+                <p>Die Kubernetes Gateway API ist weit mehr als nur ein Nachfolger für das klassische Ingress-Modell. Sie ist ein moderner Standard für das Service-Networking, der speziell für die Anforderungen von Enterprise-Umgebungen entwickelt wurde.
+Die Gateway API basiert auf einer klaren Trennung von Verantwortlichkeiten (<strong>Separation of Concerns</strong>). Dies wird durch drei zentrale Objekttypen erreicht, die perfekt mit der Rollenverteilung in größeren IT-Organisationen harmonieren:</p>
+<h4 id="gatewayclass-das-fundament">GatewayClass: Das Fundament</h4>
+<p>Die <strong>GatewayClass</strong> definiert eine Gruppe von Gateways, die eine gemeinsame Konfiguration und ein identisches Verhalten aufweisen.</p>
+<ul>
+<li><strong>Controller-Bindung:</strong> Jede <code>GatewayClass</code> wird von genau einem Controller verwaltet (z. B. AKO), wobei ein Controller durchaus mehrere GatewayClasses gleichzeitig handhaben kann.</li>
+<li><strong>Infrastruktur-Vorgabe:</strong> Ein Controller, der die Gateway API implementiert, stellt eine zugehörige <code>GatewayClass</code>-Ressource bereit, die der Benutzer in seinen Gateways referenziert.</li>
+<li><strong>Geltungsbereich:</strong> Es handelt sich um eine Ressource auf <strong>Cluster-Ebene</strong>. Es muss mindestens eine <code>GatewayClass</code> definiert sein, um funktionale Gateways erstellen zu können.</li>
+</ul>
+<h4 id="gateway-der-einstiegspunkt">Gateway: Der Einstiegspunkt</h4>
+<p>Ein Gateway beschreibt, wie Datenverkehr zu Services innerhalb des Clusters weitergeleitet werden kann. Es definiert also einen Mechanismus, um Traffic aus einer Quelle, die nichts von Kubernetes weiß, in eine Umgebung zu übersetzen, die Kubernetes versteht. Beispiele dafür sind der Datenverkehr, der von einem Cloud‑Load‑Balancer, einem In‑Cluster‑Proxy oder einem externen Hardware‑Load‑Balancer an einen Kubernetes Service gesendet wird. Obwohl viele Anwendungsfälle den Ursprung des Traffics „außerhalb“ des Clusters haben, ist das keine zwingende Voraussetzung.</p>
+<p>Es stellt eine Anforderung für eine spezifische Load‑Balancer‑Konfiguration dar, die die Vorgaben und das Verhalten der GatewayClass umsetzt. Diese Ressource kann direkt von einem Operator erstellt werden oder durch einen Controller, der die jeweilige GatewayClass verwaltet.</p>
+<p>Da die Gateway‑Spezifikation die Absicht des Benutzers abbildet, enthält sie möglicherweise nicht alle Details, die für eine vollständige Implementierung notwendig sind. Benutzer können beispielsweise Felder wie Adressen oder TLS‑Einstellungen auslassen. Dadurch kann der Controller, der die GatewayClass verwaltet, diese Werte automatisch bereitstellen – was wiederum zu einer portableren Spezifikation führt. Dieses Verhalten wird über das GatewayClass‑Statusobjekt transparent gemacht.</p>
+<p><strong>Gateway‑Objekte</strong> verbinden eine oder mehrere Adressen mit einem oder mehreren <strong>Listenern</strong>.</p>
+<p>Adressen sind die Punkte, über die das Gateway erreichbar ist – in der Regel IP‑Adressen. In manchen Implementierungen (etwa solchen, die über AWS‑Load‑Balancer routen) können stattdessen auch Domainnamen verwendet werden.</p>
+<p>Listener beschreiben, wie das Gateway den eingehenden Traffic entgegennehmen soll. Sie definieren Port, Protokoll und weitere protokollspezifische Details. Listener, die nicht voneinander unterscheidbar sind, stehen in Konflikt miteinander. Die Gateway API legt genau fest, wie solche Konflikte gehandhabt werden. Was Listener als „unterscheidbar“ auszeichnet, ist etwas komplexer und wird im Abschnitt „Distinctiveness“ ausführlich behandelt.</p>
+<p>Ein zentrales Prinzip ist, dass jeder eingehende Traffic im Gateway nur einem einzigen Listener zugeordnet werden darf. Sobald ein Listener ausgewählt ist, muss der Traffic über eine angehängte, protokollspezifische Route weitergeleitet werden – oder er wird vom Gateway verworfen.</p>
+<p>Für die Beziehung zwischen Route und Gateway ist das Wichtigste, dass Routes an einen oder mehrere Listener des Gateways angehängt werden.</p>
+<h4 id="routes-httproute-tcproute-etc">Routes (HTTPRoute, TCPRoute, etc.)</h4>
+<p>Eines der wichtigsten Anwendungsfälle der Gateway API ist es, Ana als Application Developer und ihren Kollegen zu ermöglichen, mehrere <strong>Routes</strong> auf denselben <strong>Listener</strong> zu multiplexen. Jeder Route-Typ verfügt über unterschiedliche Informationen, die dies ermöglichen – diese heißen <strong>Routing Discriminators</strong> (Routing-Unterscheidungsmerkmale).</p>
+<p>Genauer gesagt sind <strong>Routing Discriminators</strong> die Informationen, die es mehreren Routes erlauben, denselben Port auf einem Listener zu teilen.</p>
+<p><strong>Besonderheit</strong>: TCPRoute und UDPRoute können aufgrund fehlender Routing Discriminators nur <strong>eine einzige Route</strong> pro Listener haben.</p>
+<h4 id="routes-an-gateways-anhängen">Routes an Gateways anhängen</h4>
+<p>Wenn eine <strong>Route</strong> an ein <strong>Gateway</strong> angehängt wird, stellt sie eine Konfiguration dar, die auf dem Gateway angewendet wird, um den zugrunde liegenden Load Balancer oder Proxy zu konfigurieren. Wie und welche Routes an Gateways angehängt werden, wird durch die Ressourcen selbst gesteuert. Route- und Gateway-Ressourcen enthalten eingebaute Kontrollen, um Anhänge zu erlauben oder einzuschränken. In Kombination mit Kubernetes RBAC ermöglichen diese Mechanismen Organisationen, Policies durchzusetzen, wie Routes exponiert und auf welchen Gateways sie verwendet werden.</p>
+<p>Es gibt große Flexibilität, wie Routes an Gateways angehängt werden können, um unterschiedliche Organisationsrichtlinien und Verantwortungsbereiche zu erreichen:</p>
+<ul>
+<li><strong>One-to-one</strong>: Ein Gateway und eine Route werden von einem einzigen Eigentümer bereitgestellt und verwendet</li>
+<li><strong>One-to-many</strong>: Ein Gateway kann viele Routes von verschiedenen Teams aus unterschiedlichen Namespaces gebunden haben</li>
+<li><strong>Many-to-one</strong>: Routes können auch an mehrere Gateways gebunden werden, sodass eine Route die App-Exposition gleichzeitig über verschiedene IPs, Load Balancer oder Netzwerke steuert.</li>
+</ul>
+<p>Damit eine Route an einen <strong>Listener</strong> angehängt werden kann, müssen zwei Bedingungen erfüllt sein:</p>
+<ol>
+<li>Die Route muss das Gateway (oder einen seiner Listener via <code>sectionName</code>) in ihrer <code>parentRefs</code> referenzieren. <strong>Alle</strong> Gateway-API-konformen Routes müssen eine <code>parentRefs</code>enthalten.</li>
+<li>Der <strong>Listener</strong> muss den Anhang der Route <strong>akzeptieren</strong>. Listener können auf vielfältige Weise beschreiben, welche Form Routes haben dürfen, die sich anhängen sollen. Manche Anhänge erfordern eine Übereinstimmung zwischen Listener und Route über protokoll-spezifische Details (z. B. übereinstimmende Hostnames zwischen Listener und HTTPRoute).</li>
+</ol>
+<p>Die <strong>Listener-Seite</strong> stellt sicher, dass Anas Route eine gültige Konfiguration erzeugt und Chihiros Anforderungen (falls vorhanden) an den zulässigen Traffic auf diesem Gateway erfüllt.</p>
+<hr>
+<h4 id="beispiel-mit-ako">Beispiel mit AKO</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Namespace für das Gateway</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Namespace</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">avi-gateway-infra</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">gateway.networking.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Gateway</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">avi-gateway-public</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">avi-gateway-infra</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networking.vmware.com/lb-vip-type</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;public&#34;</span><span class="w"> </span><span class="c"># Weist eine VIP aus dem **Public IP-Adresspool** zu .Für Services, die externen Zugriff oder internetgerichtete Workloads benötigen </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">gatewayClassName</span><span class="p">:</span><span class="w"> </span><span class="l">avi-lb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">listeners</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">gw-api-demo-01</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">HTTP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l">gw-api-demo-01.avi.vi-universe.lab</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">allowedRoutes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">namespaces</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l">All</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">gateway.networking.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Gateway</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">avi-gateway-private</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">avi-gateway-infra</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networking.vmware.com/lb-vip-type</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;private&#34;</span><span class="w"> </span><span class="c">#Weist eine VIP aus dem **Private IP-Adresspool** zu. Für interne Services, erhöhte Sicherheit oder private Netzwerkanforderungen </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">gatewayClassName</span><span class="p">:</span><span class="w"> </span><span class="l">avi-lb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">listeners</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">gw-api-demo-02</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">HTTP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l">gw-api-demo-02.avi.vi-universe.lab</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">allowedRoutes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">namespaces</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l">All</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">gw-api-demo-01-svc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">gw-api-deployment-01</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">gw-api-demo-01</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">gateway.networking.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">HTTPRoute</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">gw-api-demo-01-http-route</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">gw-api-deployment-01</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">parentRefs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">avi-gateway-public</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">avi-gateway-infra</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hostnames</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;gw-api-demo-01.avi.vi-universe.lab&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">backendRefs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">gw-api-demo-01-svc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span></span></span></code></pre></div>
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/vi-universe" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://www.linkedin.com/in/christian-kremer-it" target="_blank" rel="noopener noreferrer me"
+    title="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+<a href="/index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2026 Christian Kremer.
+        Unterstützt durch <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
+    </small>
+</footer><a href="#" title="Zum Seitenanfang" id="totop">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" stroke="currentColor" viewBox="0 96 960 960">
+    <path d="M283 704.739 234.261 656 480 410.261 725.739 656 677 704.739l-197-197-197 197Z"/>
+</svg>
+
+</a>
+
+
+    
+
+
+
+
+    
+    
+        
+    
+
+    
+    
+        
+    
+
+
+
+    
+    <script async src="http://localhost:1313/js/main.js" ></script>
+
+    
+
+</body>
+</html>
