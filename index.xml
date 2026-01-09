@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>vi-universe.github.io | Christian Kremer</title>
-    <link>http://localhost:1313/</link>
+    <link>https://vi-universe.github.io/</link>
     <description>Recent content on vi-universe.github.io | Christian Kremer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>de-de</language>
-    <lastBuildDate>Fri, 19 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://vi-universe.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>VCF 9 VKS Kubernetes Gateway API mit NSX Avi LoadBalancer und AKO</title>
-      <link>http://localhost:1313/posts/vks_ako_gatewayapi/</link>
+      <link>https://vi-universe.github.io/posts/vks_ako_gatewayapi/</link>
       <pubDate>Fri, 19 Dec 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/vks_ako_gatewayapi/</guid>
+      <guid>https://vi-universe.github.io/posts/vks_ako_gatewayapi/</guid>
       
       <description>&lt;p&gt;Die Kubernetes Gateway API ist weit mehr als nur ein Nachfolger für das klassische Ingress-Modell. Sie ist ein moderner Standard für das Service-Networking, der speziell für die Anforderungen von Enterprise-Umgebungen entwickelt wurde.
 Die Gateway API basiert auf einer klaren Trennung von Verantwortlichkeiten (&lt;strong&gt;Separation of Concerns&lt;/strong&gt;). Dies wird durch drei zentrale Objekttypen erreicht, die perfekt mit der Rollenverteilung in größeren IT-Organisationen harmonieren:&lt;/p&gt;
@@ -23,10 +23,10 @@ Die Gateway API basiert auf einer klaren Trennung von Verantwortlichkeiten (&lt;
     
     <item>
       <title>VCF 9 VKS mit NSX VPC und Antrea Egress</title>
-      <link>http://localhost:1313/posts/nsx_vpc_vks/</link>
+      <link>https://vi-universe.github.io/posts/nsx_vpc_vks/</link>
       <pubDate>Tue, 21 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/nsx_vpc_vks/</guid>
+      <guid>https://vi-universe.github.io/posts/nsx_vpc_vks/</guid>
       
       <description>&lt;p&gt;Mit dem Release von &lt;strong&gt;VMware Cloud Foundation (VCF) 9&lt;/strong&gt; hat sich die Art und Weise, wie Kubernetes-Infrastruktur bereitgestellt wird, grundlegend weiterentwickelt. Der &lt;strong&gt;vSphere Kubernetes Service (VKS)&lt;/strong&gt; kann nun das neue &lt;strong&gt;NSX VPC-Modell&lt;/strong&gt; nutzen, um Entwicklern echte Self-Service-Funktionen bei gleichzeitig strikter Isolation zu bieten.&lt;/p&gt;
 &lt;p&gt;In diesem Beitrag schauen wir uns an, wie das Zusammenspiel zwischen VKS, den virtuellen privaten Netzwerken (VPCs) und dem Container Networking Interface (CNI) &lt;strong&gt;Antrea&lt;/strong&gt; funktioniert.&lt;/p&gt;
@@ -38,10 +38,10 @@ Die Gateway API basiert auf einer klaren Trennung von Verantwortlichkeiten (&lt;
     
     <item>
       <title>Homelab_1.4</title>
-      <link>http://localhost:1313/posts/homelab_1.4/</link>
+      <link>https://vi-universe.github.io/posts/homelab_1.4/</link>
       <pubDate>Mon, 14 Jul 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/homelab_1.4/</guid>
+      <guid>https://vi-universe.github.io/posts/homelab_1.4/</guid>
       
       <description>&lt;h1 id=&#34;homelab-14-vmware-cloud-foundation-9-auf-intel-nuc--beelink-nas&#34;&gt;Homelab-1.4: VMware Cloud Foundation 9 auf Intel NUC &amp;amp; Beelink NAS&lt;/h1&gt;
 &lt;p&gt;Nachdem vor wenigen Tagen &lt;strong&gt;VMware Cloud Foundation (VCF) 9&lt;/strong&gt; veröffentlicht wurde, war es für mich an der Zeit, mein Homelab komplett neu aufzubauen. Bisher bestand mein Setup aus einer klassischen Kombination von Einzelprodukten wie vSphere, NSX und Avi. Mit dem Release von VCF 9 bietet sich nun die perfekte Gelegenheit, auf eine voll integrierte Cloud-Plattform umzustellen.&lt;/p&gt;
@@ -51,23 +51,23 @@ Die Gateway API basiert auf einer klaren Trennung von Verantwortlichkeiten (&lt;
     
     <item>
       <title>About</title>
-      <link>http://localhost:1313/pages/about/</link>
+      <link>https://vi-universe.github.io/pages/about/</link>
       <pubDate>Thu, 12 Jun 2025 13:13:23 +0200</pubDate>
       
-      <guid>http://localhost:1313/pages/about/</guid>
+      <guid>https://vi-universe.github.io/pages/about/</guid>
       
       <description>&lt;h2 id=&#34;hallo-und-herzlich-willkommen-auf-meinem-blog&#34;&gt;Hallo und herzlich willkommen auf meinem Blog!&lt;/h2&gt;
-&lt;p&gt;Mein Name ist &lt;strong&gt;Christian Kremer&lt;/strong&gt;, ich bin 32 Jahre alt und habe meine IT-Karriere als &lt;strong&gt;Fachinformatiker für Systemintegration&lt;/strong&gt; begonnen. Schon früh entwickelte ich eine große Leidenschaft für &lt;strong&gt;Virtualisierung&lt;/strong&gt; und &lt;strong&gt;Home Labs&lt;/strong&gt;, die bis heute ein zentraler Bestandteil meines beruflichen und privaten Lebens ist.&lt;/p&gt;
-&lt;p&gt;Derzeit arbeite ich bei der &lt;strong&gt;evoila GmbH&lt;/strong&gt; als &lt;strong&gt;Senior Cloud Engineer&lt;/strong&gt;, wo ich mich auf die Planung und Umsetzung komplexer Lösungen im Bereich Virtualisierung, Cloud-Infrastrukturen und Software-Defined Networking konzentriere. Mein beruflicher Alltag ermöglicht es mir, meine Begeisterung für innovative Technologien und effiziente IT-Architekturen mit meiner Leidenschaft für technische Herausforderungen zu verbinden.&lt;/p&gt;</description>
+&lt;p&gt;Mein Name ist &lt;strong&gt;Christian Kremer&lt;/strong&gt;, ich bin 33 Jahre alt und habe meine IT-Karriere als &lt;strong&gt;Fachinformatiker für Systemintegration&lt;/strong&gt; begonnen. Schon früh entwickelte ich eine große Leidenschaft für &lt;strong&gt;Virtualisierung&lt;/strong&gt; und &lt;strong&gt;Home Labs&lt;/strong&gt;, die bis heute ein zentraler Bestandteil meines beruflichen und privaten Lebens ist.&lt;/p&gt;
+&lt;p&gt;Derzeit arbeite ich bei der &lt;strong&gt;evoila GmbH&lt;/strong&gt; als &lt;strong&gt;Senior Cloud Engineer&lt;/strong&gt; und bin Unit Lead für die Unit SDDC 2 DE, wo ich mich auf die Planung und Umsetzung komplexer Lösungen im Bereich Virtualisierung, Cloud-Infrastrukturen und Software-Defined Networking konzentriere. Mein beruflicher Alltag ermöglicht es mir, meine Begeisterung für innovative Technologien und effiziente IT-Architekturen mit meiner Leidenschaft für technische Herausforderungen zu verbinden.&lt;/p&gt;</description>
       
     </item>
     
     <item>
       <title>OpenShift Integration mit VMware NSX und Antrea CNI</title>
-      <link>http://localhost:1313/posts/nsx_antrea_avi_ocp/</link>
+      <link>https://vi-universe.github.io/posts/nsx_antrea_avi_ocp/</link>
       <pubDate>Fri, 30 May 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/nsx_antrea_avi_ocp/</guid>
+      <guid>https://vi-universe.github.io/posts/nsx_antrea_avi_ocp/</guid>
       
       <description>&lt;p&gt;Die Integration von Red Hat OpenShift mit VMware NSX und dem Antrea Container Network Interface (CNI) eröffnet neue Möglichkeiten für fortschrittliches Netzwerkmanagement in Kubernetes-Umgebungen. In diesem technischen Blog-Artikel dokumentiere ich die Implementierung eines Proof of Concept (PoC), der die erfolgreiche Integration dieser Technologien demonstriert.&lt;/p&gt;
 &lt;h2 id=&#34;zielsetzung-und-motivation&#34;&gt;Zielsetzung und Motivation&lt;/h2&gt;
@@ -77,10 +77,10 @@ Die Gateway API basiert auf einer klaren Trennung von Verantwortlichkeiten (&lt;
     
     <item>
       <title>NSX Cheat Sheet</title>
-      <link>http://localhost:1313/posts/nsx_cheat_sheet/</link>
+      <link>https://vi-universe.github.io/posts/nsx_cheat_sheet/</link>
       <pubDate>Fri, 20 Dec 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/nsx_cheat_sheet/</guid>
+      <guid>https://vi-universe.github.io/posts/nsx_cheat_sheet/</guid>
       
       <description>&lt;h2 id=&#34;log--log-verzeichnis&#34;&gt;Log &amp;amp; Log-Verzeichnis&lt;/h2&gt;
 &lt;p&gt;Auf NSX-Appliances befinden sich Syslog-Nachrichten in &lt;code&gt;/var/log/syslog&lt;/code&gt;.&lt;/p&gt;
@@ -152,21 +152,21 @@ Die Gateway API basiert auf einer klaren Trennung von Verantwortlichkeiten (&lt;
     
     <item>
       <title>Homelab-1.3</title>
-      <link>http://localhost:1313/posts/homelab_1.3/</link>
+      <link>https://vi-universe.github.io/posts/homelab_1.3/</link>
       <pubDate>Sun, 10 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/homelab_1.3/</guid>
+      <guid>https://vi-universe.github.io/posts/homelab_1.3/</guid>
       
       <description>&lt;p&gt;Nachdem mein Management-Nuc vorbereitet ist, folgt nun der NSX-Manager. Zunächst erstelle ich den DNS-Eintrag einschließlich des Reverse-Eintrags. Danach erfolgt die Installation des NSX-Managers.&lt;/p&gt;
 &lt;p&gt;Rechtsklick auf den vCenter-Cluster -&amp;gt; „Deploy OVF Template“.
-&lt;figure&gt;&lt;a href=&#34;nsx-manager-1.png&#34;&gt;&lt;img src=&#34;http://localhost:1313/homelab_1.3/nsx-manager-1.png&#34;
+&lt;figure&gt;&lt;a href=&#34;nsx-manager-1.png&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/homelab_1.3/nsx-manager-1.png&#34;
     alt=&#34;NSX Manager&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
       &lt;p&gt;NSX Manager - Klick zum vergrößern&lt;/p&gt;
     &lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/p&gt;
 &lt;p&gt;Wähle im Bildschirm &amp;ldquo;Select an OVF Template&amp;rdquo; die NSX Unified Appliance OVA-Datei aus.&lt;/p&gt;
-&lt;figure&gt;&lt;a href=&#34;nsx-manager-2.png&#34;&gt;&lt;img src=&#34;http://localhost:1313/homelab_1.3/nsx-manager-2.png&#34;
+&lt;figure&gt;&lt;a href=&#34;nsx-manager-2.png&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/homelab_1.3/nsx-manager-2.png&#34;
     alt=&#34;NSX Manager&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
       &lt;p&gt;NSX Manager - Klick zum vergrößern&lt;/p&gt;
     &lt;/figcaption&gt;
@@ -178,10 +178,10 @@ Die Gateway API basiert auf einer klaren Trennung von Verantwortlichkeiten (&lt;
     
     <item>
       <title>Homelab-1.2</title>
-      <link>http://localhost:1313/posts/homelab_1.2/</link>
+      <link>https://vi-universe.github.io/posts/homelab_1.2/</link>
       <pubDate>Thu, 25 Jul 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/homelab_1.2/</guid>
+      <guid>https://vi-universe.github.io/posts/homelab_1.2/</guid>
       
       <description>&lt;p&gt;Da ich im Beitrag &lt;em&gt;Homelab-1.0&lt;/em&gt; bereits meine Anforderungen definiert hatte, wusste ich, dass ich insgesamt &lt;strong&gt;19 vCPU und 62 GB RAM&lt;/strong&gt; benötige. Daher entschied ich mich, für meinen Management-NUC direkt zu Beginn Memory Tiering zu aktivieren.&lt;/p&gt;
 &lt;hr&gt;
@@ -199,14 +199,14 @@ Die Gateway API basiert auf einer klaren Trennung von Verantwortlichkeiten (&lt;
     
     <item>
       <title>Homelab-1.1</title>
-      <link>http://localhost:1313/posts/homelab_1.1/</link>
+      <link>https://vi-universe.github.io/posts/homelab_1.1/</link>
       <pubDate>Wed, 15 May 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/homelab_1.1/</guid>
+      <guid>https://vi-universe.github.io/posts/homelab_1.1/</guid>
       
       <description>&lt;p&gt;Während ich sehnsüchtig auf die Lieferung meiner beiden Intel NUCs wartete, begann ich mit der Planung und Einrichtung meines Netzwerks.
 Die folgende High-Level-Darstellung diente als Grundlage:&lt;/p&gt;
-&lt;figure&gt;&lt;a href=&#34;01.png&#34;&gt;&lt;img src=&#34;http://localhost:1313/homelab_1.1/01.png&#34;
+&lt;figure&gt;&lt;a href=&#34;01.png&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/homelab_1.1/01.png&#34;
     alt=&#34;Homelab-Highlevel&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
       &lt;p&gt;Homelab Highlevel - Klick zum vergrößern&lt;/p&gt;
     &lt;/figcaption&gt;
@@ -221,10 +221,10 @@ Die folgende High-Level-Darstellung diente als Grundlage:&lt;/p&gt;
     
     <item>
       <title>Homelab-1.0</title>
-      <link>http://localhost:1313/posts/homelab_1.0/</link>
+      <link>https://vi-universe.github.io/posts/homelab_1.0/</link>
       <pubDate>Wed, 01 May 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/homelab_1.0/</guid>
+      <guid>https://vi-universe.github.io/posts/homelab_1.0/</guid>
       
       <description>&lt;p&gt;Es war an der Zeit, mein Homelab zu modernisieren, da einige Komponenten unpraktisch geworden waren oder bereits veraltet waren. Doch der Reihe nach:&lt;/p&gt;
 &lt;h2 id=&#34;mein-bisheriges-setup&#34;&gt;Mein bisheriges Setup&lt;/h2&gt;
@@ -239,13 +239,13 @@ Die folgende High-Level-Darstellung diente als Grundlage:&lt;/p&gt;
     
     <item>
       <title>DELL-VxRail Report to MS-Teams</title>
-      <link>http://localhost:1313/posts/vxrail_report_to_teams/</link>
+      <link>https://vi-universe.github.io/posts/vxrail_report_to_teams/</link>
       <pubDate>Tue, 05 Mar 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/vxrail_report_to_teams/</guid>
+      <guid>https://vi-universe.github.io/posts/vxrail_report_to_teams/</guid>
       
       <description>&lt;p&gt;Da ich mir ohnehin seit längerem vorgenommen habe, die VxRail PowerShell Module anzusehen, bin ich auf die Idee gekommen, mir einen Report über alle Support relevante Daten zu erstellen und mir den Report in Teams &amp;ldquo;posten&amp;rdquo; zu lassen.&lt;/p&gt;
-&lt;figure&gt;&lt;a href=&#34;01.png&#34;&gt;&lt;img src=&#34;http://localhost:1313/vxrail_report_to_teams/01.png&#34;
+&lt;figure&gt;&lt;a href=&#34;01.png&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/vxrail_report_to_teams/01.png&#34;
     alt=&#34;Klick zum vergrößern&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
       &lt;p&gt;Klick zum vergrößern&lt;/p&gt;
     &lt;/figcaption&gt;
@@ -254,7 +254,7 @@ Die folgende High-Level-Darstellung diente als Grundlage:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/vi-universe/VxRail/blob/6769f389b127367d386f61b0c56edab5e2da1aca/reporting/vxrail_marvin-report-teams.ps1&#34;&gt;Link zu dem Script -&amp;gt; VxRail Report to Teams &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/vi-universe/VxRail/tree/6769f389b127367d386f61b0c56edab5e2da1aca/VxRail-PowerShell-Module&#34;&gt;Link zu den PowerShell Modulen -&amp;gt; VxRail PowerShell-Module &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Kleine Anleitung zum einrichten der &amp;ldquo;Webhooks&amp;rdquo; in Teams&lt;/p&gt;
-&lt;figure&gt;&lt;a href=&#34;02.png&#34;&gt;&lt;img src=&#34;http://localhost:1313/vxrail_report_to_teams/02.png&#34;
+&lt;figure&gt;&lt;a href=&#34;02.png&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/vxrail_report_to_teams/02.png&#34;
     alt=&#34;Klick zum vergrößern&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
       &lt;p&gt;Klick zum vergrößern&lt;/p&gt;</description>
       
@@ -262,10 +262,10 @@ Die folgende High-Level-Darstellung diente als Grundlage:&lt;/p&gt;
     
     <item>
       <title>DELL-VxRail Cheat-Sheet</title>
-      <link>http://localhost:1313/posts/vxrail_cheat_sheet/</link>
+      <link>https://vi-universe.github.io/posts/vxrail_cheat_sheet/</link>
       <pubDate>Tue, 30 Jan 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/vxrail_cheat_sheet/</guid>
+      <guid>https://vi-universe.github.io/posts/vxrail_cheat_sheet/</guid>
       
       <description>&lt;h4 id=&#34;standard-passwörter&#34;&gt;Standard Passwörter&lt;/h4&gt;
 &lt;table&gt;
@@ -347,10 +347,10 @@ more dayone.log
     
     <item>
       <title>DELL-VxRail Log-Bundle</title>
-      <link>http://localhost:1313/posts/vxrail_log_bundle/</link>
+      <link>https://vi-universe.github.io/posts/vxrail_log_bundle/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/vxrail_log_bundle/</guid>
+      <guid>https://vi-universe.github.io/posts/vxrail_log_bundle/</guid>
       
       <description>&lt;h4 id=&#34;log-bundle-shell&#34;&gt;Log-Bundle (Shell)&lt;/h4&gt;
 &lt;p&gt;Das Log-Bundle kann direkt auf dem VxRail Manager erstellt werden und anschließend heruntergeladen werden.
@@ -378,10 +378,10 @@ Die Anmeldung am VxRail-Manager erfolgt mit dem Benutzer &amp;ldquo;Mystic&amp;r
     
     <item>
       <title>DELL-VxRail RASR Reset</title>
-      <link>http://localhost:1313/posts/vxrail_rasr_reset/</link>
+      <link>https://vi-universe.github.io/posts/vxrail_rasr_reset/</link>
       <pubDate>Fri, 24 Nov 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/vxrail_rasr_reset/</guid>
+      <guid>https://vi-universe.github.io/posts/vxrail_rasr_reset/</guid>
       
       <description>&lt;h4 id=&#34;vxrail-rasr&#34;&gt;VxRail RASR&lt;/h4&gt;
 &lt;p&gt;Um einen VxRail-Node in den Auslieferungszustand zu versetzen, ist es notwendig, einen RASR-Reset durchzuführen.
@@ -393,16 +393,16 @@ Anschließend muss der VxRail-Node mit dem RASR-Image gestartet werden.&lt;/p&gt
     
     <item>
       <title>ESXi Architektur und Logs</title>
-      <link>http://localhost:1313/posts/esxi_architecture_logs/</link>
+      <link>https://vi-universe.github.io/posts/esxi_architecture_logs/</link>
       <pubDate>Fri, 10 Nov 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/esxi_architecture_logs/</guid>
+      <guid>https://vi-universe.github.io/posts/esxi_architecture_logs/</guid>
       
       <description>&lt;p&gt;Ein wichtiger Punkt beim &amp;ldquo;Troubleshooting&amp;rdquo; ist zu wissen, welche Log-Dateien gibt es und welche Information findet man in der jeweiligen Log-Datei.
 Die Log-Dateien lassen sich außerdem filtern. -&amp;gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-plaintext&#34; data-lang=&#34;plaintext&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; cat /var/log/vmkernel.log | grep warning
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;esxi-architektur-und-logs-übersicht&#34;&gt;ESXi Architektur und Logs Übersicht&lt;/h4&gt;
-&lt;figure&gt;&lt;a href=&#34;01.jpg&#34;&gt;&lt;img src=&#34;http://localhost:1313/esxi_architecture_logs/01.jpg&#34;
+&lt;figure&gt;&lt;a href=&#34;01.jpg&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/esxi_architecture_logs/01.jpg&#34;
     alt=&#34;ESXi Architecture&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
       &lt;p&gt;ESXi Architecture - Klick zum vergrößern&lt;/p&gt;
     &lt;/figcaption&gt;
@@ -412,10 +412,10 @@ Die Log-Dateien lassen sich außerdem filtern. -&amp;gt;&lt;/p&gt;
     
     <item>
       <title>DELL-VxRail &#34;missing vmk1 idrac issue&#34;</title>
-      <link>http://localhost:1313/posts/vxrail_vmk1_idrac_issue/</link>
+      <link>https://vi-universe.github.io/posts/vxrail_vmk1_idrac_issue/</link>
       <pubDate>Tue, 28 Mar 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/vxrail_vmk1_idrac_issue/</guid>
+      <guid>https://vi-universe.github.io/posts/vxrail_vmk1_idrac_issue/</guid>
       
       <description>&lt;p&gt;Seit der VxRail Version 7.0.240/241 wurde die interne Kommunikation zwischen VxRail Manager und ISM von PTAgent auf API Port 9090 umgestellt. &lt;br&gt;
 Intern wird dies LinZhi benannt.&lt;/p&gt;
@@ -423,7 +423,7 @@ Intern wird dies LinZhi benannt.&lt;/p&gt;
 [ip_linzhi] LinZhi is not listening yet (648 ports checked) [bmc] LinZhi IP xxx.xxx.xxx.xxx, Port 9090&lt;/p&gt;
 &lt;p&gt;Die Kommunikation ist zwingend erforderlich, da darüber der VxRail Manager den Node überwacht und managed.&lt;/p&gt;
 &lt;h4 id=&#34;architektur-linzhi&#34;&gt;Architektur LinZhi&lt;/h4&gt;
-&lt;figure&gt;&lt;a href=&#34;01.png&#34;&gt;&lt;img src=&#34;http://localhost:1313/vxrail_vmk1_idrac_issue/01.png&#34;
+&lt;figure&gt;&lt;a href=&#34;01.png&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/vxrail_vmk1_idrac_issue/01.png&#34;
     alt=&#34;LinZhi Architecture&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
       &lt;p&gt;LinZhi Architecture - Klick zum vergrößern&lt;/p&gt;</description>
       
@@ -431,14 +431,14 @@ Intern wird dies LinZhi benannt.&lt;/p&gt;
     
     <item>
       <title>VCSA 8 Installation per Cli</title>
-      <link>http://localhost:1313/posts/vcsa_cli_deployment/</link>
+      <link>https://vi-universe.github.io/posts/vcsa_cli_deployment/</link>
       <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/vcsa_cli_deployment/</guid>
+      <guid>https://vi-universe.github.io/posts/vcsa_cli_deployment/</guid>
       
       <description>&lt;p&gt;Gerade wenn es darum geht, unkompliziert und schnell eine vCenter Appliance bereitzustellen, ist es wirklich smart, diese Möglichkeit zu nutzen.
 Nachdem das VMware VCSA ISO File gemountet wurde, findet man unter folgenden Pfad bereits einige Templates.&lt;/p&gt;
-&lt;figure&gt;&lt;a href=&#34;01.png&#34;&gt;&lt;img src=&#34;http://localhost:1313/vcsa_cli_deployment/01.png&#34;
+&lt;figure&gt;&lt;a href=&#34;01.png&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/vcsa_cli_deployment/01.png&#34;
     alt=&#34;Deployment&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
       &lt;p&gt;Deployment - Klick zum vergrößern&lt;/p&gt;
     &lt;/figcaption&gt;
@@ -453,16 +453,16 @@ Nachdem das VMware VCSA ISO File gemountet wurde, findet man unter folgenden Pfa
     
     <item>
       <title>vDocumentation</title>
-      <link>http://localhost:1313/posts/vdocumentation/</link>
+      <link>https://vi-universe.github.io/posts/vdocumentation/</link>
       <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/vdocumentation/</guid>
+      <guid>https://vi-universe.github.io/posts/vdocumentation/</guid>
       
       <description>&lt;p&gt;Ein tolles Tool zur Erfassung der VMware vSphere Umgebung ist vDocumentation von
 Ariel Sanchez Mora.
 &lt;a href=&#34;https://github.com/arielsanchezmora/vDocumentation&#34;&gt;vDocumentation&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Mit folgenden Befehlen lassen sich wichtige Informationen auslesen und in eine Excel oder CSV Datei exportieren.&lt;/p&gt;
-&lt;figure&gt;&lt;a href=&#34;01.png&#34;&gt;&lt;img src=&#34;http://localhost:1313/vdocumentation/01.png&#34;
+&lt;figure&gt;&lt;a href=&#34;01.png&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/vdocumentation/01.png&#34;
     alt=&#34;vDocumentation&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
       &lt;p&gt;vDocumentation - Klick zum vergrößern&lt;/p&gt;
     &lt;/figcaption&gt;
@@ -475,12 +475,12 @@ Ariel Sanchez Mora.
     
     <item>
       <title>VMware vSphere Standard Switch - Migrationsscript</title>
-      <link>http://localhost:1313/posts/esxi_vss_migration/</link>
+      <link>https://vi-universe.github.io/posts/esxi_vss_migration/</link>
       <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/esxi_vss_migration/</guid>
+      <guid>https://vi-universe.github.io/posts/esxi_vss_migration/</guid>
       
-      <description>&lt;figure&gt;&lt;a href=&#34;01.png&#34;&gt;&lt;img src=&#34;http://localhost:1313/esxi_vss_migration/01.png&#34;
+      <description>&lt;figure&gt;&lt;a href=&#34;01.png&#34;&gt;&lt;img src=&#34;https://vi-universe.github.io/esxi_vss_migration/01.png&#34;
     alt=&#34;Switch&#34;&gt;&lt;/a&gt;&lt;figcaption&gt;
       &lt;p&gt;Switch - Klick zum vergrößern&lt;/p&gt;
     &lt;/figcaption&gt;
@@ -496,10 +496,10 @@ Oder man betreibt eine kleine vSphere Umgebungen mit nur einem ESXi-Host und mus
     
     <item>
       <title>PowerCli13 Update/ Installation QuickGuide</title>
-      <link>http://localhost:1313/posts/powercli_quickguide/</link>
+      <link>https://vi-universe.github.io/posts/powercli_quickguide/</link>
       <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/powercli_quickguide/</guid>
+      <guid>https://vi-universe.github.io/posts/powercli_quickguide/</guid>
       
       <description>&lt;h3 id=&#34;quick-guide-mit-allen-links-und-informationen-für-die-powercli-version-13&#34;&gt;Quick Guide mit allen Links und Informationen für die PowerCLI Version 13&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; &lt;span class=&#34;c&#34;&gt;# Deinstallation &lt;/span&gt;
@@ -524,10 +524,10 @@ Oder man betreibt eine kleine vSphere Umgebungen mit nur einem ESXi-Host und mus
     
     <item>
       <title>VMware ESXi Konfiguration „Backup und Restore“ mit PowerCli</title>
-      <link>http://localhost:1313/posts/esxi_config_backup_restore/</link>
+      <link>https://vi-universe.github.io/posts/esxi_config_backup_restore/</link>
       <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/esxi_config_backup_restore/</guid>
+      <guid>https://vi-universe.github.io/posts/esxi_config_backup_restore/</guid>
       
       <description>&lt;p&gt;Besonders vor kritischen Arbeiten oder Update/Upgrades ist es sinnvoll, die Konfiguration eines ESX-Hosts
 zu sichern.&lt;/p&gt;
@@ -565,10 +565,10 @@ zu sichern.&lt;/p&gt;
     
     <item>
       <title>vSAN space reclamation - Trim Unmap</title>
-      <link>http://localhost:1313/posts/vsan_trim_unmap/</link>
+      <link>https://vi-universe.github.io/posts/vsan_trim_unmap/</link>
       <pubDate>Wed, 01 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/vsan_trim_unmap/</guid>
+      <guid>https://vi-universe.github.io/posts/vsan_trim_unmap/</guid>
       
       <description>&lt;p&gt;Thin Provisioning ist eine Möglichkeit, Speicher effektiv zu nutzen.
 &amp;ldquo;Thin Provisioned&amp;rdquo; Festplatten wachsen dynamisch an. Geben aber Speicherplatz nicht frei, selbst wenn die Daten im Gast-Betriebsystem gelöscht wurden.
@@ -580,10 +580,10 @@ VMware vSAN erkennt vollständig vom Gastbetriebssysteme diese Befehle und kann 
     
     <item>
       <title>ESXi Passwort Reset</title>
-      <link>http://localhost:1313/posts/esxi_passwort_reset/</link>
+      <link>https://vi-universe.github.io/posts/esxi_passwort_reset/</link>
       <pubDate>Sun, 29 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/esxi_passwort_reset/</guid>
+      <guid>https://vi-universe.github.io/posts/esxi_passwort_reset/</guid>
       
       <description>&lt;p&gt;Sperrt man sich den ESXi-Root Benutzer, ist es wichtig, zu wissen, dass der Zugriff nur noch über die DCUI und die ESXi-Shell möglich ist.
 Sämtliche andere Möglichkeiten sind von der Sperre betroffen, wie z.B Web-GUI, SSH etc.
@@ -597,10 +597,10 @@ Folgende Anleitung entsperrt den &amp;ldquo;root&amp;rdquo; Benutzer oder jeden 
     
     <item>
       <title>vSAN Node aktualisiert &#34;unicastagent list&#34; nicht automatisch nach Shutdown</title>
-      <link>http://localhost:1313/posts/vsan_node_unicastagentlist/</link>
+      <link>https://vi-universe.github.io/posts/vsan_node_unicastagentlist/</link>
       <pubDate>Sun, 29 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/vsan_node_unicastagentlist/</guid>
+      <guid>https://vi-universe.github.io/posts/vsan_node_unicastagentlist/</guid>
       
       <description>&lt;p&gt;Hin und wieder muss man für Wartungsarbeiten etc. seine vSAN Umgebung herunterfahren.
 Normalerweise ist dieser Vorgang nicht unbedingt kritisch, dennoch bin ich in letzter Zeit öfters darüber gestolpert, dass ein vSAN Node seine Partner nicht mehr gefunden hat.&lt;/p&gt;

@@ -2,89 +2,89 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://vi-universe.github.io/posts/</loc>
     <lastmod>2025-12-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/vks_ako_gatewayapi/</loc>
+    <loc>https://vi-universe.github.io/posts/vks_ako_gatewayapi/</loc>
     <lastmod>2025-12-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://vi-universe.github.io/</loc>
     <lastmod>2025-12-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/nsx_vpc_vks/</loc>
+    <loc>https://vi-universe.github.io/posts/nsx_vpc_vks/</loc>
     <lastmod>2025-10-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/homelab_1.4/</loc>
+    <loc>https://vi-universe.github.io/posts/homelab_1.4/</loc>
     <lastmod>2025-07-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/pages/about/</loc>
+    <loc>https://vi-universe.github.io/pages/about/</loc>
     <lastmod>2025-06-12T13:13:23+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/pages/</loc>
+    <loc>https://vi-universe.github.io/pages/</loc>
     <lastmod>2025-06-12T13:13:23+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/nsx_antrea_avi_ocp/</loc>
+    <loc>https://vi-universe.github.io/posts/nsx_antrea_avi_ocp/</loc>
     <lastmod>2025-05-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/nsx_cheat_sheet/</loc>
+    <loc>https://vi-universe.github.io/posts/nsx_cheat_sheet/</loc>
     <lastmod>2024-12-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/homelab_1.3/</loc>
+    <loc>https://vi-universe.github.io/posts/homelab_1.3/</loc>
     <lastmod>2024-11-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/homelab_1.2/</loc>
+    <loc>https://vi-universe.github.io/posts/homelab_1.2/</loc>
     <lastmod>2024-07-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/homelab_1.1/</loc>
+    <loc>https://vi-universe.github.io/posts/homelab_1.1/</loc>
     <lastmod>2024-05-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/homelab_1.0/</loc>
+    <loc>https://vi-universe.github.io/posts/homelab_1.0/</loc>
     <lastmod>2024-05-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/vxrail_report_to_teams/</loc>
+    <loc>https://vi-universe.github.io/posts/vxrail_report_to_teams/</loc>
     <lastmod>2024-03-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/vxrail_cheat_sheet/</loc>
+    <loc>https://vi-universe.github.io/posts/vxrail_cheat_sheet/</loc>
     <lastmod>2024-01-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/vxrail_log_bundle/</loc>
+    <loc>https://vi-universe.github.io/posts/vxrail_log_bundle/</loc>
     <lastmod>2023-12-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/vxrail_rasr_reset/</loc>
+    <loc>https://vi-universe.github.io/posts/vxrail_rasr_reset/</loc>
     <lastmod>2023-11-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/esxi_architecture_logs/</loc>
+    <loc>https://vi-universe.github.io/posts/esxi_architecture_logs/</loc>
     <lastmod>2023-11-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/vxrail_vmk1_idrac_issue/</loc>
+    <loc>https://vi-universe.github.io/posts/vxrail_vmk1_idrac_issue/</loc>
     <lastmod>2023-03-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/vcsa_cli_deployment/</loc>
+    <loc>https://vi-universe.github.io/posts/vcsa_cli_deployment/</loc>
     <lastmod>2023-02-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/vdocumentation/</loc>
+    <loc>https://vi-universe.github.io/posts/vdocumentation/</loc>
     <lastmod>2023-02-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/esxi_vss_migration/</loc>
+    <loc>https://vi-universe.github.io/posts/esxi_vss_migration/</loc>
     <lastmod>2023-02-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/powercli_quickguide/</loc>
+    <loc>https://vi-universe.github.io/posts/powercli_quickguide/</loc>
     <lastmod>2023-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/esxi_config_backup_restore/</loc>
+    <loc>https://vi-universe.github.io/posts/esxi_config_backup_restore/</loc>
     <lastmod>2023-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/vsan_trim_unmap/</loc>
+    <loc>https://vi-universe.github.io/posts/vsan_trim_unmap/</loc>
     <lastmod>2023-02-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/esxi_passwort_reset/</loc>
+    <loc>https://vi-universe.github.io/posts/esxi_passwort_reset/</loc>
     <lastmod>2023-01-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/vsan_node_unicastagentlist/</loc>
+    <loc>https://vi-universe.github.io/posts/vsan_node_unicastagentlist/</loc>
     <lastmod>2023-01-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://vi-universe.github.io/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://vi-universe.github.io/tags/</loc>
   </url>
 </urlset>
