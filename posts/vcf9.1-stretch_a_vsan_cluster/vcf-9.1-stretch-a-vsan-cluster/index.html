@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="de-de"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">VCF 9.1 – Stretch a vSAN Cluster | vi-universe.de | Christian Kremer</title>
+<meta property="og:title" content="VCF 9.1 – Stretch a vSAN Cluster | vi-universe.de | Christian Kremer" />
+<meta name="twitter:title" content="VCF 9.1 – Stretch a vSAN Cluster | vi-universe.de | Christian Kremer" />
+<meta itemprop="name" content="VCF 9.1 – Stretch a vSAN Cluster | vi-universe.de | Christian Kremer" />
+<meta name="application-name" content="VCF 9.1 – Stretch a vSAN Cluster | vi-universe.de | Christian Kremer" />
+<meta property="og:site_name" content="vi-universe.de" />
+
+<meta name="description" content="vi-universe.de | Christian Kremer">
+<meta itemprop="description" content="vi-universe.de | Christian Kremer" />
+<meta property="og:description" content="vi-universe.de | Christian Kremer" />
+<meta name="twitter:description" content="vi-universe.de | Christian Kremer" />
+
+<meta property="og:locale" content="de-de" />
+<meta name="language" content="de-de" />
+
+  <link rel="alternate" hreflang="de-de" href="https://vi-universe.de/posts/vcf9.1-stretch_a_vsan_cluster/vcf-9.1-stretch-a-vsan-cluster/" title="German" />
+
+
+
+
+
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2026-05-20T13:30:55&#43;0200 />
+    <meta property="article:published_time" content=2026-05-20T13:30:55&#43;0200 />
+    <meta property="og:url" content="https://vi-universe.de/posts/vcf9.1-stretch_a_vsan_cluster/vcf-9.1-stretch-a-vsan-cluster/" />
+
+    
+    <meta property="og:article:author" content="Christian Kremer" />
+    <meta property="article:author" content="Christian Kremer" />
+    <meta name="author" content="Christian Kremer" />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "VCF 9.1 – Stretch a vSAN Cluster",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2026-05-20",
+        "description": "",
+        "wordCount":  1082 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2026-05-20",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "vi-universe.de | Christian Kremer"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.147.8">
+
+    
+    <meta property="og:url" content="https://vi-universe.de/posts/vcf9.1-stretch_a_vsan_cluster/vcf-9.1-stretch-a-vsan-cluster/">
+  <meta property="og:site_name" content="vi-universe.de | Christian Kremer">
+  <meta property="og:title" content="VCF 9.1 – Stretch a vSAN Cluster">
+  <meta property="og:description" content="Überblick In diesem Artikel zeige ich, wie ein vSAN Cluster in VMware Cloud Foundation 9.1 über zwei Availability Zones (AZ1 und AZ2) “ge-stretched” werden kann. Grundlage ist die SDDC Manager API.
+Voraussetzungen Vor dem Start müssen folgende Bedingungen erfüllt sein:
+Mindestens 3 Hosts müssen sich im Status commissioned befinden. Die ESX-Hosts in AZ2 müssen dieselbe vmnic-zu-vDS-Zuordnung verwenden wie die vorhandenen Hosts in AZ1. vCenter muss betriebsbereit sein. Das Planning and Preparation Workbook muss für die Management- oder Workload-Domain ausgefüllt sein. Alle Anforderungen aus der Prerequisite Checklist des Workbooks müssen erfüllt sein. Es muss eine gleiche Anzahl von Hosts pro Availability Zone vorhanden sein, um ausreichende Ressourcen bei einem vollständigen AZ-Ausfall zu gewährleisten. Ein vSAN Witness Host muss deployed und konfiguriert sein. Beim Stretchen eines Clusters in einer Workload Domain muss der Standard-Management-vSphere-Cluster bereits gestretcht sein. Hinweis: Ein Cluster kann in folgenden Fällen nicht gestretcht werden:">
+  <meta property="og:locale" content="de_de">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-05-20T13:30:55+02:00">
+    <meta property="article:modified_time" content="2026-05-20T13:30:55+02:00">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="VCF 9.1 – Stretch a vSAN Cluster">
+  <meta name="twitter:description" content="Überblick In diesem Artikel zeige ich, wie ein vSAN Cluster in VMware Cloud Foundation 9.1 über zwei Availability Zones (AZ1 und AZ2) “ge-stretched” werden kann. Grundlage ist die SDDC Manager API.
+Voraussetzungen Vor dem Start müssen folgende Bedingungen erfüllt sein:
+Mindestens 3 Hosts müssen sich im Status commissioned befinden. Die ESX-Hosts in AZ2 müssen dieselbe vmnic-zu-vDS-Zuordnung verwenden wie die vorhandenen Hosts in AZ1. vCenter muss betriebsbereit sein. Das Planning and Preparation Workbook muss für die Management- oder Workload-Domain ausgefüllt sein. Alle Anforderungen aus der Prerequisite Checklist des Workbooks müssen erfüllt sein. Es muss eine gleiche Anzahl von Hosts pro Availability Zone vorhanden sein, um ausreichende Ressourcen bei einem vollständigen AZ-Ausfall zu gewährleisten. Ein vSAN Witness Host muss deployed und konfiguriert sein. Beim Stretchen eines Clusters in einer Workload Domain muss der Standard-Management-vSphere-Cluster bereits gestretcht sein. Hinweis: Ein Cluster kann in folgenden Fällen nicht gestretcht werden:">
+
+
+    
+
+    <link rel="canonical" href="https://vi-universe.de/posts/vcf9.1-stretch_a_vsan_cluster/vcf-9.1-stretch-a-vsan-cluster/">
+    <link href="/style.min.cf5e90893fe6ed558990ae94c193d330841d6aabc33aa8f6f65ef6e15b25378e.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://vi-universe.de/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+      <meta name="google-site-verification" content="8-AAlYVqr7YS51n8n8D6dd01y8cm0kociCCSSUTR7LQ" />
+
+    
+</head>
+<body data-theme = "auto" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="https://vi-universe.de/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Startseite</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Startseite
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Beiträge
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/pages/about/">
+                        Über mich
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">VCF 9.1 – Stretch a vSAN Cluster</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2026-05-20T13:30:55&#43;02:00" itemprop="datePublished"> 20.05.2026 </time>
+                </div>
+                
+            </header>
+            
+    
+    <details class="toc" ZgotmplZ>
+        <summary><b>Inhaltsverzeichnis</b></summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#überblick">Überblick</a></li>
+    <li><a href="#voraussetzungen">Voraussetzungen</a></li>
+    <li><a href="#schritt-1--network-pool-für-az2-erstellen">Schritt 1 – Network Pool für AZ2 erstellen</a></li>
+    <li><a href="#schritt-2--vds-für-az2-vorbereiten">Schritt 2 – vDS für AZ2 vorbereiten</a></li>
+    <li><a href="#schritt-3--hosts-in-betrieb-nehmen-commission-hosts">Schritt 3 – Hosts in Betrieb nehmen (Commission Hosts)</a></li>
+    <li><a href="#schritt-4--esx-host-ids-der-unkonfigurierten-hosts-abrufen">Schritt 4 – ESX Host IDs der unkonfigurierten Hosts abrufen</a></li>
+    <li><a href="#schritt-5--cluster-id-abrufen">Schritt 5 – Cluster ID abrufen</a></li>
+    <li><a href="#schritt-6--json-spezifikation-erstellen">Schritt 6 – JSON-Spezifikation erstellen</a>
+      <ul>
+        <li><a href="#template-1--mit-lacp-konfiguration">Template 1 – Mit LACP-Konfiguration</a></li>
+      </ul>
+    </li>
+    <li><a href="#hinweis-witnesstrafficsharedwithvsantraffic-erklärt">Hinweis: <code>witnessTrafficSharedWithVsanTraffic</code> erklärt</a></li>
+    <li><a href="#schritt-7--json-spezifikation-validieren">Schritt 7 – JSON-Spezifikation validieren</a></li>
+    <li><a href="#schritt-8--cluster-stretchen">Schritt 8 – Cluster stretchen</a></li>
+  </ul>
+</nav>
+    </details>
+            <div class="page-content">
+                <h2 id="überblick">Überblick</h2>
+<p>In diesem Artikel zeige ich, wie ein vSAN Cluster in VMware Cloud Foundation 9.1 über zwei Availability Zones (AZ1 und AZ2) &ldquo;ge-stretched&rdquo; werden kann. Grundlage ist die SDDC Manager API.</p>
+<hr>
+<h2 id="voraussetzungen">Voraussetzungen</h2>
+<p>Vor dem Start müssen folgende Bedingungen erfüllt sein:</p>
+<ul>
+<li>Mindestens <strong>3 Hosts</strong> müssen sich im Status <code>commissioned</code> befinden.</li>
+<li>Die ESX-Hosts in AZ2 müssen <strong>dieselbe vmnic-zu-vDS-Zuordnung</strong> verwenden wie die vorhandenen Hosts in AZ1.</li>
+<li>vCenter muss <strong>betriebsbereit</strong> sein.</li>
+<li>Das <strong>Planning and Preparation Workbook</strong> muss für die Management- oder Workload-Domain ausgefüllt sein.</li>
+<li>Alle Anforderungen aus der <strong>Prerequisite Checklist</strong> des Workbooks müssen erfüllt sein.</li>
+<li>Es muss eine <strong>gleiche Anzahl von Hosts</strong> pro Availability Zone vorhanden sein, um ausreichende Ressourcen bei einem vollständigen AZ-Ausfall zu gewährleisten.</li>
+<li>Ein <strong>vSAN Witness Host</strong> muss deployed und konfiguriert sein.</li>
+<li>Beim Stretchen eines Clusters in einer <strong>Workload Domain</strong> muss der Standard-Management-vSphere-Cluster bereits gestretcht sein.</li>
+</ul>
+<blockquote>
+<p><strong>Hinweis:</strong> Ein Cluster kann in folgenden Fällen <strong>nicht</strong> gestretcht werden:</p>
+<ul>
+<li>Der Cluster teilt eine vSAN Storage Policy mit einem anderen Cluster.</li>
+<li>Der Cluster enthält DPU-backed Hosts.</li>
+<li>Hosts innerhalb einer Availability Zone befinden sich in unterschiedlichen Subnetzen (L3).</li>
+<li>vSphere Supervisor ist auf dem Cluster aktiviert.</li>
+</ul></blockquote>
+<p>Weitere Designanforderungen und -empfehlungen sind im Abschnitt <em>Stretched vSAN Storage Model</em> der offiziellen VMware-Dokumentation beschrieben.</p>
+<hr>
+<h2 id="schritt-1--network-pool-für-az2-erstellen">Schritt 1 – Network Pool für AZ2 erstellen</h2>
+<p><strong>Pfad:</strong> <code>vCenter → Global Inventory → Network Pools → Create Network Pool</code></p>
+<table>
+  <thead>
+      <tr>
+          <th>Feld</th>
+          <th>Wert</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Network Pool Name</td>
+          <td><code>Name-AZ2</code></td>
+      </tr>
+      <tr>
+          <td>Network Type</td>
+          <td><code>vSAN, vMotion</code></td>
+      </tr>
+      <tr>
+          <td>VLAN ID</td>
+          <td><code>&lt;AZ2-VLAN-ID&gt;</code></td>
+      </tr>
+      <tr>
+          <td>MTU</td>
+          <td><code>&lt;MTU-Wert&gt;</code></td>
+      </tr>
+      <tr>
+          <td>Gateway (CIDR)</td>
+          <td><code>&lt;Gateway-IP/Prefix&gt;</code></td>
+      </tr>
+      <tr>
+          <td>IP Address Ranges</td>
+          <td><code>&lt;Start-IP&gt;</code> bis <code>&lt;End-IP&gt;</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="schritt-2--vds-für-az2-vorbereiten">Schritt 2 – vDS für AZ2 vorbereiten</h2>
+<p>Auf dem vDS Switch müssen neue <strong>Port Groups (PGs)</strong> für AZ2 angelegt werden:</p>
+<ul>
+<li>ESX Management</li>
+<li>vMotion</li>
+<li>vSAN</li>
+</ul>
+<hr>
+<h2 id="schritt-3--hosts-in-betrieb-nehmen-commission-hosts">Schritt 3 – Hosts in Betrieb nehmen (Commission Hosts)</h2>
+<p><strong>Pfad:</strong> <code>vCenter → Global Inventory → Hosts → Unassigned Hosts → Commission Hosts</code></p>
+<p>Alle erforderlichen Informationen ausfüllen und den in Schritt 1 erstellten <strong>Network Pool für AZ2</strong> auswählen.</p>
+<hr>
+<h2 id="schritt-4--esx-host-ids-der-unkonfigurierten-hosts-abrufen">Schritt 4 – ESX Host IDs der unkonfigurierten Hosts abrufen</h2>
+<p><strong>Pfad:</strong> <code>SDDC Manager API → VCF Operations → Build → Developer Center → APIs &amp; SDKs → SDDC Manager API Explorer</code></p>
+<pre tabindex="0"><code>GET /v1/hosts
+</code></pre><p>Im Feld <code>status</code> den Wert <code>UNASSIGNED_USEABLE</code> eintragen und <strong>Execute</strong> klicken. Die zurückgegebenen <strong>Host IDs</strong> für den nächsten Schritt notieren.</p>
+<hr>
+<h2 id="schritt-5--cluster-id-abrufen">Schritt 5 – Cluster ID abrufen</h2>
+<pre tabindex="0"><code>GET /v1/clusters
+</code></pre><p>Nach dem Ausführen in der Antwort zu <code>PageOfCluster</code> navigieren und das Feld <code>id</code> des Zielclusters kopieren.</p>
+<hr>
+<h2 id="schritt-6--json-spezifikation-erstellen">Schritt 6 – JSON-Spezifikation erstellen</h2>
+<p>Je nach Netzwerkkonfiguration kommt eine der beiden folgenden Templates zum Einsatz.</p>
+<h3 id="template-1--mit-lacp-konfiguration">Template 1 – Mit LACP-Konfiguration</h3>
+<p>Dieses Template wird verwendet, wenn die vDS-Uplinks mit <strong>Link Aggregation Control Protocol (LACP)</strong> konfiguriert sind. Active Uplinks werden als <code>LAG-0</code> / <code>LAG-1</code> referenziert.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;clusterStretchSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;deployWithoutLicenseKeys&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;hostSpecs&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;ESX-HOST-UUID-1&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;hostname&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;FQDN-HOST-1&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;hostNetworkSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;networkProfileName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;NSX-Sub-Cluster-Profile-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;vmNics&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;vmnic0&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;uplink&#34;</span><span class="p">:</span> <span class="s2">&#34;LAG-0&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;vmnic1&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;uplink&#34;</span><span class="p">:</span> <span class="s2">&#34;LAG-1&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">          <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;ESX-HOST-UUID-2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;hostname&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;FQDN-HOST-2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;hostNetworkSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;networkProfileName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;NSX-Sub-Cluster-Profile-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;vmNics&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;vmnic0&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;uplink&#34;</span><span class="p">:</span> <span class="s2">&#34;LAG-0&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;vmnic1&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;uplink&#34;</span><span class="p">:</span> <span class="s2">&#34;LAG-1&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">          <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;ESX-HOST-UUID-3&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;hostname&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;FQDN-HOST-3&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;hostNetworkSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;networkProfileName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;NSX-Sub-Cluster-Profile-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;vmNics&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;vmnic0&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;uplink&#34;</span><span class="p">:</span> <span class="s2">&#34;LAG-0&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;vmnic1&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;uplink&#34;</span><span class="p">:</span> <span class="s2">&#34;LAG-1&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">          <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;ESX-HOST-UUID-4&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;hostname&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;FQDN-HOST-4&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;hostNetworkSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;networkProfileName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;NSX-Sub-Cluster-Profile-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;vmNics&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;vmnic0&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;uplink&#34;</span><span class="p">:</span> <span class="s2">&#34;LAG-0&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;vmnic1&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;uplink&#34;</span><span class="p">:</span> <span class="s2">&#34;LAG-1&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">          <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;networkSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;networkProfiles&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;isDefault&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;NSX-Sub-Cluster-Profile-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;nsxtHostSwitchConfigs&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;ipAddressPoolName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;TEP-Pool-Name-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;uplinkProfileName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;Uplink-Profile-Name-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;vdsUplinkToNsxUplink&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span> <span class="nt">&#34;nsxUplinkName&#34;</span><span class="p">:</span> <span class="s2">&#34;LAG&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsUplinkName&#34;</span><span class="p">:</span> <span class="s2">&#34;LAG&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">              <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">          <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;nsxClusterSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;ipAddressPoolsSpec&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">          <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;TEP-Pool-Name-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;subnets&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;cidr&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;TEP-CIDR-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;gateway&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;TEP-Gateway-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;ipAddressPoolRanges&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">{</span> <span class="nt">&#34;start&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;TEP-IP-Start&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;end&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;TEP-IP-End&gt;&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">              <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;uplinkProfiles&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">          <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;Uplink-Profile-Name-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;transportVlan&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;Transport-VLAN-ID&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;teamings&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;DEFAULT&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;policy&#34;</span><span class="p">:</span> <span class="s2">&#34;FAILOVER_ORDER&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;standByUplinks&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;activeUplinks&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;LAG&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">              <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">]</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;isEdgeClusterConfiguredForMultiAZ&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;witnessSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;fqdn&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;Witness-Host-FQDN&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;vsanCidr&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vSAN-CIDR-Witness&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;vsanIp&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vSAN-IP-Witness&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;witnessTrafficSharedWithVsanTraffic&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="err">```</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">---</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">###</span> <span class="err">Template</span> <span class="mi">2</span> <span class="err">–</span> <span class="err">Ohne</span> <span class="err">LACP</span> <span class="err">(Standard-Uplinks)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">Dieses</span> <span class="err">Template</span> <span class="err">wird</span> <span class="err">verwendet,</span> <span class="err">wenn</span> <span class="err">die</span> <span class="err">vDS-Uplinks</span> <span class="err">als</span> <span class="err">**Standard-Uplinks**</span> <span class="err">(`uplink</span><span class="mi">1</span><span class="err">`</span> <span class="err">/</span> <span class="err">`uplink</span><span class="mi">2</span><span class="err">`)</span> <span class="err">ohne</span> <span class="err">LACP</span> <span class="err">konfiguriert</span> <span class="err">sind.</span> <span class="err">Unterstützt</span> <span class="err">dualen</span> <span class="err">vDS</span> <span class="err">mit</span> <span class="err">vier</span> <span class="err">vmnics</span> <span class="err">und</span> <span class="err">verwendet</span> <span class="err">die</span> <span class="err">Teaming-Policy</span> <span class="err">`LOADBALANCE_SRCID`.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">```json</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;clusterUpdateSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;clusterStretchSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;hostSpecs&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;ESX-HOST-UUID-1&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;hostname&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;FQDN-HOST-1&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;hostNetworkSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;networkProfileName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;Network-Profile-Name-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;vmNics&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;vmnic0&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;uplink&#34;</span><span class="p">:</span> <span class="s2">&#34;uplink1&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;vmnic1&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;uplink&#34;</span><span class="p">:</span> <span class="s2">&#34;uplink2&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;ESX-HOST-UUID-2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;hostname&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;FQDN-HOST-2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;hostNetworkSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;networkProfileName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;Network-Profile-Name-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;vmNics&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;vmnic0&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;uplink&#34;</span><span class="p">:</span> <span class="s2">&#34;uplink1&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;vmnic1&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;uplink&#34;</span><span class="p">:</span> <span class="s2">&#34;uplink2&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;ESX-HOST-UUID-3&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;hostname&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;FQDN-HOST-3&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;hostNetworkSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;networkProfileName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;Network-Profile-Name-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;vmNics&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;vmnic0&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;uplink&#34;</span><span class="p">:</span> <span class="s2">&#34;uplink1&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;vmnic1&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;uplink&#34;</span><span class="p">:</span> <span class="s2">&#34;uplink2&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;ESX-HOST-UUID-4&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;hostname&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;FQDN-HOST-4&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;hostNetworkSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;networkProfileName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;Network-Profile-Name-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;vmNics&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;vmnic0&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;uplink&#34;</span><span class="p">:</span> <span class="s2">&#34;uplink1&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span> <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;vmnic1&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;uplink&#34;</span><span class="p">:</span> <span class="s2">&#34;uplink2&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;isEdgeClusterConfiguredForMultiAZ&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;networkSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;networkProfiles&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">          <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;isDefault&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;Network-Profile-Name-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;nsxtHostSwitchConfigs&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">              <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;ipAddressPoolName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;TEP-Pool-Name-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;uplinkProfileName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;Uplink-Profile-Name-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;vdsName&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vDS-Name-AZ1&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;vdsUplinkToNsxUplink&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">{</span> <span class="nt">&#34;nsxUplinkName&#34;</span><span class="p">:</span> <span class="s2">&#34;uplink-1&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsUplinkName&#34;</span><span class="p">:</span> <span class="s2">&#34;uplink1&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">{</span> <span class="nt">&#34;nsxUplinkName&#34;</span><span class="p">:</span> <span class="s2">&#34;uplink-2&#34;</span><span class="p">,</span> <span class="nt">&#34;vdsUplinkName&#34;</span><span class="p">:</span> <span class="s2">&#34;uplink2&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">              <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">]</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;nsxClusterSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;ipAddressPoolsSpec&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;TEP-Pool-Description&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;TEP-Pool-Name-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;subnets&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;cidr&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;TEP-CIDR-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;gateway&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;TEP-Gateway-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;ipAddressPoolRanges&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span> <span class="nt">&#34;start&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;TEP-IP-Start&gt;&#34;</span><span class="p">,</span> <span class="nt">&#34;end&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;TEP-IP-End&gt;&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                  <span class="p">]</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">              <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">          <span class="p">],</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;uplinkProfiles&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;Uplink-Profile-Name-AZ2&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;teamings&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;DEFAULT&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;policy&#34;</span><span class="p">:</span> <span class="s2">&#34;LOADBALANCE_SRCID&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;standByUplinks&#34;</span><span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">                  <span class="nt">&#34;activeUplinks&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;uplink-1&#34;</span><span class="p">,</span> <span class="s2">&#34;uplink-2&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">              <span class="p">],</span>
+</span></span><span class="line"><span class="cl">              <span class="nt">&#34;transportVlan&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;Transport-VLAN-ID&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">          <span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;witnessSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;fqdn&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;Witness-Host-FQDN&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;vsanCidr&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vSAN-CIDR-Witness&gt;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;vsanIp&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;vSAN-IP-Witness&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;witnessTrafficSharedWithVsanTraffic&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><hr>
+<h2 id="hinweis-witnesstrafficsharedwithvsantraffic-erklärt">Hinweis: <code>witnessTrafficSharedWithVsanTraffic</code> erklärt</h2>
+<p>Dieser Parameter steuert, welcher VMkernel-Adapter auf den Daten-Nodes für die Kommunikation mit dem vSAN Witness Host verwendet wird.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Wert</th>
+          <th>Verwendeter VMkernel</th>
+          <th>Einsatzszenario</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>true</code></td>
+          <td>VMK vSAN (vSAN VMkernel-Adapter der Daten-Nodes)</td>
+          <td>vSAN- und Witness-Traffic teilen dasselbe Netzwerksegment.</td>
+      </tr>
+      <tr>
+          <td><code>false</code></td>
+          <td>VMK0 (Management VMkernel-Adapter)</td>
+          <td>Der Witness Host ist nur über das Management-Netzwerk erreichbar.</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="schritt-7--json-spezifikation-validieren">Schritt 7 – JSON-Spezifikation validieren</h2>
+<ol>
+<li>Im SDDC Manager API Explorer zu <strong>Clusters → <code>POST /v1/clusters/{id}/validations</code></strong> navigieren.</li>
+<li>Im Feld <code>Value</code> die in Schritt 5 ermittelte <strong>Cluster ID</strong> eintragen.</li>
+<li>Im Feld <code>clusterUpdateSpec</code> folgendes eingeben:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;clusterUpdateSpec&#34;</span><span class="p">:</span> <span class="err">&lt;JSON-Spezifikation</span> <span class="err">aus</span> <span class="err">Schritt</span> <span class="mi">6</span><span class="err">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ol start="4">
+<li><strong>Execute</strong> klicken und im Bestätigungsdialog auf <strong>Continue</strong> klicken.</li>
+<li>In der Response den Abschnitt <code>result</code> aufklappen und prüfen, dass der Status <code>SUCCEEDED</code> lautet.</li>
+</ol>
+<hr>
+<h2 id="schritt-8--cluster-stretchen">Schritt 8 – Cluster stretchen</h2>
+<ol>
+<li>Im SDDC Manager API Explorer zu <strong>Clusters → <code>PATCH /v1/clusters/{id}</code></strong> navigieren.</li>
+<li>Die <strong>Cluster ID</strong> in das Feld <code>Value</code> einfügen.</li>
+<li>Die JSON-Spezifikation (Template 1 oder 2) in das Feld <code>clusterUpdateSpec</code> einfügen.</li>
+<li><strong>Execute</strong> klicken und im Bestätigungsdialog auf <strong>Continue</strong> klicken.</li>
+</ol>
+<p>Den Fortschritt des Stretch-Cluster-Vorgangs kann unter <strong>Fleet Management → Tasks</strong> verfolgt werden.</p>
+<hr>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/vi-universe" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://www.linkedin.com/in/christian-kremer-it" target="_blank" rel="noopener noreferrer me"
+    title="LinkedIn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+<a href="/index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2026 Christian Kremer.
+        Unterstützt durch <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
+    </small>
+</footer><a href="#" title="Zum Seitenanfang" id="totop">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" stroke="currentColor" viewBox="0 96 960 960">
+    <path d="M283 704.739 234.261 656 480 410.261 725.739 656 677 704.739l-197-197-197 197Z"/>
+</svg>
+
+</a>
+
+
+    
+
+
+
+
+    
+    
+        
+    
+
+    
+    
+        
+    
+
+
+
+    
+    <script src="https://vi-universe.de/js/main.min.35f435a5d8eac613c52daa28d8af544a4512337d3e95236e4a4978417b8dcb2f.js" integrity="sha256-NfQ1pdjqxhPFLaoo2K9USkUSM30&#43;lSNuSkl4QXuNyy8="></script>
+
+    
+
+</body>
+</html>

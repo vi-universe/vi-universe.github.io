@@ -6,7 +6,34 @@
     <description>Recent content in Posts on vi-universe.de | Christian Kremer</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>de-de</language>
-    <lastBuildDate>Fri, 19 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://vi-universe.de/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 May 2026 13:30:55 +0200</lastBuildDate><atom:link href="https://vi-universe.de/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VCF 9.1 – Stretch a vSAN Cluster</title>
+      <link>https://vi-universe.de/posts/vcf9.1-stretch_a_vsan_cluster/vcf-9.1-stretch-a-vsan-cluster/</link>
+      <pubDate>Wed, 20 May 2026 13:30:55 +0200</pubDate>
+      
+      <guid>https://vi-universe.de/posts/vcf9.1-stretch_a_vsan_cluster/vcf-9.1-stretch-a-vsan-cluster/</guid>
+      
+      <description>&lt;h2 id=&#34;überblick&#34;&gt;Überblick&lt;/h2&gt;
+&lt;p&gt;In diesem Artikel zeige ich, wie ein vSAN Cluster in VMware Cloud Foundation 9.1 über zwei Availability Zones (AZ1 und AZ2) &amp;ldquo;ge-stretched&amp;rdquo; werden kann. Grundlage ist die SDDC Manager API.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;voraussetzungen&#34;&gt;Voraussetzungen&lt;/h2&gt;
+&lt;p&gt;Vor dem Start müssen folgende Bedingungen erfüllt sein:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mindestens &lt;strong&gt;3 Hosts&lt;/strong&gt; müssen sich im Status &lt;code&gt;commissioned&lt;/code&gt; befinden.&lt;/li&gt;
+&lt;li&gt;Die ESX-Hosts in AZ2 müssen &lt;strong&gt;dieselbe vmnic-zu-vDS-Zuordnung&lt;/strong&gt; verwenden wie die vorhandenen Hosts in AZ1.&lt;/li&gt;
+&lt;li&gt;vCenter muss &lt;strong&gt;betriebsbereit&lt;/strong&gt; sein.&lt;/li&gt;
+&lt;li&gt;Das &lt;strong&gt;Planning and Preparation Workbook&lt;/strong&gt; muss für die Management- oder Workload-Domain ausgefüllt sein.&lt;/li&gt;
+&lt;li&gt;Alle Anforderungen aus der &lt;strong&gt;Prerequisite Checklist&lt;/strong&gt; des Workbooks müssen erfüllt sein.&lt;/li&gt;
+&lt;li&gt;Es muss eine &lt;strong&gt;gleiche Anzahl von Hosts&lt;/strong&gt; pro Availability Zone vorhanden sein, um ausreichende Ressourcen bei einem vollständigen AZ-Ausfall zu gewährleisten.&lt;/li&gt;
+&lt;li&gt;Ein &lt;strong&gt;vSAN Witness Host&lt;/strong&gt; muss deployed und konfiguriert sein.&lt;/li&gt;
+&lt;li&gt;Beim Stretchen eines Clusters in einer &lt;strong&gt;Workload Domain&lt;/strong&gt; muss der Standard-Management-vSphere-Cluster bereits gestretcht sein.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Hinweis:&lt;/strong&gt; Ein Cluster kann in folgenden Fällen &lt;strong&gt;nicht&lt;/strong&gt; gestretcht werden:&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>VCF 9 VKS Kubernetes Gateway API mit NSX Avi LoadBalancer und AKO</title>
       <link>https://vi-universe.de/posts/vks_ako_gatewayapi/</link>
