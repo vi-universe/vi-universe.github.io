@@ -53,7 +53,7 @@
         },
         "datePublished": "2026-05-20",
         "description": "",
-        "wordCount":  1079 ,
+        "wordCount":  1097 ,
         "mainEntityOfPage": "True",
         "dateModified": "2026-05-20",
         "image": {
@@ -223,6 +223,7 @@ stroke-linejoin="round" class="feather feather-home">
     <li><a href="#hinweis-witnesstrafficsharedwithvsantraffic-erklärt">Hinweis: <code>witnessTrafficSharedWithVsanTraffic</code> erklärt</a></li>
     <li><a href="#schritt-7--json-spezifikation-validieren">Schritt 7 – JSON-Spezifikation validieren</a></li>
     <li><a href="#schritt-8--cluster-stretchen">Schritt 8 – Cluster stretchen</a></li>
+    <li><a href="#weiterführende-links">Weiterführende Links</a></li>
   </ul>
 </nav>
     </details>
@@ -421,7 +422,7 @@ stroke-linejoin="round" class="feather feather-home">
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><h3 id="template-2--ohne-lacp-standard-uplinks">Template 2 – Ohne LACP (Standard-Uplinks)</h3>
-<p>Dieses Template wird verwendet, wenn die vDS-Uplinks als <strong>Standard-Uplinks</strong> (<code>uplink1</code> / <code>uplink2</code>) ohne LACP konfiguriert sind. Unterstützt dualen vDS mit vier vmnics und verwendet die Teaming-Policy <code>LOADBALANCE_SRCID</code>.</p>
+<p>Dieses Template wird verwendet, wenn die vDS-Uplinks als <strong>Standard-Uplinks</strong> (<code>uplink1</code> / <code>uplink2</code>) ohne LACP konfiguriert sind.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;clusterUpdateSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;clusterStretchSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -579,6 +580,11 @@ stroke-linejoin="round" class="feather feather-home">
 </ol>
 <p>Den Fortschritt des Stretch-Cluster-Vorgangs kann unter <strong>Fleet Management → Tasks</strong> verfolgt werden.</p>
 <hr>
+<h2 id="weiterführende-links">Weiterführende Links</h2>
+<ul>
+<li><a href="https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-1/building-your-private-cloud-infrastructure/stretching-clusters/stretch-a-cluster.html">Stretch a vSAN ESA or OSA Cluster Using the SDDC Manager API – Broadcom TechDocs</a></li>
+<li><a href="https://developer.broadcom.com/xapis/vmware-cloud-foundation-api/latest/clusters/#_usecase_stretchCluster">VCF API Reference – Stretch Cluster Use Case – Broadcom Developer Portal</a></li>
+</ul>
 
             </div>
         </article></main>
