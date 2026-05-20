@@ -53,7 +53,7 @@
         },
         "datePublished": "2026-05-20",
         "description": "",
-        "wordCount":  1081 ,
+        "wordCount":  1079 ,
         "mainEntityOfPage": "True",
         "dateModified": "2026-05-20",
         "image": {
@@ -217,6 +217,7 @@ stroke-linejoin="round" class="feather feather-home">
     <li><a href="#schritt-6--json-spezifikation-erstellen">Schritt 6 – JSON-Spezifikation erstellen</a>
       <ul>
         <li><a href="#template-1--mit-lacp-konfiguration">Template 1 – Mit LACP-Konfiguration</a></li>
+        <li><a href="#template-2--ohne-lacp-standard-uplinks">Template 2 – Ohne LACP (Standard-Uplinks)</a></li>
       </ul>
     </li>
     <li><a href="#hinweis-witnesstrafficsharedwithvsantraffic-erklärt">Hinweis: <code>witnessTrafficSharedWithVsanTraffic</code> erklärt</a></li>
@@ -418,15 +419,10 @@ stroke-linejoin="round" class="feather feather-home">
 </span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;witnessTrafficSharedWithVsanTraffic&#34;</span><span class="p">:</span> <span class="kc">false</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="err">```</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">###</span> <span class="err">Template</span> <span class="mi">2</span> <span class="err">–</span> <span class="err">Ohne</span> <span class="err">LACP</span> <span class="err">(Standard-Uplinks)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">Dieses</span> <span class="err">Template</span> <span class="err">wird</span> <span class="err">verwendet,</span> <span class="err">wenn</span> <span class="err">die</span> <span class="err">vDS-Uplinks</span> <span class="err">als</span> <span class="err">**Standard-Uplinks**</span> <span class="err">(`uplink</span><span class="mi">1</span><span class="err">`</span> <span class="err">/</span> <span class="err">`uplink</span><span class="mi">2</span><span class="err">`)</span> <span class="err">ohne</span> <span class="err">LACP</span> <span class="err">konfiguriert</span> <span class="err">sind.</span> <span class="err">Unterstützt</span> <span class="err">dualen</span> <span class="err">vDS</span> <span class="err">mit</span> <span class="err">vier</span> <span class="err">vmnics</span> <span class="err">und</span> <span class="err">verwendet</span> <span class="err">die</span> <span class="err">Teaming-Policy</span> <span class="err">`LOADBALANCE_SRCID`.</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">```json</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="template-2--ohne-lacp-standard-uplinks">Template 2 – Ohne LACP (Standard-Uplinks)</h3>
+<p>Dieses Template wird verwendet, wenn die vDS-Uplinks als <strong>Standard-Uplinks</strong> (<code>uplink1</code> / <code>uplink2</code>) ohne LACP konfiguriert sind. Unterstützt dualen vDS mit vier vmnics und verwendet die Teaming-Policy <code>LOADBALANCE_SRCID</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nt">&#34;clusterUpdateSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;clusterStretchSpec&#34;</span><span class="p">:</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;hostSpecs&#34;</span><span class="p">:</span> <span class="p">[</span>
