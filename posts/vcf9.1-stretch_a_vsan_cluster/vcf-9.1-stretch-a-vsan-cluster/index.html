@@ -53,7 +53,7 @@
         },
         "datePublished": "2026-05-20",
         "description": "",
-        "wordCount":  1097 ,
+        "wordCount":  1073 ,
         "mainEntityOfPage": "True",
         "dateModified": "2026-05-20",
         "image": {
@@ -210,19 +210,18 @@ stroke-linejoin="round" class="feather feather-home">
     <li><a href="#überblick">Überblick</a></li>
     <li><a href="#voraussetzungen">Voraussetzungen</a></li>
     <li><a href="#schritt-1--network-pool-für-az2-erstellen">Schritt 1 – Network Pool für AZ2 erstellen</a></li>
-    <li><a href="#schritt-2--vds-für-az2-vorbereiten">Schritt 2 – vDS für AZ2 vorbereiten</a></li>
-    <li><a href="#schritt-3--hosts-in-betrieb-nehmen-commission-hosts">Schritt 3 – Hosts in Betrieb nehmen (Commission Hosts)</a></li>
-    <li><a href="#schritt-4--esx-host-ids-der-unkonfigurierten-hosts-abrufen">Schritt 4 – ESX Host IDs der unkonfigurierten Hosts abrufen</a></li>
-    <li><a href="#schritt-5--cluster-id-abrufen">Schritt 5 – Cluster ID abrufen</a></li>
-    <li><a href="#schritt-6--json-spezifikation-erstellen">Schritt 6 – JSON-Spezifikation erstellen</a>
+    <li><a href="#schritt-2--hosts-in-betrieb-nehmen-commission-hosts">Schritt 2 – Hosts in Betrieb nehmen (Commission Hosts)</a></li>
+    <li><a href="#schritt-3--esx-host-ids-der-unkonfigurierten-hosts-abrufen">Schritt 3 – ESX Host IDs der unkonfigurierten Hosts abrufen</a></li>
+    <li><a href="#schritt-4--cluster-id-abrufen">Schritt 4 – Cluster ID abrufen</a></li>
+    <li><a href="#schritt-5--json-spezifikation-erstellen">Schritt 5 – JSON-Spezifikation erstellen</a>
       <ul>
         <li><a href="#template-1--mit-lacp-konfiguration">Template 1 – Mit LACP-Konfiguration</a></li>
         <li><a href="#template-2--ohne-lacp-standard-uplinks">Template 2 – Ohne LACP (Standard-Uplinks)</a></li>
       </ul>
     </li>
     <li><a href="#hinweis-witnesstrafficsharedwithvsantraffic-erklärt">Hinweis: <code>witnessTrafficSharedWithVsanTraffic</code> erklärt</a></li>
-    <li><a href="#schritt-7--json-spezifikation-validieren">Schritt 7 – JSON-Spezifikation validieren</a></li>
-    <li><a href="#schritt-8--cluster-stretchen">Schritt 8 – Cluster stretchen</a></li>
+    <li><a href="#schritt-6--json-spezifikation-validieren">Schritt 6 – JSON-Spezifikation validieren</a></li>
+    <li><a href="#schritt-7--cluster-stretchen">Schritt 7 – Cluster stretchen</a></li>
     <li><a href="#weiterführende-links">Weiterführende Links</a></li>
   </ul>
 </nav>
@@ -290,28 +289,20 @@ stroke-linejoin="round" class="feather feather-home">
   </tbody>
 </table>
 <hr>
-<h2 id="schritt-2--vds-für-az2-vorbereiten">Schritt 2 – vDS für AZ2 vorbereiten</h2>
-<p>Auf dem vDS Switch müssen neue <strong>Port Groups (PGs)</strong> für AZ2 angelegt werden:</p>
-<ul>
-<li>ESX Management</li>
-<li>vMotion</li>
-<li>vSAN</li>
-</ul>
-<hr>
-<h2 id="schritt-3--hosts-in-betrieb-nehmen-commission-hosts">Schritt 3 – Hosts in Betrieb nehmen (Commission Hosts)</h2>
+<h2 id="schritt-2--hosts-in-betrieb-nehmen-commission-hosts">Schritt 2 – Hosts in Betrieb nehmen (Commission Hosts)</h2>
 <p><strong>Pfad:</strong> <code>vCenter → Global Inventory → Hosts → Unassigned Hosts → Commission Hosts</code></p>
 <p>Alle erforderlichen Informationen ausfüllen und den in Schritt 1 erstellten <strong>Network Pool für AZ2</strong> auswählen.</p>
 <hr>
-<h2 id="schritt-4--esx-host-ids-der-unkonfigurierten-hosts-abrufen">Schritt 4 – ESX Host IDs der unkonfigurierten Hosts abrufen</h2>
+<h2 id="schritt-3--esx-host-ids-der-unkonfigurierten-hosts-abrufen">Schritt 3 – ESX Host IDs der unkonfigurierten Hosts abrufen</h2>
 <p><strong>Pfad:</strong> <code>SDDC Manager API → VCF Operations → Build → Developer Center → APIs &amp; SDKs → SDDC Manager API Explorer</code></p>
 <pre tabindex="0"><code>GET /v1/hosts
 </code></pre><p>Im Feld <code>status</code> den Wert <code>UNASSIGNED_USEABLE</code> eintragen und <strong>Execute</strong> klicken. Die zurückgegebenen <strong>Host IDs</strong> für den nächsten Schritt notieren.</p>
 <hr>
-<h2 id="schritt-5--cluster-id-abrufen">Schritt 5 – Cluster ID abrufen</h2>
+<h2 id="schritt-4--cluster-id-abrufen">Schritt 4 – Cluster ID abrufen</h2>
 <pre tabindex="0"><code>GET /v1/clusters
 </code></pre><p>Nach dem Ausführen in der Antwort zu <code>PageOfCluster</code> navigieren und das Feld <code>id</code> des Zielclusters kopieren.</p>
 <hr>
-<h2 id="schritt-6--json-spezifikation-erstellen">Schritt 6 – JSON-Spezifikation erstellen</h2>
+<h2 id="schritt-5--json-spezifikation-erstellen">Schritt 5 – JSON-Spezifikation erstellen</h2>
 <p>Je nach Netzwerkkonfiguration kommt eine der beiden folgenden Templates zum Einsatz.</p>
 <h3 id="template-1--mit-lacp-konfiguration">Template 1 – Mit LACP-Konfiguration</h3>
 <p>Dieses Template wird verwendet, wenn die vDS-Uplinks mit <strong>Link Aggregation Control Protocol (LACP)</strong> konfiguriert sind. Active Uplinks werden als <code>LAG-0</code> / <code>LAG-1</code> referenziert.</p>
@@ -557,7 +548,7 @@ stroke-linejoin="round" class="feather feather-home">
   </tbody>
 </table>
 <hr>
-<h2 id="schritt-7--json-spezifikation-validieren">Schritt 7 – JSON-Spezifikation validieren</h2>
+<h2 id="schritt-6--json-spezifikation-validieren">Schritt 6 – JSON-Spezifikation validieren</h2>
 <ol>
 <li>Im SDDC Manager API Explorer zu <strong>Clusters → <code>POST /v1/clusters/{id}/validations</code></strong> navigieren.</li>
 <li>Im Feld <code>Value</code> die in Schritt 5 ermittelte <strong>Cluster ID</strong> eintragen.</li>
@@ -571,7 +562,7 @@ stroke-linejoin="round" class="feather feather-home">
 <li>In der Response den Abschnitt <code>result</code> aufklappen und prüfen, dass der Status <code>SUCCEEDED</code> lautet.</li>
 </ol>
 <hr>
-<h2 id="schritt-8--cluster-stretchen">Schritt 8 – Cluster stretchen</h2>
+<h2 id="schritt-7--cluster-stretchen">Schritt 7 – Cluster stretchen</h2>
 <ol>
 <li>Im SDDC Manager API Explorer zu <strong>Clusters → <code>PATCH /v1/clusters/{id}</code></strong> navigieren.</li>
 <li>Die <strong>Cluster ID</strong> in das Feld <code>Value</code> einfügen.</li>
